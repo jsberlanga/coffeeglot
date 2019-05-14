@@ -1,0 +1,11 @@
+{
+  "name": "coffeeglot-backend",
+  "version": "1.0.0",
+  "description": "Coffeeglot is a website for those who prefer to learn with a coffee on their hands",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Julio Soto",
+  "license": "ISC"
+}
