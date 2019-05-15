@@ -17,12 +17,12 @@ type BatchPayload {
 
 type Course {
   id: ID!
+  createdAt: DateTime!
   title: String!
   description: String!
+  price: Int!
   language: String!
   image: String
-  price: Int!
-  user: User!
 }
 
 type CourseConnection {
@@ -35,24 +35,14 @@ input CourseCreateInput {
   id: ID
   title: String!
   description: String!
+  price: Int!
   language: String!
   image: String
-  price: Int!
-  user: UserCreateOneWithoutCoursesInput!
 }
 
-input CourseCreateManyWithoutUserInput {
-  create: [CourseCreateWithoutUserInput!]
+input CourseCreateManyInput {
+  create: [CourseCreateInput!]
   connect: [CourseWhereUniqueInput!]
-}
-
-input CourseCreateWithoutUserInput {
-  id: ID
-  title: String!
-  description: String!
-  language: String!
-  image: String
-  price: Int!
 }
 
 type CourseEdge {
@@ -63,25 +53,28 @@ type CourseEdge {
 enum CourseOrderByInput {
   id_ASC
   id_DESC
+  createdAt_ASC
+  createdAt_DESC
   title_ASC
   title_DESC
   description_ASC
   description_DESC
+  price_ASC
+  price_DESC
   language_ASC
   language_DESC
   image_ASC
   image_DESC
-  price_ASC
-  price_DESC
 }
 
 type CoursePreviousValues {
   id: ID!
+  createdAt: DateTime!
   title: String!
   description: String!
+  price: Int!
   language: String!
   image: String
-  price: Int!
 }
 
 input CourseScalarWhereInput {
@@ -99,6 +92,14 @@ input CourseScalarWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
   title: String
   title_not: String
   title_in: [String!]
@@ -127,6 +128,14 @@ input CourseScalarWhereInput {
   description_not_starts_with: String
   description_ends_with: String
   description_not_ends_with: String
+  price: Int
+  price_not: Int
+  price_in: [Int!]
+  price_not_in: [Int!]
+  price_lt: Int
+  price_lte: Int
+  price_gt: Int
+  price_gte: Int
   language: String
   language_not: String
   language_in: [String!]
@@ -155,14 +164,6 @@ input CourseScalarWhereInput {
   image_not_starts_with: String
   image_ends_with: String
   image_not_ends_with: String
-  price: Int
-  price_not: Int
-  price_in: [Int!]
-  price_not_in: [Int!]
-  price_lt: Int
-  price_lte: Int
-  price_gt: Int
-  price_gte: Int
   AND: [CourseScalarWhereInput!]
   OR: [CourseScalarWhereInput!]
   NOT: [CourseScalarWhereInput!]
@@ -186,41 +187,48 @@ input CourseSubscriptionWhereInput {
   NOT: [CourseSubscriptionWhereInput!]
 }
 
+input CourseUpdateDataInput {
+  title: String
+  description: String
+  price: Int
+  language: String
+  image: String
+}
+
 input CourseUpdateInput {
   title: String
   description: String
+  price: Int
   language: String
   image: String
-  price: Int
-  user: UserUpdateOneRequiredWithoutCoursesInput
 }
 
 input CourseUpdateManyDataInput {
   title: String
   description: String
+  price: Int
   language: String
   image: String
-  price: Int
+}
+
+input CourseUpdateManyInput {
+  create: [CourseCreateInput!]
+  update: [CourseUpdateWithWhereUniqueNestedInput!]
+  upsert: [CourseUpsertWithWhereUniqueNestedInput!]
+  delete: [CourseWhereUniqueInput!]
+  connect: [CourseWhereUniqueInput!]
+  set: [CourseWhereUniqueInput!]
+  disconnect: [CourseWhereUniqueInput!]
+  deleteMany: [CourseScalarWhereInput!]
+  updateMany: [CourseUpdateManyWithWhereNestedInput!]
 }
 
 input CourseUpdateManyMutationInput {
   title: String
   description: String
+  price: Int
   language: String
   image: String
-  price: Int
-}
-
-input CourseUpdateManyWithoutUserInput {
-  create: [CourseCreateWithoutUserInput!]
-  delete: [CourseWhereUniqueInput!]
-  connect: [CourseWhereUniqueInput!]
-  set: [CourseWhereUniqueInput!]
-  disconnect: [CourseWhereUniqueInput!]
-  update: [CourseUpdateWithWhereUniqueWithoutUserInput!]
-  upsert: [CourseUpsertWithWhereUniqueWithoutUserInput!]
-  deleteMany: [CourseScalarWhereInput!]
-  updateMany: [CourseUpdateManyWithWhereNestedInput!]
 }
 
 input CourseUpdateManyWithWhereNestedInput {
@@ -228,23 +236,15 @@ input CourseUpdateManyWithWhereNestedInput {
   data: CourseUpdateManyDataInput!
 }
 
-input CourseUpdateWithoutUserDataInput {
-  title: String
-  description: String
-  language: String
-  image: String
-  price: Int
+input CourseUpdateWithWhereUniqueNestedInput {
+  where: CourseWhereUniqueInput!
+  data: CourseUpdateDataInput!
 }
 
-input CourseUpdateWithWhereUniqueWithoutUserInput {
+input CourseUpsertWithWhereUniqueNestedInput {
   where: CourseWhereUniqueInput!
-  data: CourseUpdateWithoutUserDataInput!
-}
-
-input CourseUpsertWithWhereUniqueWithoutUserInput {
-  where: CourseWhereUniqueInput!
-  update: CourseUpdateWithoutUserDataInput!
-  create: CourseCreateWithoutUserInput!
+  update: CourseUpdateDataInput!
+  create: CourseCreateInput!
 }
 
 input CourseWhereInput {
@@ -262,6 +262,14 @@ input CourseWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
   title: String
   title_not: String
   title_in: [String!]
@@ -290,6 +298,14 @@ input CourseWhereInput {
   description_not_starts_with: String
   description_ends_with: String
   description_not_ends_with: String
+  price: Int
+  price_not: Int
+  price_in: [Int!]
+  price_not_in: [Int!]
+  price_lt: Int
+  price_lte: Int
+  price_gt: Int
+  price_gte: Int
   language: String
   language_not: String
   language_in: [String!]
@@ -318,15 +334,6 @@ input CourseWhereInput {
   image_not_starts_with: String
   image_ends_with: String
   image_not_ends_with: String
-  price: Int
-  price_not: Int
-  price_in: [Int!]
-  price_not_in: [Int!]
-  price_lt: Int
-  price_lte: Int
-  price_gt: Int
-  price_gte: Int
-  user: UserWhereInput
   AND: [CourseWhereInput!]
   OR: [CourseWhereInput!]
   NOT: [CourseWhereInput!]
@@ -335,6 +342,8 @@ input CourseWhereInput {
 input CourseWhereUniqueInput {
   id: ID
 }
+
+scalar DateTime
 
 scalar Long
 
@@ -404,19 +413,7 @@ input UserCreateInput {
   name: String!
   email: String!
   password: String!
-  courses: CourseCreateManyWithoutUserInput
-}
-
-input UserCreateOneWithoutCoursesInput {
-  create: UserCreateWithoutCoursesInput
-  connect: UserWhereUniqueInput
-}
-
-input UserCreateWithoutCoursesInput {
-  id: ID
-  name: String!
-  email: String!
-  password: String!
+  courses: CourseCreateManyInput
 }
 
 type UserEdge {
@@ -464,31 +461,13 @@ input UserUpdateInput {
   name: String
   email: String
   password: String
-  courses: CourseUpdateManyWithoutUserInput
+  courses: CourseUpdateManyInput
 }
 
 input UserUpdateManyMutationInput {
   name: String
   email: String
   password: String
-}
-
-input UserUpdateOneRequiredWithoutCoursesInput {
-  create: UserCreateWithoutCoursesInput
-  update: UserUpdateWithoutCoursesDataInput
-  upsert: UserUpsertWithoutCoursesInput
-  connect: UserWhereUniqueInput
-}
-
-input UserUpdateWithoutCoursesDataInput {
-  name: String
-  email: String
-  password: String
-}
-
-input UserUpsertWithoutCoursesInput {
-  update: UserUpdateWithoutCoursesDataInput!
-  create: UserCreateWithoutCoursesInput!
 }
 
 input UserWhereInput {

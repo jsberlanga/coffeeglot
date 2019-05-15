@@ -1,13 +1,31 @@
 type Query {
   users: [User]!
+  courses: [Course]!
 }
 
 type Mutation {
   signup(name: String!, email: String!, password: String!): User!
+  createCourse(
+    title: String!
+    description: String!
+    language: String!
+    image: String
+    price: Int!
+  ): Course!
 }
 
 type User {
   id: ID!
   name: String!
   email: String!
+}
+
+type Course {
+  id: ID!
+  # createdAt: DateTime!
+  title: String!
+  description: String!
+  price: Int!
+  language: String!
+  image: String
 }

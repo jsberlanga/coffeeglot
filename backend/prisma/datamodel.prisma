@@ -8,10 +8,11 @@ type User {
 
 type Course {
   id: ID! @id @unique
+  createdAt: DateTime! @createdAt
   title: String!
   description: String!
+  price: Int!
   language: String!
   image: String
-  price: Int!
-  user: User!
+  # user: User!
 }

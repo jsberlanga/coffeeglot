@@ -9,6 +9,17 @@ async function signup(parent, args, ctx, info) {
   };
 }
 
+async function createCourse(parent, args, ctx, info) {
+  const course = await ctx.prisma.createCourse(
+    {
+      ...args
+    },
+    info
+  );
+  return course;
+}
+
 module.exports = {
-  signup
+  signup,
+  createCourse
 };

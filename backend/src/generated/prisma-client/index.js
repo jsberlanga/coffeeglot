@@ -16,7 +16,6 @@ var models = [
 exports.Prisma = prisma_lib_1.makePrismaClientClass({
   typeDefs,
   models,
-  endpoint: `https://eu1.prisma.sh/julio-soto-567e4e/coffeglot-backend/dev`,
-  secret: `${process.env["PRISMA_SECRET"]}`
+  endpoint: `https://eu1.prisma.sh/julio-soto-567e4e/coffeglot-backend/dev`
 });
 exports.prisma = new exports.Prisma();
