@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import Particles from "react-particles-js";
 
 const StyledHome = styled.div`
   background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) 50%),
@@ -23,11 +24,72 @@ const StyledHome = styled.div`
     color: ${props => props.theme.lightGrey};
     filter: blur(1.4px);
   }
+  .particles {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+  }
 `;
 
 const Home = props => {
   return (
     <StyledHome>
+      <Particles
+        className="particles"
+        params={{
+          particles: {
+            number: {
+              value: 100,
+              density: {
+                enable: false
+              }
+            },
+            size: {
+              value: 4,
+              random: true,
+              anim: {
+                speed: 4,
+                size_min: 0.3
+              }
+            },
+            line_linked: {
+              enable: false
+            },
+            move: {
+              random: true,
+              speed: 1,
+              direction: "bottom",
+              out_mode: "out"
+            }
+          },
+          interactivity: {
+            events: {
+              onhover: {
+                enable: true,
+                mode: "bubble"
+              },
+              onclick: {
+                enable: true,
+                mode: "repulse"
+              }
+            },
+            modes: {
+              bubble: {
+                distance: 250,
+                duration: 2,
+                size: 0,
+                opacity: 0
+              },
+              repulse: {
+                distance: 400,
+                duration: 4
+              }
+            }
+          }
+        }}
+      />
       <h1>feeding mind, body and spirit</h1>
     </StyledHome>
   );
