@@ -32,21 +32,18 @@ const Header = props => (
     <Link href="/teachers">
       <a>Teachers</a>
     </Link>
-    <Link href="/cafes">
-      <a>Cafes</a>
-    </Link>
-    <Link href="/add">
-      <a>Add</a>
-    </Link>
     <Link href="/map">
       <a>Map</a>
     </Link>
-    <Link href="/profile">
-      <a>Account</a>
+    <Link href="/add">
+      <a>Add Course</a>
     </Link>
-    {/* <Link href="/signup">
+    <Link href="/profile">
+      <a>Profile</a>
+    </Link>
+    <Link href="/signup">
       <a>Signup</a>
-    </Link> */}
+    </Link>
   </StyledNav>
 );
 

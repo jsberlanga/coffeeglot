@@ -1,7 +1,8 @@
 import React from "react";
+import CreateCourse from "../components/CreateCourse";
 
 const AddPage = () => {
-  return <div>Welcome to Add</div>;
+  return <CreateCourse />;
 };
 
 export default AddPage;
