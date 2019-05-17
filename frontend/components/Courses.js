@@ -19,7 +19,11 @@ export default class Courses extends Component {
   render() {
     return (
       <>
-        <h1>These are our current courses:</h1>
+        <h2
+          style={{ textAlign: "center", fontFamily: "linlibertine-italicbold" }}
+        >
+          Language Courses for English Speakers
+        </h2>
         <Query query={ALL_COURSES_QUERY}>
           {({ data: { courses } }) => {
             console.log(courses);

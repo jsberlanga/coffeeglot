@@ -88,6 +88,7 @@ const theme = {
   blue: "#a9c6de",
   yellow: "#e4c666",
   grey: "#414F5D",
+  grey2: "#748290",
   lightGrey: "#dee1ec",
   offBlack: "#364f6b",
   offWhite: "#f5f5f5",
@@ -100,12 +101,14 @@ const StyledPage = styled.div`
   color: ${props => props.theme.offBlack};
   position: relative;
   min-height: 100vh;
+  background-image: url("static/images/texture.png");
+  filter: brightness(105%);
 `;
 
 const Inner = styled.div`
   max-width: 90vw;
-  margin: 0 auto;
-  /* padding-bottom: 10rem; */
+  margin: 0rem auto;
+  padding-bottom: 15rem;
 `;
 
 class Page extends Component {

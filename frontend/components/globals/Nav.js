@@ -7,11 +7,18 @@ const StyledNav = styled.div`
   display: flex;
   justify-content: center;
   font-family: "Stylish", sans-serif;
-  font-size: 2.5rem;
+  font-size: 2.2rem;
   a,
   button,
   input {
-    padding: 1rem 2rem;
+    padding: 0rem 2rem;
+    transition: all 0.14s ease;
+    :hover {
+      border-bottom: 5px solid ${props => props.theme.grey2};
+      color: ${props => props.theme.grey2};
+      transform: translateY(-6px);
+      font-weight: bold;
+    }
   }
 
   a,
@@ -32,8 +39,11 @@ const Header = props => (
     <Link href="/teachers">
       <a>Teachers</a>
     </Link>
-    <Link href="/map">
-      <a>Map</a>
+    <Link href="/cafes">
+      <a>Cafes</a>
+    </Link>
+    <Link href="/top">
+      <a>Top</a>
     </Link>
     <Link href="/add">
       <a>Add Course</a>
