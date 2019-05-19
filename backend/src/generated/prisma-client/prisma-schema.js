@@ -7,6 +7,10 @@ module.exports = {
   count: Int!
 }
 
+type AggregateTeacher {
+  count: Int!
+}
+
 type AggregateUser {
   count: Int!
 }
@@ -453,6 +457,12 @@ type Mutation {
   upsertCourse(where: CourseWhereUniqueInput!, create: CourseCreateInput!, update: CourseUpdateInput!): Course!
   deleteCourse(where: CourseWhereUniqueInput!): Course
   deleteManyCourses(where: CourseWhereInput): BatchPayload!
+  createTeacher(data: TeacherCreateInput!): Teacher!
+  updateTeacher(data: TeacherUpdateInput!, where: TeacherWhereUniqueInput!): Teacher
+  updateManyTeachers(data: TeacherUpdateManyMutationInput!, where: TeacherWhereInput): BatchPayload!
+  upsertTeacher(where: TeacherWhereUniqueInput!, create: TeacherCreateInput!, update: TeacherUpdateInput!): Teacher!
+  deleteTeacher(where: TeacherWhereUniqueInput!): Teacher
+  deleteManyTeachers(where: TeacherWhereInput): BatchPayload!
   createUser(data: UserCreateInput!): User!
   updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
   updateManyUsers(data: UserUpdateManyMutationInput!, where: UserWhereInput): BatchPayload!
@@ -482,6 +492,9 @@ type Query {
   course(where: CourseWhereUniqueInput!): Course
   courses(where: CourseWhereInput, orderBy: CourseOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Course]!
   coursesConnection(where: CourseWhereInput, orderBy: CourseOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): CourseConnection!
+  teacher(where: TeacherWhereUniqueInput!): Teacher
+  teachers(where: TeacherWhereInput, orderBy: TeacherOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Teacher]!
+  teachersConnection(where: TeacherWhereInput, orderBy: TeacherOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): TeacherConnection!
   user(where: UserWhereUniqueInput!): User
   users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
   usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
@@ -490,14 +503,13 @@ type Query {
 
 type Subscription {
   course(where: CourseSubscriptionWhereInput): CourseSubscriptionPayload
+  teacher(where: TeacherSubscriptionWhereInput): TeacherSubscriptionPayload
   user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
 }
 
-type User {
+type Teacher {
   id: ID!
   name: String!
-  email: String!
-  password: String!
   courses(where: CourseWhereInput, orderBy: CourseOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Course!]
   isNative: String
   image: String
@@ -505,19 +517,36 @@ type User {
   experience: String
   education: String
   certifications: String
+  user: User
 }
 
-type UserConnection {
+type TeacherConnection {
   pageInfo: PageInfo!
-  edges: [UserEdge]!
-  aggregate: AggregateUser!
+  edges: [TeacherEdge]!
+  aggregate: AggregateTeacher!
 }
 
-input UserCreateInput {
+input TeacherCreateInput {
   id: ID
   name: String!
-  email: String!
-  password: String!
+  courses: CourseCreateManyInput
+  isNative: String
+  image: String
+  about: String
+  experience: String
+  education: String
+  certifications: String
+  user: UserCreateOneWithoutTeacherInput
+}
+
+input TeacherCreateOneWithoutUserInput {
+  create: TeacherCreateWithoutUserInput
+  connect: TeacherWhereUniqueInput
+}
+
+input TeacherCreateWithoutUserInput {
+  id: ID
+  name: String!
   courses: CourseCreateManyInput
   isNative: String
   image: String
@@ -527,20 +556,16 @@ input UserCreateInput {
   certifications: String
 }
 
-type UserEdge {
-  node: User!
+type TeacherEdge {
+  node: Teacher!
   cursor: String!
 }
 
-enum UserOrderByInput {
+enum TeacherOrderByInput {
   id_ASC
   id_DESC
   name_ASC
   name_DESC
-  email_ASC
-  email_DESC
-  password_ASC
-  password_DESC
   isNative_ASC
   isNative_DESC
   image_ASC
@@ -555,11 +580,9 @@ enum UserOrderByInput {
   certifications_DESC
 }
 
-type UserPreviousValues {
+type TeacherPreviousValues {
   id: ID!
   name: String!
-  email: String!
-  password: String!
   isNative: String
   image: String
   about: String
@@ -568,28 +591,57 @@ type UserPreviousValues {
   certifications: String
 }
 
-type UserSubscriptionPayload {
+type TeacherSubscriptionPayload {
   mutation: MutationType!
-  node: User
+  node: Teacher
   updatedFields: [String!]
-  previousValues: UserPreviousValues
+  previousValues: TeacherPreviousValues
 }
 
-input UserSubscriptionWhereInput {
+input TeacherSubscriptionWhereInput {
   mutation_in: [MutationType!]
   updatedFields_contains: String
   updatedFields_contains_every: [String!]
   updatedFields_contains_some: [String!]
-  node: UserWhereInput
-  AND: [UserSubscriptionWhereInput!]
-  OR: [UserSubscriptionWhereInput!]
-  NOT: [UserSubscriptionWhereInput!]
+  node: TeacherWhereInput
+  AND: [TeacherSubscriptionWhereInput!]
+  OR: [TeacherSubscriptionWhereInput!]
+  NOT: [TeacherSubscriptionWhereInput!]
 }
 
-input UserUpdateInput {
+input TeacherUpdateInput {
   name: String
-  email: String
-  password: String
+  courses: CourseUpdateManyInput
+  isNative: String
+  image: String
+  about: String
+  experience: String
+  education: String
+  certifications: String
+  user: UserUpdateOneWithoutTeacherInput
+}
+
+input TeacherUpdateManyMutationInput {
+  name: String
+  isNative: String
+  image: String
+  about: String
+  experience: String
+  education: String
+  certifications: String
+}
+
+input TeacherUpdateOneWithoutUserInput {
+  create: TeacherCreateWithoutUserInput
+  update: TeacherUpdateWithoutUserDataInput
+  upsert: TeacherUpsertWithoutUserInput
+  delete: Boolean
+  disconnect: Boolean
+  connect: TeacherWhereUniqueInput
+}
+
+input TeacherUpdateWithoutUserDataInput {
+  name: String
   courses: CourseUpdateManyInput
   isNative: String
   image: String
@@ -599,19 +651,12 @@ input UserUpdateInput {
   certifications: String
 }
 
-input UserUpdateManyMutationInput {
-  name: String
-  email: String
-  password: String
-  isNative: String
-  image: String
-  about: String
-  experience: String
-  education: String
-  certifications: String
+input TeacherUpsertWithoutUserInput {
+  update: TeacherUpdateWithoutUserDataInput!
+  create: TeacherCreateWithoutUserInput!
 }
 
-input UserWhereInput {
+input TeacherWhereInput {
   id: ID
   id_not: ID
   id_in: [ID!]
@@ -640,34 +685,6 @@ input UserWhereInput {
   name_not_starts_with: String
   name_ends_with: String
   name_not_ends_with: String
-  email: String
-  email_not: String
-  email_in: [String!]
-  email_not_in: [String!]
-  email_lt: String
-  email_lte: String
-  email_gt: String
-  email_gte: String
-  email_contains: String
-  email_not_contains: String
-  email_starts_with: String
-  email_not_starts_with: String
-  email_ends_with: String
-  email_not_ends_with: String
-  password: String
-  password_not: String
-  password_in: [String!]
-  password_not_in: [String!]
-  password_lt: String
-  password_lte: String
-  password_gt: String
-  password_gte: String
-  password_contains: String
-  password_not_contains: String
-  password_starts_with: String
-  password_not_starts_with: String
-  password_ends_with: String
-  password_not_ends_with: String
   courses_every: CourseWhereInput
   courses_some: CourseWhereInput
   courses_none: CourseWhereInput
@@ -755,6 +772,159 @@ input UserWhereInput {
   certifications_not_starts_with: String
   certifications_ends_with: String
   certifications_not_ends_with: String
+  user: UserWhereInput
+  AND: [TeacherWhereInput!]
+  OR: [TeacherWhereInput!]
+  NOT: [TeacherWhereInput!]
+}
+
+input TeacherWhereUniqueInput {
+  id: ID
+}
+
+type User {
+  id: ID!
+  email: String!
+  password: String!
+  teacher: Teacher
+}
+
+type UserConnection {
+  pageInfo: PageInfo!
+  edges: [UserEdge]!
+  aggregate: AggregateUser!
+}
+
+input UserCreateInput {
+  id: ID
+  email: String!
+  password: String!
+  teacher: TeacherCreateOneWithoutUserInput
+}
+
+input UserCreateOneWithoutTeacherInput {
+  create: UserCreateWithoutTeacherInput
+  connect: UserWhereUniqueInput
+}
+
+input UserCreateWithoutTeacherInput {
+  id: ID
+  email: String!
+  password: String!
+}
+
+type UserEdge {
+  node: User!
+  cursor: String!
+}
+
+enum UserOrderByInput {
+  id_ASC
+  id_DESC
+  email_ASC
+  email_DESC
+  password_ASC
+  password_DESC
+}
+
+type UserPreviousValues {
+  id: ID!
+  email: String!
+  password: String!
+}
+
+type UserSubscriptionPayload {
+  mutation: MutationType!
+  node: User
+  updatedFields: [String!]
+  previousValues: UserPreviousValues
+}
+
+input UserSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: UserWhereInput
+  AND: [UserSubscriptionWhereInput!]
+  OR: [UserSubscriptionWhereInput!]
+  NOT: [UserSubscriptionWhereInput!]
+}
+
+input UserUpdateInput {
+  email: String
+  password: String
+  teacher: TeacherUpdateOneWithoutUserInput
+}
+
+input UserUpdateManyMutationInput {
+  email: String
+  password: String
+}
+
+input UserUpdateOneWithoutTeacherInput {
+  create: UserCreateWithoutTeacherInput
+  update: UserUpdateWithoutTeacherDataInput
+  upsert: UserUpsertWithoutTeacherInput
+  delete: Boolean
+  disconnect: Boolean
+  connect: UserWhereUniqueInput
+}
+
+input UserUpdateWithoutTeacherDataInput {
+  email: String
+  password: String
+}
+
+input UserUpsertWithoutTeacherInput {
+  update: UserUpdateWithoutTeacherDataInput!
+  create: UserCreateWithoutTeacherInput!
+}
+
+input UserWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  email: String
+  email_not: String
+  email_in: [String!]
+  email_not_in: [String!]
+  email_lt: String
+  email_lte: String
+  email_gt: String
+  email_gte: String
+  email_contains: String
+  email_not_contains: String
+  email_starts_with: String
+  email_not_starts_with: String
+  email_ends_with: String
+  email_not_ends_with: String
+  password: String
+  password_not: String
+  password_in: [String!]
+  password_not_in: [String!]
+  password_lt: String
+  password_lte: String
+  password_gt: String
+  password_gte: String
+  password_contains: String
+  password_not_contains: String
+  password_starts_with: String
+  password_not_starts_with: String
+  password_ends_with: String
+  password_not_ends_with: String
+  teacher: TeacherWhereInput
   AND: [UserWhereInput!]
   OR: [UserWhereInput!]
   NOT: [UserWhereInput!]

@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
+import styled from "styled-components";
 
 import { StyledHeader } from "./styles/Header";
+import Course from "./Course";
 
 const ALL_COURSES_QUERY = gql`
   query ALL_COURSES_QUERY {
@@ -20,6 +22,16 @@ const ALL_COURSES_QUERY = gql`
   }
 `;
 
+const CourseList = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 10rem;
+  margin: 0 auto;
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+`;
+
 export default class Courses extends Component {
   render() {
     return (
@@ -31,17 +43,11 @@ export default class Courses extends Component {
           {({ data: { courses } }) => {
             console.log(courses);
             return (
-              <div>
-                <h3>course</h3>
+              <CourseList>
                 {courses.map(course => (
-                  <ul key={course.id}>
-                    <li>
-                      <p>{course.title}</p>
-                      <p>{course.details}</p>
-                    </li>
-                  </ul>
+                  <Course key={course.id} course={course} />
                 ))}
-              </div>
+              </CourseList>
             );
           }}
         </Query>

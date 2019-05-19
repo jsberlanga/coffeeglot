@@ -1,15 +1,25 @@
 export const languages = [
+  {
+    language: "Choose a Language"
+  },
+  {
+    language: "German",
+    flag: "https://upload.wikimedia.org/wikipedia/en/b/ba/Flag_of_Germany.svg"
+  },
+  {
+    language: "Chinese",
+    flag:
+      "https://upload.wikimedia.org/wikipedia/commons/f/fa/Flag_of_the_People%27s_Republic_of_China.svg"
+  }
+];
+
+export const languagesArray = [
   "Choose a Language",
   "Chinese",
   "Spanish",
   "English",
-  "Irish",
-  "Scottish",
-  "Croatian",
   "Finnish",
   "Hungarian",
-  "Hindi",
-  "Arabic",
   "Portuguese",
   "Russian",
   "Japanese",
@@ -23,16 +33,7 @@ export const languages = [
   "Dutch",
   "Greek",
   "Czech",
-  "Swedish",
-  "Belarusian",
-  "Bulgarian",
-  "Danish",
-  "Estonian",
-  "Latvian",
-  "Lithuanian",
-  "Maltese",
-  "Slovak",
-  "Slovene"
+  "Swedish"
 ];
 
 export const locations = [

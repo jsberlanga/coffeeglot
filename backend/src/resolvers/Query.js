@@ -1,5 +1,6 @@
 async function users(parent, args, ctx, info) {
-  return args;
+  const users = await ctx.prisma.users();
+  return users;
 }
 
 async function courses(parent, args, ctx, info) {
@@ -7,7 +8,13 @@ async function courses(parent, args, ctx, info) {
   return courses;
 }
 
+async function teachers(parent, args, ctx, info) {
+  const teachers = await ctx.prisma.teachers();
+  return teachers;
+}
+
 module.exports = {
   users,
-  courses
+  courses,
+  teachers
 };

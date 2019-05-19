@@ -25,7 +25,7 @@ export const StyledForm = styled.form`
   margin: 0 auto;
   box-shadow: 10px 10px 0px 0px ${props => props.theme.grey2};
   font-size: 2rem;
-  max-width: 120rem;
+  max-width: 130rem;
   background: ${props => props.theme.green2};
   display: grid;
   grid-template-columns: repeat(2, 1fr);

@@ -131,8 +131,11 @@ export default class CreateCourse extends Component {
                     <span>Language</span>
                     <select name="language" onChange={this.handleChange}>
                       {languages.map(language => (
-                        <option key={language} value={language}>
-                          {language}
+                        <option
+                          key={language.language}
+                          value={language.language}
+                        >
+                          {language.language}
                         </option>
                       ))}
                     </select>

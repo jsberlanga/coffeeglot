@@ -19,7 +19,18 @@ async function createCourse(parent, args, ctx, info) {
   return course;
 }
 
+async function createTeacher(parent, args, ctx, info) {
+  const teacher = await ctx.prisma.createTeacher(
+    {
+      ...args
+    },
+    info
+  );
+  return teacher;
+}
+
 module.exports = {
   signup,
-  createCourse
+  createCourse,
+  createTeacher
 };

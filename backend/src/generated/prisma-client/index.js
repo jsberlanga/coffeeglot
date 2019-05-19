@@ -9,6 +9,10 @@ var models = [
     embedded: false
   },
   {
+    name: "Teacher",
+    embedded: false
+  },
+  {
     name: "Course",
     embedded: false
   }
