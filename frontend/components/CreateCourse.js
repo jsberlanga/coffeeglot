@@ -5,97 +5,34 @@ import gql from "graphql-tag";
 import { languages, locations } from "../lib/data";
 import Router from "next/router";
 
+import { StyledForm } from "./styles/Form";
+import { StyledHeader } from "./styles/Header";
+import DayPicker from "react-day-picker/DayPickerInput";
+import "react-day-picker/lib/style.css";
+
 const CREATE_COURSE_MUTATION = gql`
   mutation CREATE_COURSE_MUTATION(
     $title: String!
-    $description: String!
+    $details: String!
     $price: Int!
     $language: String!
+    $location: String!
+    $seats: Int!
+    $startDate: String!
+    $endDate: String!
   ) {
     createCourse(
       title: $title
-      description: $description
+      details: $details
       price: $price
       language: $language
+      location: $location
+      seats: $seats
+      startDate: $startDate
+      endDate: $endDate
     ) {
       id
     }
-  }
-`;
-
-const StyledForm = styled.form`
-  * {
-    font-family: linlibertine-bold;
-    letter-spacing: 1px;
-  }
-  .left {
-    background: ${props => props.theme.green};
-    padding: 3rem;
-    color: ${props => props.theme.offWhite};
-  }
-  .right {
-    background: ${props => props.theme.green2};
-    padding: 3rem;
-    color: ${props => props.theme.grey};
-  }
-
-  margin: 0 auto;
-  box-shadow: 10px 10px 0px 0px ${props => props.theme.grey2};
-  font-size: 2rem;
-  max-width: 120rem;
-  background: ${props => props.theme.green2};
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-
-  label {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 1rem;
-  }
-
-  input,
-  textarea,
-  select,
-  option {
-    width: 100%;
-    font-size: 1.6rem;
-    padding: 2rem;
-    border: none;
-    background: ${props => props.theme.lightBlue};
-    color: ${props => props.theme.grey2};
-    border-radius: 0.4rem;
-    margin-top: 0.4rem;
-    resize: none;
-    &:focus {
-      filter: contrast(95%);
-      outline: none;
-    }
-    ::placeholder {
-      color: ${props => props.theme.grey2};
-    }
-  }
-
-  button {
-    width: 50%;
-    border: 0;
-    font-size: 2.8rem;
-    border-radius: 0.4rem;
-    margin: 2rem auto;
-    padding: 2.4rem;
-    float: right;
-    font-family: linlibertine-italicbold;
-    background: ${props => props.theme.grey2};
-    color: #fff;
-    cursor: pointer;
-    &:hover {
-      background: ${props => props.theme.grey};
-    }
-  }
-  h2,
-  h3,
-  h4,
-  h5 {
-    font-family: linlibertine-italicbold;
   }
 `;
 
@@ -104,11 +41,16 @@ export default class CreateCourse extends Component {
     title: "",
     details: "",
     price: "",
-    locations: "",
     language: "",
+    location: "",
+    seats: "",
+    isNative: undefined,
     about: "",
     experience: "",
-    schedule: ""
+    education: "",
+    certifications: "",
+    startDate: undefined,
+    endDate: undefined
   };
   handleChange = e => {
     const { name, type, value } = e.target;
@@ -123,23 +65,26 @@ export default class CreateCourse extends Component {
       query: { id: res.data.createCourse.id }
     });
   };
+  handleDayClick = day => {
+    this.setState({ selectedDay: day });
+  };
   render() {
     const {
       title,
       details,
       price,
-      language,
       about,
       experience,
-      schedule
+      seats,
+      education,
+      certifications,
+      isNative
     } = this.state;
     return (
       <>
-        <h2
-          style={{ textAlign: "center", fontFamily: "linlibertine-italicbold" }}
-        >
-          Hi ***name***! Create your own Course
-        </h2>
+        <StyledHeader>
+          <h2>Go ahead and create your own course</h2>
+        </StyledHeader>
         <Mutation mutation={CREATE_COURSE_MUTATION} variables={this.state}>
           {createCourse => {
             return (
@@ -147,7 +92,7 @@ export default class CreateCourse extends Component {
                 <div className="left">
                   <h4>Tell us about the course</h4>
                   <label htmlFor="title">
-                    Title
+                    <span>Title</span>
                     <input
                       type="text"
                       id="title"
@@ -159,7 +104,7 @@ export default class CreateCourse extends Component {
                     />
                   </label>
                   <label htmlFor="details">
-                    Details
+                    <span>Details</span>
                     <textarea
                       rows="3"
                       id="details"
@@ -171,19 +116,19 @@ export default class CreateCourse extends Component {
                     />
                   </label>
                   <label htmlFor="price">
-                    Price
+                    <span>Price</span>
                     <input
                       type="number"
                       id="price"
                       name="price"
-                      placeholder="Price must be in cents"
+                      placeholder="Price in cents"
                       required
                       value={price}
                       onChange={this.handleChange}
                     />
                   </label>
                   <label htmlFor="language">
-                    Language
+                    <span>Language</span>
                     <select name="language" onChange={this.handleChange}>
                       {languages.map(language => (
                         <option key={language} value={language}>
@@ -192,22 +137,46 @@ export default class CreateCourse extends Component {
                       ))}
                     </select>
                   </label>
-                  {language === "Spanish" && <p>YO SOY</p>}
                   <label htmlFor="location">
-                    Location
+                    <span>Location</span>
                     <select name="location" onChange={this.handleChange}>
                       {locations.map(location => (
-                        <option key={location.name} value="`fuck me`">
+                        <option key={location.name} value={location.name}>
                           {location.name}
                         </option>
                       ))}
                     </select>
                   </label>
+                  <label htmlFor="seats">
+                    <span>Number of seats</span>
+                    <input
+                      type="number"
+                      id="seats"
+                      name="seats"
+                      placeholder="Maximum number of seats"
+                      required
+                      value={seats}
+                      onChange={this.handleChange}
+                    />
+                  </label>
+                  <label htmlFor="date" id="date">
+                    <span>Date</span>
+                    <DayPicker
+                      onDayChange={day => this.setState({ startDate: day })}
+                      value={this.state.startDate}
+                      placeholder="From"
+                    />
+                    <DayPicker
+                      onDayChange={day => this.setState({ endDate: day })}
+                      value={this.state.endDate}
+                      placeholder="To"
+                    />
+                  </label>
                 </div>
                 <div className="right">
                   <h4>Tell us about yourself</h4>
                   <label htmlFor="file">
-                    Image
+                    <span>Image</span>
                     <input
                       type="file"
                       id="file"
@@ -217,20 +186,32 @@ export default class CreateCourse extends Component {
                       onChange={this.uploadFile}
                     />
                   </label>
+                  <label htmlFor="isNative">
+                    <span>Native Speaker?</span>
+                    <select name="isNative" onChange={this.handleChange}>
+                      <option value="">Please choose an option</option>
+                      <option key={isNative} value={isNative}>
+                        Yes
+                      </option>
+                      <option key={isNative} value={isNative}>
+                        No
+                      </option>
+                    </select>
+                  </label>
                   <label htmlFor="about">
-                    About you
+                    <span>About you</span>
                     <textarea
                       rows="3"
                       id="about"
                       name="about"
-                      placeholder="Add additional information about yourself"
+                      placeholder="Add additional information about yourself, interests, etc."
                       required
                       value={about}
                       onChange={this.handleChange}
                     />
                   </label>
                   <label htmlFor="experience">
-                    Professional Experience:
+                    <span>Professional Experience</span>
                     <textarea
                       rows="3"
                       id="experience"
@@ -241,15 +222,27 @@ export default class CreateCourse extends Component {
                       onChange={this.handleChange}
                     />
                   </label>
-                  <label htmlFor="schedule">
-                    Schedule Information
+                  <label htmlFor="education">
+                    <span>Education</span>
                     <input
                       type="text"
-                      id="schedule"
-                      name="schedule"
-                      placeholder="Share your schedule information"
+                      id="education"
+                      name="education"
+                      placeholder="Education"
                       required
-                      value={schedule}
+                      value={education}
+                      onChange={this.handleChange}
+                    />
+                  </label>
+                  <label htmlFor="certifications">
+                    <span>Certifications</span>
+                    <input
+                      type="text"
+                      id="certifications"
+                      name="certifications"
+                      placeholder="Certifications"
+                      required
+                      value={certifications}
                       onChange={this.handleChange}
                     />
                   </label>

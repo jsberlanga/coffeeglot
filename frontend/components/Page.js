@@ -84,8 +84,8 @@ const theme = {
   green: "#247e6c",
   green2: "#57B19F",
   green3: "#71CBB9",
-  lightBlue: "#eaf5ff",
   blue: "#a9c6de",
+  blue2: "#C3E0F8",
   yellow: "#e4c666",
   grey: "#414F5D",
   grey2: "#748290",
@@ -101,7 +101,7 @@ const StyledPage = styled.div`
   color: ${props => props.theme.offBlack};
   position: relative;
   min-height: 100vh;
-  background-image: url("static/images/texture.png");
+  /* background-image: url("static/images/texture.png"); */
   filter: brightness(105%);
 `;
 

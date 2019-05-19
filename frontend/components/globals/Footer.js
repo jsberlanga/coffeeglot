@@ -5,8 +5,8 @@ const StyledFooter = styled.div`
   position: absolute;
   bottom: 0;
   width: 100%;
-  height: 8rem;
-  background: ${props => props.theme.yellow};
+  height: 7rem;
+  background: ${props => props.theme.green};
   color: ${props => props.theme.offWhite};
   letter-spacing: 2px;
   .title {
@@ -14,7 +14,7 @@ const StyledFooter = styled.div`
     bottom: 0;
     right: 0;
     margin: 2rem;
-    font-size: 1.7rem;
+    font-size: 1.4rem;
   }
 `;
 

@@ -3,16 +3,25 @@ type User {
   name: String!
   email: String! @unique
   password: String!
-  courses: [Course]!
+  courses: [Course]
+  isNative: String
+  image: String
+  about: String
+  experience: String
+  education: String
+  certifications: String
 }
 
 type Course {
   id: ID! @id @unique
   createdAt: DateTime! @createdAt
   title: String!
-  description: String!
+  details: String!
   price: Int!
   language: String!
-  image: String
+  location: String!
+  seats: Int!
+  startDate: String!
+  endDate: String!
   # user: User!
 }

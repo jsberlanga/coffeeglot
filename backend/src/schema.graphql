@@ -7,10 +7,13 @@ type Mutation {
   signup(name: String!, email: String!, password: String!): User!
   createCourse(
     title: String!
-    description: String!
-    language: String!
-    image: String
+    details: String!
     price: Int!
+    language: String!
+    location: String!
+    seats: Int!
+    startDate: String!
+    endDate: String!
   ): Course!
 }
 
@@ -18,14 +21,26 @@ type User {
   id: ID!
   name: String!
   email: String!
+  password: String!
+  courses: [Course]
+  isNative: String
+  image: String
+  about: String
+  experience: String
+  education: String
+  certifications: String
 }
 
 type Course {
   id: ID!
   # createdAt: DateTime!
   title: String!
-  description: String!
+  details: String!
   price: Int!
   language: String!
-  image: String
+  location: String!
+  seats: Int!
+  startDate: String!
+  endDate: String!
+  user: User!
 }

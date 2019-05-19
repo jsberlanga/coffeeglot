@@ -147,14 +147,20 @@ export type CourseOrderByInput =
   | "createdAt_DESC"
   | "title_ASC"
   | "title_DESC"
-  | "description_ASC"
-  | "description_DESC"
+  | "details_ASC"
+  | "details_DESC"
   | "price_ASC"
   | "price_DESC"
   | "language_ASC"
   | "language_DESC"
-  | "image_ASC"
-  | "image_DESC";
+  | "location_ASC"
+  | "location_DESC"
+  | "seats_ASC"
+  | "seats_DESC"
+  | "startDate_ASC"
+  | "startDate_DESC"
+  | "endDate_ASC"
+  | "endDate_DESC";
 
 export type UserOrderByInput =
   | "id_ASC"
@@ -164,16 +170,31 @@ export type UserOrderByInput =
   | "email_ASC"
   | "email_DESC"
   | "password_ASC"
-  | "password_DESC";
+  | "password_DESC"
+  | "isNative_ASC"
+  | "isNative_DESC"
+  | "image_ASC"
+  | "image_DESC"
+  | "about_ASC"
+  | "about_DESC"
+  | "experience_ASC"
+  | "experience_DESC"
+  | "education_ASC"
+  | "education_DESC"
+  | "certifications_ASC"
+  | "certifications_DESC";
 
 export type MutationType = "CREATED" | "UPDATED" | "DELETED";
 
 export interface CourseUpdateInput {
   title?: Maybe<String>;
-  description?: Maybe<String>;
+  details?: Maybe<String>;
   price?: Maybe<Int>;
   language?: Maybe<String>;
-  image?: Maybe<String>;
+  location?: Maybe<String>;
+  seats?: Maybe<Int>;
+  startDate?: Maybe<String>;
+  endDate?: Maybe<String>;
 }
 
 export type CourseWhereUniqueInput = AtLeastOne<{
@@ -182,10 +203,13 @@ export type CourseWhereUniqueInput = AtLeastOne<{
 
 export interface CourseUpdateDataInput {
   title?: Maybe<String>;
-  description?: Maybe<String>;
+  details?: Maybe<String>;
   price?: Maybe<Int>;
   language?: Maybe<String>;
-  image?: Maybe<String>;
+  location?: Maybe<String>;
+  seats?: Maybe<Int>;
+  startDate?: Maybe<String>;
+  endDate?: Maybe<String>;
 }
 
 export interface UserCreateInput {
@@ -194,6 +218,12 @@ export interface UserCreateInput {
   email: String;
   password: String;
   courses?: Maybe<CourseCreateManyInput>;
+  isNative?: Maybe<String>;
+  image?: Maybe<String>;
+  about?: Maybe<String>;
+  experience?: Maybe<String>;
+  education?: Maybe<String>;
+  certifications?: Maybe<String>;
 }
 
 export interface CourseUpdateWithWhereUniqueNestedInput {
@@ -235,10 +265,13 @@ export interface CourseUpdateManyInput {
 
 export interface CourseUpdateManyDataInput {
   title?: Maybe<String>;
-  description?: Maybe<String>;
+  details?: Maybe<String>;
   price?: Maybe<Int>;
   language?: Maybe<String>;
-  image?: Maybe<String>;
+  location?: Maybe<String>;
+  seats?: Maybe<Int>;
+  startDate?: Maybe<String>;
+  endDate?: Maybe<String>;
 }
 
 export interface UserUpdateInput {
@@ -246,6 +279,12 @@ export interface UserUpdateInput {
   email?: Maybe<String>;
   password?: Maybe<String>;
   courses?: Maybe<CourseUpdateManyInput>;
+  isNative?: Maybe<String>;
+  image?: Maybe<String>;
+  about?: Maybe<String>;
+  experience?: Maybe<String>;
+  education?: Maybe<String>;
+  certifications?: Maybe<String>;
 }
 
 export interface CourseScalarWhereInput {
@@ -285,20 +324,20 @@ export interface CourseScalarWhereInput {
   title_not_starts_with?: Maybe<String>;
   title_ends_with?: Maybe<String>;
   title_not_ends_with?: Maybe<String>;
-  description?: Maybe<String>;
-  description_not?: Maybe<String>;
-  description_in?: Maybe<String[] | String>;
-  description_not_in?: Maybe<String[] | String>;
-  description_lt?: Maybe<String>;
-  description_lte?: Maybe<String>;
-  description_gt?: Maybe<String>;
-  description_gte?: Maybe<String>;
-  description_contains?: Maybe<String>;
-  description_not_contains?: Maybe<String>;
-  description_starts_with?: Maybe<String>;
-  description_not_starts_with?: Maybe<String>;
-  description_ends_with?: Maybe<String>;
-  description_not_ends_with?: Maybe<String>;
+  details?: Maybe<String>;
+  details_not?: Maybe<String>;
+  details_in?: Maybe<String[] | String>;
+  details_not_in?: Maybe<String[] | String>;
+  details_lt?: Maybe<String>;
+  details_lte?: Maybe<String>;
+  details_gt?: Maybe<String>;
+  details_gte?: Maybe<String>;
+  details_contains?: Maybe<String>;
+  details_not_contains?: Maybe<String>;
+  details_starts_with?: Maybe<String>;
+  details_not_starts_with?: Maybe<String>;
+  details_ends_with?: Maybe<String>;
+  details_not_ends_with?: Maybe<String>;
   price?: Maybe<Int>;
   price_not?: Maybe<Int>;
   price_in?: Maybe<Int[] | Int>;
@@ -321,20 +360,56 @@ export interface CourseScalarWhereInput {
   language_not_starts_with?: Maybe<String>;
   language_ends_with?: Maybe<String>;
   language_not_ends_with?: Maybe<String>;
-  image?: Maybe<String>;
-  image_not?: Maybe<String>;
-  image_in?: Maybe<String[] | String>;
-  image_not_in?: Maybe<String[] | String>;
-  image_lt?: Maybe<String>;
-  image_lte?: Maybe<String>;
-  image_gt?: Maybe<String>;
-  image_gte?: Maybe<String>;
-  image_contains?: Maybe<String>;
-  image_not_contains?: Maybe<String>;
-  image_starts_with?: Maybe<String>;
-  image_not_starts_with?: Maybe<String>;
-  image_ends_with?: Maybe<String>;
-  image_not_ends_with?: Maybe<String>;
+  location?: Maybe<String>;
+  location_not?: Maybe<String>;
+  location_in?: Maybe<String[] | String>;
+  location_not_in?: Maybe<String[] | String>;
+  location_lt?: Maybe<String>;
+  location_lte?: Maybe<String>;
+  location_gt?: Maybe<String>;
+  location_gte?: Maybe<String>;
+  location_contains?: Maybe<String>;
+  location_not_contains?: Maybe<String>;
+  location_starts_with?: Maybe<String>;
+  location_not_starts_with?: Maybe<String>;
+  location_ends_with?: Maybe<String>;
+  location_not_ends_with?: Maybe<String>;
+  seats?: Maybe<Int>;
+  seats_not?: Maybe<Int>;
+  seats_in?: Maybe<Int[] | Int>;
+  seats_not_in?: Maybe<Int[] | Int>;
+  seats_lt?: Maybe<Int>;
+  seats_lte?: Maybe<Int>;
+  seats_gt?: Maybe<Int>;
+  seats_gte?: Maybe<Int>;
+  startDate?: Maybe<String>;
+  startDate_not?: Maybe<String>;
+  startDate_in?: Maybe<String[] | String>;
+  startDate_not_in?: Maybe<String[] | String>;
+  startDate_lt?: Maybe<String>;
+  startDate_lte?: Maybe<String>;
+  startDate_gt?: Maybe<String>;
+  startDate_gte?: Maybe<String>;
+  startDate_contains?: Maybe<String>;
+  startDate_not_contains?: Maybe<String>;
+  startDate_starts_with?: Maybe<String>;
+  startDate_not_starts_with?: Maybe<String>;
+  startDate_ends_with?: Maybe<String>;
+  startDate_not_ends_with?: Maybe<String>;
+  endDate?: Maybe<String>;
+  endDate_not?: Maybe<String>;
+  endDate_in?: Maybe<String[] | String>;
+  endDate_not_in?: Maybe<String[] | String>;
+  endDate_lt?: Maybe<String>;
+  endDate_lte?: Maybe<String>;
+  endDate_gt?: Maybe<String>;
+  endDate_gte?: Maybe<String>;
+  endDate_contains?: Maybe<String>;
+  endDate_not_contains?: Maybe<String>;
+  endDate_starts_with?: Maybe<String>;
+  endDate_not_starts_with?: Maybe<String>;
+  endDate_ends_with?: Maybe<String>;
+  endDate_not_ends_with?: Maybe<String>;
   AND?: Maybe<CourseScalarWhereInput[] | CourseScalarWhereInput>;
   OR?: Maybe<CourseScalarWhereInput[] | CourseScalarWhereInput>;
   NOT?: Maybe<CourseScalarWhereInput[] | CourseScalarWhereInput>;
@@ -377,20 +452,20 @@ export interface CourseWhereInput {
   title_not_starts_with?: Maybe<String>;
   title_ends_with?: Maybe<String>;
   title_not_ends_with?: Maybe<String>;
-  description?: Maybe<String>;
-  description_not?: Maybe<String>;
-  description_in?: Maybe<String[] | String>;
-  description_not_in?: Maybe<String[] | String>;
-  description_lt?: Maybe<String>;
-  description_lte?: Maybe<String>;
-  description_gt?: Maybe<String>;
-  description_gte?: Maybe<String>;
-  description_contains?: Maybe<String>;
-  description_not_contains?: Maybe<String>;
-  description_starts_with?: Maybe<String>;
-  description_not_starts_with?: Maybe<String>;
-  description_ends_with?: Maybe<String>;
-  description_not_ends_with?: Maybe<String>;
+  details?: Maybe<String>;
+  details_not?: Maybe<String>;
+  details_in?: Maybe<String[] | String>;
+  details_not_in?: Maybe<String[] | String>;
+  details_lt?: Maybe<String>;
+  details_lte?: Maybe<String>;
+  details_gt?: Maybe<String>;
+  details_gte?: Maybe<String>;
+  details_contains?: Maybe<String>;
+  details_not_contains?: Maybe<String>;
+  details_starts_with?: Maybe<String>;
+  details_not_starts_with?: Maybe<String>;
+  details_ends_with?: Maybe<String>;
+  details_not_ends_with?: Maybe<String>;
   price?: Maybe<Int>;
   price_not?: Maybe<Int>;
   price_in?: Maybe<Int[] | Int>;
@@ -413,20 +488,56 @@ export interface CourseWhereInput {
   language_not_starts_with?: Maybe<String>;
   language_ends_with?: Maybe<String>;
   language_not_ends_with?: Maybe<String>;
-  image?: Maybe<String>;
-  image_not?: Maybe<String>;
-  image_in?: Maybe<String[] | String>;
-  image_not_in?: Maybe<String[] | String>;
-  image_lt?: Maybe<String>;
-  image_lte?: Maybe<String>;
-  image_gt?: Maybe<String>;
-  image_gte?: Maybe<String>;
-  image_contains?: Maybe<String>;
-  image_not_contains?: Maybe<String>;
-  image_starts_with?: Maybe<String>;
-  image_not_starts_with?: Maybe<String>;
-  image_ends_with?: Maybe<String>;
-  image_not_ends_with?: Maybe<String>;
+  location?: Maybe<String>;
+  location_not?: Maybe<String>;
+  location_in?: Maybe<String[] | String>;
+  location_not_in?: Maybe<String[] | String>;
+  location_lt?: Maybe<String>;
+  location_lte?: Maybe<String>;
+  location_gt?: Maybe<String>;
+  location_gte?: Maybe<String>;
+  location_contains?: Maybe<String>;
+  location_not_contains?: Maybe<String>;
+  location_starts_with?: Maybe<String>;
+  location_not_starts_with?: Maybe<String>;
+  location_ends_with?: Maybe<String>;
+  location_not_ends_with?: Maybe<String>;
+  seats?: Maybe<Int>;
+  seats_not?: Maybe<Int>;
+  seats_in?: Maybe<Int[] | Int>;
+  seats_not_in?: Maybe<Int[] | Int>;
+  seats_lt?: Maybe<Int>;
+  seats_lte?: Maybe<Int>;
+  seats_gt?: Maybe<Int>;
+  seats_gte?: Maybe<Int>;
+  startDate?: Maybe<String>;
+  startDate_not?: Maybe<String>;
+  startDate_in?: Maybe<String[] | String>;
+  startDate_not_in?: Maybe<String[] | String>;
+  startDate_lt?: Maybe<String>;
+  startDate_lte?: Maybe<String>;
+  startDate_gt?: Maybe<String>;
+  startDate_gte?: Maybe<String>;
+  startDate_contains?: Maybe<String>;
+  startDate_not_contains?: Maybe<String>;
+  startDate_starts_with?: Maybe<String>;
+  startDate_not_starts_with?: Maybe<String>;
+  startDate_ends_with?: Maybe<String>;
+  startDate_not_ends_with?: Maybe<String>;
+  endDate?: Maybe<String>;
+  endDate_not?: Maybe<String>;
+  endDate_in?: Maybe<String[] | String>;
+  endDate_not_in?: Maybe<String[] | String>;
+  endDate_lt?: Maybe<String>;
+  endDate_lte?: Maybe<String>;
+  endDate_gt?: Maybe<String>;
+  endDate_gte?: Maybe<String>;
+  endDate_contains?: Maybe<String>;
+  endDate_not_contains?: Maybe<String>;
+  endDate_starts_with?: Maybe<String>;
+  endDate_not_starts_with?: Maybe<String>;
+  endDate_ends_with?: Maybe<String>;
+  endDate_not_ends_with?: Maybe<String>;
   AND?: Maybe<CourseWhereInput[] | CourseWhereInput>;
   OR?: Maybe<CourseWhereInput[] | CourseWhereInput>;
   NOT?: Maybe<CourseWhereInput[] | CourseWhereInput>;
@@ -434,10 +545,13 @@ export interface CourseWhereInput {
 
 export interface CourseUpdateManyMutationInput {
   title?: Maybe<String>;
-  description?: Maybe<String>;
+  details?: Maybe<String>;
   price?: Maybe<Int>;
   language?: Maybe<String>;
-  image?: Maybe<String>;
+  location?: Maybe<String>;
+  seats?: Maybe<Int>;
+  startDate?: Maybe<String>;
+  endDate?: Maybe<String>;
 }
 
 export interface CourseCreateManyInput {
@@ -448,10 +562,13 @@ export interface CourseCreateManyInput {
 export interface CourseCreateInput {
   id?: Maybe<ID_Input>;
   title: String;
-  description: String;
+  details: String;
   price: Int;
   language: String;
-  image?: Maybe<String>;
+  location: String;
+  seats: Int;
+  startDate: String;
+  endDate: String;
 }
 
 export interface UserWhereInput {
@@ -514,6 +631,90 @@ export interface UserWhereInput {
   courses_every?: Maybe<CourseWhereInput>;
   courses_some?: Maybe<CourseWhereInput>;
   courses_none?: Maybe<CourseWhereInput>;
+  isNative?: Maybe<String>;
+  isNative_not?: Maybe<String>;
+  isNative_in?: Maybe<String[] | String>;
+  isNative_not_in?: Maybe<String[] | String>;
+  isNative_lt?: Maybe<String>;
+  isNative_lte?: Maybe<String>;
+  isNative_gt?: Maybe<String>;
+  isNative_gte?: Maybe<String>;
+  isNative_contains?: Maybe<String>;
+  isNative_not_contains?: Maybe<String>;
+  isNative_starts_with?: Maybe<String>;
+  isNative_not_starts_with?: Maybe<String>;
+  isNative_ends_with?: Maybe<String>;
+  isNative_not_ends_with?: Maybe<String>;
+  image?: Maybe<String>;
+  image_not?: Maybe<String>;
+  image_in?: Maybe<String[] | String>;
+  image_not_in?: Maybe<String[] | String>;
+  image_lt?: Maybe<String>;
+  image_lte?: Maybe<String>;
+  image_gt?: Maybe<String>;
+  image_gte?: Maybe<String>;
+  image_contains?: Maybe<String>;
+  image_not_contains?: Maybe<String>;
+  image_starts_with?: Maybe<String>;
+  image_not_starts_with?: Maybe<String>;
+  image_ends_with?: Maybe<String>;
+  image_not_ends_with?: Maybe<String>;
+  about?: Maybe<String>;
+  about_not?: Maybe<String>;
+  about_in?: Maybe<String[] | String>;
+  about_not_in?: Maybe<String[] | String>;
+  about_lt?: Maybe<String>;
+  about_lte?: Maybe<String>;
+  about_gt?: Maybe<String>;
+  about_gte?: Maybe<String>;
+  about_contains?: Maybe<String>;
+  about_not_contains?: Maybe<String>;
+  about_starts_with?: Maybe<String>;
+  about_not_starts_with?: Maybe<String>;
+  about_ends_with?: Maybe<String>;
+  about_not_ends_with?: Maybe<String>;
+  experience?: Maybe<String>;
+  experience_not?: Maybe<String>;
+  experience_in?: Maybe<String[] | String>;
+  experience_not_in?: Maybe<String[] | String>;
+  experience_lt?: Maybe<String>;
+  experience_lte?: Maybe<String>;
+  experience_gt?: Maybe<String>;
+  experience_gte?: Maybe<String>;
+  experience_contains?: Maybe<String>;
+  experience_not_contains?: Maybe<String>;
+  experience_starts_with?: Maybe<String>;
+  experience_not_starts_with?: Maybe<String>;
+  experience_ends_with?: Maybe<String>;
+  experience_not_ends_with?: Maybe<String>;
+  education?: Maybe<String>;
+  education_not?: Maybe<String>;
+  education_in?: Maybe<String[] | String>;
+  education_not_in?: Maybe<String[] | String>;
+  education_lt?: Maybe<String>;
+  education_lte?: Maybe<String>;
+  education_gt?: Maybe<String>;
+  education_gte?: Maybe<String>;
+  education_contains?: Maybe<String>;
+  education_not_contains?: Maybe<String>;
+  education_starts_with?: Maybe<String>;
+  education_not_starts_with?: Maybe<String>;
+  education_ends_with?: Maybe<String>;
+  education_not_ends_with?: Maybe<String>;
+  certifications?: Maybe<String>;
+  certifications_not?: Maybe<String>;
+  certifications_in?: Maybe<String[] | String>;
+  certifications_not_in?: Maybe<String[] | String>;
+  certifications_lt?: Maybe<String>;
+  certifications_lte?: Maybe<String>;
+  certifications_gt?: Maybe<String>;
+  certifications_gte?: Maybe<String>;
+  certifications_contains?: Maybe<String>;
+  certifications_not_contains?: Maybe<String>;
+  certifications_starts_with?: Maybe<String>;
+  certifications_not_starts_with?: Maybe<String>;
+  certifications_ends_with?: Maybe<String>;
+  certifications_not_ends_with?: Maybe<String>;
   AND?: Maybe<UserWhereInput[] | UserWhereInput>;
   OR?: Maybe<UserWhereInput[] | UserWhereInput>;
   NOT?: Maybe<UserWhereInput[] | UserWhereInput>;
@@ -533,6 +734,12 @@ export interface UserUpdateManyMutationInput {
   name?: Maybe<String>;
   email?: Maybe<String>;
   password?: Maybe<String>;
+  isNative?: Maybe<String>;
+  image?: Maybe<String>;
+  about?: Maybe<String>;
+  experience?: Maybe<String>;
+  education?: Maybe<String>;
+  certifications?: Maybe<String>;
 }
 
 export interface UserSubscriptionWhereInput {
@@ -577,6 +784,12 @@ export interface UserPreviousValues {
   name: String;
   email: String;
   password: String;
+  isNative?: String;
+  image?: String;
+  about?: String;
+  experience?: String;
+  education?: String;
+  certifications?: String;
 }
 
 export interface UserPreviousValuesPromise
@@ -586,6 +799,12 @@ export interface UserPreviousValuesPromise
   name: () => Promise<String>;
   email: () => Promise<String>;
   password: () => Promise<String>;
+  isNative: () => Promise<String>;
+  image: () => Promise<String>;
+  about: () => Promise<String>;
+  experience: () => Promise<String>;
+  education: () => Promise<String>;
+  certifications: () => Promise<String>;
 }
 
 export interface UserPreviousValuesSubscription
@@ -595,6 +814,12 @@ export interface UserPreviousValuesSubscription
   name: () => Promise<AsyncIterator<String>>;
   email: () => Promise<AsyncIterator<String>>;
   password: () => Promise<AsyncIterator<String>>;
+  isNative: () => Promise<AsyncIterator<String>>;
+  image: () => Promise<AsyncIterator<String>>;
+  about: () => Promise<AsyncIterator<String>>;
+  experience: () => Promise<AsyncIterator<String>>;
+  education: () => Promise<AsyncIterator<String>>;
+  certifications: () => Promise<AsyncIterator<String>>;
 }
 
 export interface AggregateCourse {
@@ -676,20 +901,26 @@ export interface Course {
   id: ID_Output;
   createdAt: DateTimeOutput;
   title: String;
-  description: String;
+  details: String;
   price: Int;
   language: String;
-  image?: String;
+  location: String;
+  seats: Int;
+  startDate: String;
+  endDate: String;
 }
 
 export interface CoursePromise extends Promise<Course>, Fragmentable {
   id: () => Promise<ID_Output>;
   createdAt: () => Promise<DateTimeOutput>;
   title: () => Promise<String>;
-  description: () => Promise<String>;
+  details: () => Promise<String>;
   price: () => Promise<Int>;
   language: () => Promise<String>;
-  image: () => Promise<String>;
+  location: () => Promise<String>;
+  seats: () => Promise<Int>;
+  startDate: () => Promise<String>;
+  endDate: () => Promise<String>;
 }
 
 export interface CourseSubscription
@@ -698,10 +929,13 @@ export interface CourseSubscription
   id: () => Promise<AsyncIterator<ID_Output>>;
   createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   title: () => Promise<AsyncIterator<String>>;
-  description: () => Promise<AsyncIterator<String>>;
+  details: () => Promise<AsyncIterator<String>>;
   price: () => Promise<AsyncIterator<Int>>;
   language: () => Promise<AsyncIterator<String>>;
-  image: () => Promise<AsyncIterator<String>>;
+  location: () => Promise<AsyncIterator<String>>;
+  seats: () => Promise<AsyncIterator<Int>>;
+  startDate: () => Promise<AsyncIterator<String>>;
+  endDate: () => Promise<AsyncIterator<String>>;
 }
 
 export interface CourseNullablePromise
@@ -710,10 +944,13 @@ export interface CourseNullablePromise
   id: () => Promise<ID_Output>;
   createdAt: () => Promise<DateTimeOutput>;
   title: () => Promise<String>;
-  description: () => Promise<String>;
+  details: () => Promise<String>;
   price: () => Promise<Int>;
   language: () => Promise<String>;
-  image: () => Promise<String>;
+  location: () => Promise<String>;
+  seats: () => Promise<Int>;
+  startDate: () => Promise<String>;
+  endDate: () => Promise<String>;
 }
 
 export interface CourseConnection {
@@ -764,10 +1001,13 @@ export interface CoursePreviousValues {
   id: ID_Output;
   createdAt: DateTimeOutput;
   title: String;
-  description: String;
+  details: String;
   price: Int;
   language: String;
-  image?: String;
+  location: String;
+  seats: Int;
+  startDate: String;
+  endDate: String;
 }
 
 export interface CoursePreviousValuesPromise
@@ -776,10 +1016,13 @@ export interface CoursePreviousValuesPromise
   id: () => Promise<ID_Output>;
   createdAt: () => Promise<DateTimeOutput>;
   title: () => Promise<String>;
-  description: () => Promise<String>;
+  details: () => Promise<String>;
   price: () => Promise<Int>;
   language: () => Promise<String>;
-  image: () => Promise<String>;
+  location: () => Promise<String>;
+  seats: () => Promise<Int>;
+  startDate: () => Promise<String>;
+  endDate: () => Promise<String>;
 }
 
 export interface CoursePreviousValuesSubscription
@@ -788,10 +1031,13 @@ export interface CoursePreviousValuesSubscription
   id: () => Promise<AsyncIterator<ID_Output>>;
   createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   title: () => Promise<AsyncIterator<String>>;
-  description: () => Promise<AsyncIterator<String>>;
+  details: () => Promise<AsyncIterator<String>>;
   price: () => Promise<AsyncIterator<Int>>;
   language: () => Promise<AsyncIterator<String>>;
-  image: () => Promise<AsyncIterator<String>>;
+  location: () => Promise<AsyncIterator<String>>;
+  seats: () => Promise<AsyncIterator<Int>>;
+  startDate: () => Promise<AsyncIterator<String>>;
+  endDate: () => Promise<AsyncIterator<String>>;
 }
 
 export interface UserConnection {
@@ -836,6 +1082,12 @@ export interface User {
   name: String;
   email: String;
   password: String;
+  isNative?: String;
+  image?: String;
+  about?: String;
+  experience?: String;
+  education?: String;
+  certifications?: String;
 }
 
 export interface UserPromise extends Promise<User>, Fragmentable {
@@ -852,6 +1104,12 @@ export interface UserPromise extends Promise<User>, Fragmentable {
     first?: Int;
     last?: Int;
   }) => T;
+  isNative: () => Promise<String>;
+  image: () => Promise<String>;
+  about: () => Promise<String>;
+  experience: () => Promise<String>;
+  education: () => Promise<String>;
+  certifications: () => Promise<String>;
 }
 
 export interface UserSubscription
@@ -870,6 +1128,12 @@ export interface UserSubscription
     first?: Int;
     last?: Int;
   }) => T;
+  isNative: () => Promise<AsyncIterator<String>>;
+  image: () => Promise<AsyncIterator<String>>;
+  about: () => Promise<AsyncIterator<String>>;
+  experience: () => Promise<AsyncIterator<String>>;
+  education: () => Promise<AsyncIterator<String>>;
+  certifications: () => Promise<AsyncIterator<String>>;
 }
 
 export interface UserNullablePromise
@@ -888,6 +1152,12 @@ export interface UserNullablePromise
     first?: Int;
     last?: Int;
   }) => T;
+  isNative: () => Promise<String>;
+  image: () => Promise<String>;
+  about: () => Promise<String>;
+  experience: () => Promise<String>;
+  education: () => Promise<String>;
+  certifications: () => Promise<String>;
 }
 
 export interface UserSubscriptionPayload {

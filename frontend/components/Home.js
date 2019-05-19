@@ -11,9 +11,9 @@ const StyledHome = styled.div`
   opacity: 0.7;
   position: relative;
   color: ${props => props.theme.grey};
-  border-radius: 2rem;
   filter: blur(0.4px) grayscale(80%);
-  margin-top: 1rem;
+  margin-top: 2rem;
+  border-radius: 1rem;
   h1 {
     text-align: right;
     font-size: 6rem;
@@ -41,7 +41,7 @@ const Home = props => {
         params={{
           particles: {
             number: {
-              value: 100,
+              value: 60,
               density: {
                 enable: false
               }
