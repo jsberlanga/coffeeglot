@@ -511,8 +511,8 @@ type Teacher {
   id: ID!
   name: String!
   courses(where: CourseWhereInput, orderBy: CourseOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Course!]
-  isNative: String
   image: String
+  isNative: String
   about: String
   experience: String
   education: String
@@ -530,30 +530,13 @@ input TeacherCreateInput {
   id: ID
   name: String!
   courses: CourseCreateManyInput
-  isNative: String
   image: String
+  isNative: String
   about: String
   experience: String
   education: String
   certifications: String
-  user: UserCreateOneWithoutTeacherInput
-}
-
-input TeacherCreateOneWithoutUserInput {
-  create: TeacherCreateWithoutUserInput
-  connect: TeacherWhereUniqueInput
-}
-
-input TeacherCreateWithoutUserInput {
-  id: ID
-  name: String!
-  courses: CourseCreateManyInput
-  isNative: String
-  image: String
-  about: String
-  experience: String
-  education: String
-  certifications: String
+  user: UserCreateOneInput
 }
 
 type TeacherEdge {
@@ -566,10 +549,10 @@ enum TeacherOrderByInput {
   id_DESC
   name_ASC
   name_DESC
-  isNative_ASC
-  isNative_DESC
   image_ASC
   image_DESC
+  isNative_ASC
+  isNative_DESC
   about_ASC
   about_DESC
   experience_ASC
@@ -583,8 +566,8 @@ enum TeacherOrderByInput {
 type TeacherPreviousValues {
   id: ID!
   name: String!
-  isNative: String
   image: String
+  isNative: String
   about: String
   experience: String
   education: String
@@ -612,48 +595,23 @@ input TeacherSubscriptionWhereInput {
 input TeacherUpdateInput {
   name: String
   courses: CourseUpdateManyInput
-  isNative: String
   image: String
+  isNative: String
   about: String
   experience: String
   education: String
   certifications: String
-  user: UserUpdateOneWithoutTeacherInput
+  user: UserUpdateOneInput
 }
 
 input TeacherUpdateManyMutationInput {
   name: String
-  isNative: String
   image: String
+  isNative: String
   about: String
   experience: String
   education: String
   certifications: String
-}
-
-input TeacherUpdateOneWithoutUserInput {
-  create: TeacherCreateWithoutUserInput
-  update: TeacherUpdateWithoutUserDataInput
-  upsert: TeacherUpsertWithoutUserInput
-  delete: Boolean
-  disconnect: Boolean
-  connect: TeacherWhereUniqueInput
-}
-
-input TeacherUpdateWithoutUserDataInput {
-  name: String
-  courses: CourseUpdateManyInput
-  isNative: String
-  image: String
-  about: String
-  experience: String
-  education: String
-  certifications: String
-}
-
-input TeacherUpsertWithoutUserInput {
-  update: TeacherUpdateWithoutUserDataInput!
-  create: TeacherCreateWithoutUserInput!
 }
 
 input TeacherWhereInput {
@@ -688,20 +646,6 @@ input TeacherWhereInput {
   courses_every: CourseWhereInput
   courses_some: CourseWhereInput
   courses_none: CourseWhereInput
-  isNative: String
-  isNative_not: String
-  isNative_in: [String!]
-  isNative_not_in: [String!]
-  isNative_lt: String
-  isNative_lte: String
-  isNative_gt: String
-  isNative_gte: String
-  isNative_contains: String
-  isNative_not_contains: String
-  isNative_starts_with: String
-  isNative_not_starts_with: String
-  isNative_ends_with: String
-  isNative_not_ends_with: String
   image: String
   image_not: String
   image_in: [String!]
@@ -716,6 +660,20 @@ input TeacherWhereInput {
   image_not_starts_with: String
   image_ends_with: String
   image_not_ends_with: String
+  isNative: String
+  isNative_not: String
+  isNative_in: [String!]
+  isNative_not_in: [String!]
+  isNative_lt: String
+  isNative_lte: String
+  isNative_gt: String
+  isNative_gte: String
+  isNative_contains: String
+  isNative_not_contains: String
+  isNative_starts_with: String
+  isNative_not_starts_with: String
+  isNative_ends_with: String
+  isNative_not_ends_with: String
   about: String
   about_not: String
   about_in: [String!]
@@ -786,7 +744,6 @@ type User {
   id: ID!
   email: String!
   password: String!
-  teacher: Teacher
 }
 
 type UserConnection {
@@ -799,18 +756,11 @@ input UserCreateInput {
   id: ID
   email: String!
   password: String!
-  teacher: TeacherCreateOneWithoutUserInput
 }
 
-input UserCreateOneWithoutTeacherInput {
-  create: UserCreateWithoutTeacherInput
+input UserCreateOneInput {
+  create: UserCreateInput
   connect: UserWhereUniqueInput
-}
-
-input UserCreateWithoutTeacherInput {
-  id: ID
-  email: String!
-  password: String!
 }
 
 type UserEdge {
@@ -851,10 +801,14 @@ input UserSubscriptionWhereInput {
   NOT: [UserSubscriptionWhereInput!]
 }
 
+input UserUpdateDataInput {
+  email: String
+  password: String
+}
+
 input UserUpdateInput {
   email: String
   password: String
-  teacher: TeacherUpdateOneWithoutUserInput
 }
 
 input UserUpdateManyMutationInput {
@@ -862,23 +816,18 @@ input UserUpdateManyMutationInput {
   password: String
 }
 
-input UserUpdateOneWithoutTeacherInput {
-  create: UserCreateWithoutTeacherInput
-  update: UserUpdateWithoutTeacherDataInput
-  upsert: UserUpsertWithoutTeacherInput
+input UserUpdateOneInput {
+  create: UserCreateInput
+  update: UserUpdateDataInput
+  upsert: UserUpsertNestedInput
   delete: Boolean
   disconnect: Boolean
   connect: UserWhereUniqueInput
 }
 
-input UserUpdateWithoutTeacherDataInput {
-  email: String
-  password: String
-}
-
-input UserUpsertWithoutTeacherInput {
-  update: UserUpdateWithoutTeacherDataInput!
-  create: UserCreateWithoutTeacherInput!
+input UserUpsertNestedInput {
+  update: UserUpdateDataInput!
+  create: UserCreateInput!
 }
 
 input UserWhereInput {
@@ -924,7 +873,6 @@ input UserWhereInput {
   password_not_starts_with: String
   password_ends_with: String
   password_not_ends_with: String
-  teacher: TeacherWhereInput
   AND: [UserWhereInput!]
   OR: [UserWhereInput!]
   NOT: [UserWhereInput!]

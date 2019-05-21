@@ -15,7 +15,12 @@ export default class Course extends Component {
           alt={course.title}
           className="flag"
         />
-        <div>
+        <img
+          src={findLocation(course.location)}
+          alt={course.location}
+          className="location"
+        />
+        <div className="title">
           <Link
             href={{
               pathname: "/course",
@@ -38,6 +43,23 @@ export default class Course extends Component {
             {course.language}
           </span>
         </p>
+        <div className="buttonList">
+          <Link
+            href={{
+              pathname: "/signup"
+            }}
+          >
+            <a className="register">Register</a>
+          </Link>
+          <Link
+            href={{
+              pathname: "/course",
+              query: { id: course.id }
+            }}
+          >
+            <a className="details">Details</a>
+          </Link>
+        </div>
       </StyledCourse>
     );
   }

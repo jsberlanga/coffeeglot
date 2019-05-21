@@ -1,6 +1,7 @@
 type Query {
   users: [User]!
   courses: [Course]!
+  getCourse(id: ID!): Course
   teachers: [Teacher]!
 }
 
@@ -32,7 +33,6 @@ type User {
   id: ID!
   email: String!
   password: String!
-  teacher: Teacher
 }
 
 type Teacher {
@@ -45,12 +45,11 @@ type Teacher {
   experience: String
   education: String
   certifications: String
-  user: User!
+  user: User
 }
 
 type Course {
   id: ID!
-  # createdAt: DateTime!
   title: String!
   details: String!
   price: Int!
@@ -59,5 +58,5 @@ type Course {
   seats: Int!
   startDate: String!
   endDate: String!
-  user: User!
+  # user: User!
 }

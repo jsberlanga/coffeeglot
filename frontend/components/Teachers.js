@@ -34,15 +34,17 @@ export default class Teachers extends Component {
         </StyledHeader>
         <Query query={ALL_TEACHERS_QUERY}>
           {({ data }) => {
+            console.log(data.teachers);
             if (!data.teachers) return <p>There are no teachers</p>;
             const { teachers } = data;
             return (
               <div>
-                <h3>course</h3>
                 {teachers.map(teacher => (
                   <ul key={teacher.id}>
                     <li>
-                      <p>{teacher.name}</p>
+                      <p>Name: {teacher.name}</p>
+                      <p>Is Native Speaker?: {teacher.isNative}</p>
+                      <img src={teacher.image} width="300" />
                     </li>
                   </ul>
                 ))}

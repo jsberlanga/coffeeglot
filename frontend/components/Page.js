@@ -62,6 +62,10 @@ const GlobalStyle = createGlobalStyle`
     line-height: 1.15;
   }
 
+  h3, h4, h5 {
+    font-family: linlibertine-italicbold;
+  }
+
   h1 {
     margin-top: 0;
     font-size: 3.05em;
@@ -90,6 +94,7 @@ const theme = {
   grey: "#414F5D",
   grey2: "#748290",
   lightGrey: "#dee1ec",
+  lightGrey2: "#EBEEF9",
   offBlack: "#364f6b",
   offWhite: "#f5f5f5",
   bs: "4px 6px 6px -2px rgba(65, 79, 93, 0.1)",

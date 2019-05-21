@@ -4,12 +4,12 @@ import { StyledHeader } from "./styles/Header";
 
 import SignupForm from "./styles/SignupForm";
 
-export default class Signup extends Component {
+export default class Signin extends Component {
   render() {
     return (
       <>
         <StyledHeader>
-          <h2>Sign up for an account</h2>
+          <h2>Do you already have an account?</h2>
         </StyledHeader>
         <SignupForm>
           <form className="form">
@@ -30,7 +30,7 @@ export default class Signup extends Component {
               />
             </div>
             <button className="form-button" type="submit">
-              Signup
+              Signin
             </button>
           </form>
         </SignupForm>

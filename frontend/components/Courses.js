@@ -24,8 +24,8 @@ const ALL_COURSES_QUERY = gql`
 
 const CourseList = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 10rem;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 7rem;
   margin: 0 auto;
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
@@ -40,8 +40,11 @@ export default class Courses extends Component {
           <h2>Find a language course that suits you</h2>
         </StyledHeader>
         <Query query={ALL_COURSES_QUERY}>
-          {({ data: { courses } }) => {
+          {({ data: { courses }, error, loading }) => {
             console.log(courses);
+            if (error)
+              return <h4>The following message appeared: {error.message}</h4>;
+            if (loading) return <h4>Loading...</h4>;
             return (
               <CourseList>
                 {courses.map(course => (

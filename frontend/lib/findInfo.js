@@ -8,5 +8,8 @@ export const findFlag = courseLanguage => {
 };
 
 export const findLocation = courseLocation => {
-  return courseLocation;
+  const filtered = locations.find(loc => {
+    return loc.name.toLowerCase() === courseLocation.toLowerCase();
+  });
+  return filtered && filtered.pictures[0];
 };

@@ -7,6 +7,7 @@ export const StyledForm = styled.form`
   }
   .left {
     background: ${props => props.theme.green};
+
     padding: 3rem;
     span,
     h4 {
@@ -15,6 +16,7 @@ export const StyledForm = styled.form`
   }
   .right {
     background: ${props => props.theme.green2};
+
     padding: 3rem;
     span,
     h4 {
@@ -27,6 +29,7 @@ export const StyledForm = styled.form`
   font-size: 2rem;
   max-width: 130rem;
   background: ${props => props.theme.green2};
+
   display: grid;
   grid-template-columns: repeat(2, 1fr);
 
