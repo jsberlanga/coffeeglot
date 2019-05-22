@@ -4,20 +4,28 @@ require("dotenv").config({ path: "variables.env" });
 
 const Query = require("./resolvers/Query");
 const Mutation = require("./resolvers/Mutation");
+const Course = require("./resolvers/Course");
+const Teacher = require("./resolvers/Teacher");
+const User = require("./resolvers/User");
 
 const server = new GraphQLServer({
   typeDefs: "./src/schema.graphql",
   resolvers: {
     Query,
-    Mutation
+    Mutation,
+    Course,
+    Teacher,
+    User
   },
   resolverValidationOptions: {
     requireResolversForResolveType: false
   },
-  context: request => ({
-    ...request,
-    prisma
-  })
+  context: request => {
+    return {
+      ...request,
+      prisma
+    };
+  }
 });
 server.start(
   {

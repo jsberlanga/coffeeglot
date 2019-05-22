@@ -63,7 +63,7 @@ const SignupForm = styled.div`
   } */
 
   .form {
-    margin: 0 auto;
+    margin: 4rem auto 8rem;
     display: grid;
     grid-template-columns: 1fr 1fr min-content;
     width: 80%;
@@ -77,6 +77,26 @@ const SignupForm = styled.div`
     font-size: 1.6rem;
     letter-spacing: 1px;
     border: 0;
+  }
+  .form-input {
+    padding: 1.5rem;
+    outline: none;
+    ::placeholder {
+      opacity: 0.5;
+    }
+    :focus::placeholder {
+      color: ${props => props.theme.green};
+      opacity: 0.85;
+    }
+  }
+
+  .form-button {
+    cursor: pointer;
+    border-radius: 4rem;
+    margin-left: auto;
+    background: ${props => props.theme.green};
+    color: #fff;
+    padding: 1.25rem 2.5rem;
   }
 `;
 

@@ -1,12 +1,25 @@
+scalar DateTime
+
 type Query {
   users: [User]!
+  getUser(id: ID!): User!
   courses: [Course]!
   getCourse(id: ID!): Course
   teachers: [Teacher]!
+  getTeacher(id: ID!): Teacher!
 }
 
 type Mutation {
-  signup(email: String!, password: String!): User!
+  signup(email: String!, password: String!): AuthPayload
+  signin(email: String!, password: String!): AuthPayload
+  createTeacher(
+    name: String! # age: Int! # image: String! # isNative: String!
+  ): # image: String!
+  # about: String!
+  # experience: String!
+  # education: String!
+  # certifications: String!
+  Teacher!
   createCourse(
     title: String!
     details: String!
@@ -17,39 +30,39 @@ type Mutation {
     startDate: String!
     endDate: String!
   ): Course!
-  createTeacher(
-    name: String!
-    image: String!
-    isNative: String!
-    image: String!
-    about: String!
-    experience: String!
-    education: String!
-    certifications: String!
-  ): User!
+}
+
+type AuthPayload {
+  token: String
+  user: User
 }
 
 type User {
   id: ID!
   email: String!
   password: String!
+  teachers: [Teacher!]!
+  courses: [Course!]!
 }
 
 type Teacher {
   id: ID!
+  createdAt: DateTime!
   name: String!
-  courses: [Course]
-  isNative: String
-  image: String
-  about: String
-  experience: String
-  education: String
-  certifications: String
-  user: User
+  # age: Int!
+  # courses: [Course]!
+  # isNative: String!
+  # image: String!
+  # about: String!
+  # experience: String!
+  # education: String!
+  # certifications: String!
+  createdBy: User
 }
 
 type Course {
   id: ID!
+  createdAt: DateTime!
   title: String!
   details: String!
   price: Int!
@@ -58,5 +71,5 @@ type Course {
   seats: Int!
   startDate: String!
   endDate: String!
-  # user: User!
+  createdBy: User
 }

@@ -2,19 +2,22 @@ type User {
   id: ID! @id @unique
   email: String! @unique
   password: String!
+  teachers: [Teacher!]! #relationship to the Teacher
+  courses: [Course!]! #relationship to the Course
 }
 
 type Teacher {
   id: ID! @id @unique
+  createdAt: DateTime! @createdAt
   name: String!
-  courses: [Course] #relationship to the Course
-  image: String
-  isNative: String
-  about: String
-  experience: String
-  education: String
-  certifications: String
-  user: User #relationship to the User
+  age: Int!
+  image: String!
+  isNative: String!
+  about: String!
+  experience: String!
+  education: String!
+  certifications: String!
+  createdBy: User #relationship to the User
 }
 
 type Course {
@@ -28,5 +31,5 @@ type Course {
   seats: Int!
   startDate: String!
   endDate: String!
-  # user: User! #relationship to User
+  createdBy: User #relationship to User
 }
