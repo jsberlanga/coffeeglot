@@ -18,7 +18,7 @@ Router.onRouteChangeError = () => {
 
 const StyledHeader = styled.div`
   padding: 1rem;
-  margin: 0 3rem;
+  margin: 0 5rem;
   a,
   button,
   img {
@@ -27,7 +27,7 @@ const StyledHeader = styled.div`
   }
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
   .left {
     display: flex;
     align-items: center;

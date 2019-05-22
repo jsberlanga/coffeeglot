@@ -52,6 +52,11 @@ const SignupForm = styled.div`
     margin: 2rem 0;
     text-align: right;
     outline: none;
+    transition: all 0.2s;
+    :hover {
+      background: ${props => props.theme.blue2};
+      width: 70%;
+    }
   }
 
   .error {

@@ -11,10 +11,11 @@ const StyledHome = styled.div`
   opacity: 0.7;
   position: relative;
   color: ${props => props.theme.grey};
-  filter: blur(0.4px) grayscale(80%);
+  filter: blur(0.4px) grayscale(50%);
   margin-top: 2rem;
-  border-top-left-radius: 5rem;
-  border-bottom-right-radius: 5rem;
+  border-top-right-radius: 2rem;
+  border-bottom-left-radius: 2rem;
+  box-shadow: 0 0 4px 0px ${props => props.theme.grey2};
   h1 {
     text-align: right;
     font-size: 6rem;

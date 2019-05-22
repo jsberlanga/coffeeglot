@@ -9,17 +9,19 @@ const ALL_TEACHERS_QUERY = gql`
     teachers {
       id
       name
+      age
       isNative
       image
       about
       experience
       education
       certifications
-      courses {
+      createdBy {
         id
-        title
-        details
-        price
+        courses {
+          id
+          title
+        }
       }
     }
   }
@@ -34,8 +36,8 @@ export default class Teachers extends Component {
         </StyledHeader>
         <Query query={ALL_TEACHERS_QUERY}>
           {({ data }) => {
-            console.log(data.teachers);
-            if (!data.teachers) return <p>There are no teachers</p>;
+            console.log(data);
+            if (!data) return <p>There are no teachers</p>;
             const { teachers } = data;
             return (
               <div>

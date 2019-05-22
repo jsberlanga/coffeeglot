@@ -13,6 +13,7 @@ type Query {
 type Mutation {
   signup(email: String!, password: String!): AuthPayload
   signin(email: String!, password: String!): AuthPayload
+  signout: SuccessMessage
   createTeacher(
     name: String!
     age: Int!
@@ -76,4 +77,8 @@ type Course {
   startDate: String!
   endDate: String!
   createdBy: User
+}
+
+type SuccessMessage {
+  message: String
 }

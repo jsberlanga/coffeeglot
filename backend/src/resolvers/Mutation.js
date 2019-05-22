@@ -44,8 +44,14 @@ async function signin(parent, args, ctx) {
   };
 }
 
+function signout(parent, args, ctx, info) {
+  ctx.response.clearCookie("token");
+  return { message: "Goodbye!" };
+}
+
 async function createTeacher(parent, args, ctx, info) {
-  const userId = getUserId(ctx);
+  // const userId = getUserId(ctx);
+  const userId = ctx.request.userId;
   return await ctx.prisma.createTeacher({
     ...args,
     createdBy: {
@@ -57,7 +63,7 @@ async function createTeacher(parent, args, ctx, info) {
 }
 
 async function createCourse(parent, args, ctx, info) {
-  const userId = getUserId(ctx);
+  const userId = ctx.request.userId;
   return await ctx.prisma.createCourse({
     ...args,
     createdBy: {
@@ -71,6 +77,7 @@ async function createCourse(parent, args, ctx, info) {
 module.exports = {
   signup,
   signin,
+  signout,
   createCourse,
   createTeacher
 };

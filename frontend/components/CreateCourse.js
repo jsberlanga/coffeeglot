@@ -3,6 +3,8 @@ import styled from "styled-components";
 import { Mutation } from "react-apollo";
 import gql from "graphql-tag";
 import { languages, locations } from "../lib/data";
+import { findMaxSeats } from "../lib/findInfo";
+
 import Router from "next/router";
 
 import { StyledForm } from "./styles/Form";
@@ -39,6 +41,7 @@ const CREATE_COURSE_MUTATION = gql`
 const CREATE_TEACHER_MUTATION = gql`
   mutation CREATE_TEACHER_MUTATION(
     $name: String!
+    $age: Int!
     $image: String!
     $isNative: String!
     $about: String!
@@ -48,6 +51,7 @@ const CREATE_TEACHER_MUTATION = gql`
   ) {
     createTeacher(
       name: $name
+      age: $age
       image: $image
       isNative: $isNative
       about: $about
@@ -66,7 +70,7 @@ export default class CreateCourse extends Component {
     details: "",
     price: "",
     language: "",
-    location: "",
+    location: undefined,
     seats: "",
     name: "",
     age: "",
@@ -123,7 +127,8 @@ export default class CreateCourse extends Component {
       certifications,
       isNative,
       name,
-      age
+      age,
+      location
     } = this.state;
     return (
       <>
@@ -214,13 +219,15 @@ export default class CreateCourse extends Component {
                           </select>
                         </label>
                         <label htmlFor="seats">
-                          <span>Number of seats</span>
+                          <span>Number of students</span>
                           <input
                             type="number"
                             id="seats"
                             name="seats"
                             placeholder="Maximum number of seats"
                             required
+                            min="1"
+                            max={findMaxSeats(location)}
                             value={seats}
                             onChange={this.handleChange}
                           />

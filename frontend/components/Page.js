@@ -106,14 +106,13 @@ const StyledPage = styled.div`
   color: ${props => props.theme.offBlack};
   position: relative;
   min-height: 100vh;
-  /* background-image: url("static/images/texture.png"); */
   filter: brightness(105%);
 `;
 
 const Inner = styled.div`
   max-width: 90vw;
   margin: 0rem auto;
-  padding-bottom: 15rem;
+  padding-bottom: 12rem;
 `;
 
 class Page extends Component {
