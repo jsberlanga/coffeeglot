@@ -7,13 +7,14 @@ const StyledHome = styled.div`
   background-size: cover;
   background-repeat: no-repeat;
   background-position: bottom;
-  height: 85vh;
+  height: 95vh;
   opacity: 0.7;
   position: relative;
   color: ${props => props.theme.grey};
   filter: blur(0.4px) grayscale(80%);
   margin-top: 2rem;
-  border-radius: 1rem;
+  border-top-left-radius: 5rem;
+  border-bottom-right-radius: 5rem;
   h1 {
     text-align: right;
     font-size: 6rem;

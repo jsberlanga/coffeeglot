@@ -7,6 +7,7 @@ type Query {
   getCourse(id: ID!): Course
   teachers: [Teacher]!
   getTeacher(id: ID!): Teacher!
+  me: User
 }
 
 type Mutation {

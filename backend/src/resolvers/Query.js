@@ -23,10 +23,19 @@ async function teachers(parent, args, ctx, info) {
   return teachers;
 }
 
+function me(parent, args, ctx, info) {
+  console.log(ctx.request);
+  if (!ctx.request.userId) {
+    return null;
+  }
+  return ctx.prisma.user({ id: ctx.request.userId }, info);
+}
+
 module.exports = {
   users,
   getUser,
   courses,
   getCourse,
-  teachers
+  teachers,
+  me
 };

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Router from "next/router";
+import CurrentUser from "../CurrentUser";
 
 import { AUTH_TOKEN } from "../../constants";
 
@@ -9,7 +10,7 @@ const StyledNav = styled.div`
   display: flex;
   justify-content: center;
   font-family: "Stylish", sans-serif;
-  font-size: 2.2rem;
+  font-size: 2rem;
   a,
   button,
   input {
@@ -36,6 +37,13 @@ const StyledNav = styled.div`
 const Header = props => {
   return (
     <StyledNav>
+      <CurrentUser>
+        {({ data: { me } }) => {
+          console.log(me);
+          if (me) return <p>{me.email}</p>;
+          return null;
+        }}
+      </CurrentUser>
       <Link href="/courses">
         <a>Courses</a>
       </Link>

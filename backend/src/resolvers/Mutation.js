@@ -23,7 +23,7 @@ async function signup(parent, args, ctx, info) {
 async function signin(parent, args, ctx) {
   const user = await ctx.prisma.user({ email: args.email });
   if (!user) {
-    throw new Error("No such user was found. Please try again");
+    throw new Error(`No such user was found for the email ${args.email}`);
   }
 
   const userIsValid = await bcrypt.compare(args.password, user.password);
@@ -31,8 +31,15 @@ async function signin(parent, args, ctx) {
     throw new Error("Invalid Password. Please try again.");
   }
 
+  const token = jwt.sign({ userId: user.id }, process.env.APP_SECRET);
+
+  ctx.response.cookie("token", token, {
+    httpOnly: true,
+    maxAge: 1000 * 60 * 60 * 24 * 365
+  });
+
   return {
-    token: jwt.sign({ userId: user.id }, process.env.APP_SECRET),
+    token,
     user
   };
 }
