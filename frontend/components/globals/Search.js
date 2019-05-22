@@ -4,11 +4,11 @@ import styled from "styled-components";
 const StyledSearch = styled.input`
   font-family: "Stylish", sans-serif;
   display: flex;
-  width: 50rem;
+  width: 40rem;
   padding: 2rem;
   background: transparent;
   border: none;
-  font-size: 2.6rem;
+  font-size: 2.4rem;
   outline: none;
   /* background: #f2f2f2;
   border-radius: 10rem; */

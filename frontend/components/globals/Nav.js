@@ -1,17 +1,15 @@
-// import Link from "next/link";
+import Link from "../Link";
 import Router from "next/router";
 import CurrentUser from "../CurrentUser";
 import Signout from "../Signout";
 
 import styled from "styled-components";
 
-import Link from "../Link";
-
 const StyledNav = styled.div`
   display: flex;
   justify-content: center;
   font-family: "Stylish", sans-serif;
-  font-size: 2rem;
+  font-size: 1.9rem;
   a,
   button,
   input {

@@ -80,7 +80,7 @@ const GlobalStyle = createGlobalStyle`
   h5 {font-size: 1.25em;}
 
   small, .text_small {font-size: 0.8em;}
-  a, li {text-decoration: none}
+  a, li {text-decoration: none; color: inherit}
   a, button {letter-spacing: 2px}
 `;
 
