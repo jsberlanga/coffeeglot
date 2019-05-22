@@ -69,6 +69,7 @@ export default class CreateCourse extends Component {
     location: "",
     seats: "",
     name: "",
+    age: "",
     image: "",
     isNative: undefined,
     about: "",
@@ -121,7 +122,8 @@ export default class CreateCourse extends Component {
       education,
       certifications,
       isNative,
-      name
+      name,
+      age
     } = this.state;
     return (
       <>
@@ -250,6 +252,18 @@ export default class CreateCourse extends Component {
                             placeholder="Name"
                             required
                             value={name}
+                            onChange={this.handleChange}
+                          />
+                        </label>
+                        <label htmlFor="age">
+                          <span>Age</span>
+                          <input
+                            type="number"
+                            id="age"
+                            name="age"
+                            placeholder="Age"
+                            required
+                            value={age}
                             onChange={this.handleChange}
                           />
                         </label>

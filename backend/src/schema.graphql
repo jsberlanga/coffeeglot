@@ -13,13 +13,16 @@ type Mutation {
   signup(email: String!, password: String!): AuthPayload
   signin(email: String!, password: String!): AuthPayload
   createTeacher(
-    name: String! # age: Int! # image: String! # isNative: String!
-  ): # image: String!
-  # about: String!
-  # experience: String!
-  # education: String!
-  # certifications: String!
-  Teacher!
+    name: String!
+    age: Int!
+    image: String!
+    isNative: String!
+    image: String!
+    about: String!
+    experience: String!
+    education: String!
+    certifications: String!
+  ): Teacher!
   createCourse(
     title: String!
     details: String!
@@ -49,14 +52,14 @@ type Teacher {
   id: ID!
   createdAt: DateTime!
   name: String!
-  # age: Int!
-  # courses: [Course]!
-  # isNative: String!
-  # image: String!
-  # about: String!
-  # experience: String!
-  # education: String!
-  # certifications: String!
+  age: Int!
+  courses: [Course]!
+  isNative: String!
+  image: String!
+  about: String!
+  experience: String!
+  education: String!
+  certifications: String!
   createdBy: User
 }
 

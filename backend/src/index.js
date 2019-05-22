@@ -1,3 +1,5 @@
+const cookieParser = require("cookie-parser");
+
 const { GraphQLServer } = require("graphql-yoga");
 const { prisma } = require("./generated/prisma-client");
 require("dotenv").config({ path: "variables.env" });
@@ -27,6 +29,9 @@ const server = new GraphQLServer({
     };
   }
 });
+
+server.express.use(cookieParser());
+
 server.start(
   {
     cors: {

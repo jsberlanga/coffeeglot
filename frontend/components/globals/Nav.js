@@ -1,6 +1,8 @@
 import Link from "next/link";
 import Router from "next/router";
 
+import { AUTH_TOKEN } from "../../constants";
+
 import styled from "styled-components";
 
 const StyledNav = styled.div`
@@ -31,30 +33,32 @@ const StyledNav = styled.div`
   }
 `;
 
-const Header = props => (
-  <StyledNav>
-    <Link href="/courses">
-      <a>Courses</a>
-    </Link>
-    <Link href="/teachers">
-      <a>Teachers</a>
-    </Link>
-    <Link href="/cafes">
-      <a>Cafes</a>
-    </Link>
-    <Link href="/top">
-      <a>Top</a>
-    </Link>
-    <Link href="/add">
-      <a>Add Course</a>
-    </Link>
-    <Link href="/profile">
-      <a>Profile</a>
-    </Link>
-    <Link href="/signup">
-      <a>Signup</a>
-    </Link>
-  </StyledNav>
-);
+const Header = props => {
+  return (
+    <StyledNav>
+      <Link href="/courses">
+        <a>Courses</a>
+      </Link>
+      <Link href="/teachers">
+        <a>Teachers</a>
+      </Link>
+      <Link href="/cafes">
+        <a>Cafes</a>
+      </Link>
+      <Link href="/top">
+        <a>Top</a>
+      </Link>
+      <Link href="/add">
+        <a>Add Course</a>
+      </Link>
+      <Link href="/profile">
+        <a>Profile</a>
+      </Link>
+      <Link href="/signup">
+        <a>Signup</a>
+      </Link>
+    </StyledNav>
+  );
+};
 
 export default Header;
