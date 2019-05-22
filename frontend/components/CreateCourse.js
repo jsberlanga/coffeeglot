@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import styled from "styled-components";
-import { Mutation } from "react-apollo";
+import { Mutation, Query } from "react-apollo";
 import gql from "graphql-tag";
 import { languages, locations } from "../lib/data";
 import { findMaxSeats } from "../lib/findInfo";
@@ -11,6 +10,8 @@ import { StyledForm } from "./styles/Form";
 import { StyledHeader } from "./styles/Header";
 import DayPicker from "react-day-picker/DayPickerInput";
 import "react-day-picker/lib/style.css";
+
+import { CURRENT_USER_QUERY } from "./CurrentUser";
 
 const CREATE_COURSE_MUTATION = gql`
   mutation CREATE_COURSE_MUTATION(
@@ -144,6 +145,7 @@ export default class CreateCourse extends Component {
               <Mutation
                 mutation={CREATE_TEACHER_MUTATION}
                 variables={this.state}
+                refetchQueries={[{ query: CURRENT_USER_QUERY }]}
               >
                 {(createTeacher, { loading, error }) => {
                   if (error)
@@ -157,7 +159,118 @@ export default class CreateCourse extends Component {
                         this.handleSubmit(e, createCourse, createTeacher)
                       }
                     >
-                      <div className="left">
+                      <Query query={CURRENT_USER_QUERY}>
+                        {({ data }) => {
+                          console.log(data);
+                          if (data.me.teachers.length > 0) return null;
+                          return (
+                            <div className="left">
+                              <h4>Tell us about yourself</h4>
+                              <label htmlFor="name">
+                                <span>Name</span>
+                                <input
+                                  type="text"
+                                  id="name"
+                                  name="name"
+                                  placeholder="Name"
+                                  required
+                                  value={name}
+                                  onChange={this.handleChange}
+                                />
+                              </label>
+                              <label htmlFor="age">
+                                <span>Age</span>
+                                <input
+                                  type="number"
+                                  id="age"
+                                  name="age"
+                                  placeholder="Age"
+                                  required
+                                  value={age}
+                                  onChange={this.handleChange}
+                                />
+                              </label>
+                              <label htmlFor="file">
+                                <span>Image</span>
+                                <input
+                                  type="file"
+                                  id="file"
+                                  name="file"
+                                  placeholder="Upload an image"
+                                  required
+                                  onChange={this.uploadFile}
+                                />
+                              </label>
+                              <label htmlFor="isNative">
+                                <span>Native Speaker?</span>
+                                <select
+                                  name="isNative"
+                                  onChange={this.handleChange}
+                                >
+                                  <option value="">
+                                    Please choose an option
+                                  </option>
+                                  <option key="yes" value={isNative}>
+                                    Yes
+                                  </option>
+                                  <option key="no" value={isNative}>
+                                    No
+                                  </option>
+                                </select>
+                              </label>
+                              <label htmlFor="about">
+                                <span>About you</span>
+                                <textarea
+                                  rows="3"
+                                  id="about"
+                                  name="about"
+                                  placeholder="Add additional information about yourself, interests, etc."
+                                  required
+                                  value={about}
+                                  onChange={this.handleChange}
+                                />
+                              </label>
+                              <label htmlFor="experience">
+                                <span>Professional Experience</span>
+                                <textarea
+                                  rows="3"
+                                  id="experience"
+                                  name="experience"
+                                  placeholder="Your Experience"
+                                  required
+                                  value={experience}
+                                  onChange={this.handleChange}
+                                />
+                              </label>
+                              <label htmlFor="education">
+                                <span>Education</span>
+                                <input
+                                  type="text"
+                                  id="education"
+                                  name="education"
+                                  placeholder="Education"
+                                  required
+                                  value={education}
+                                  onChange={this.handleChange}
+                                />
+                              </label>
+                              <label htmlFor="certifications">
+                                <span>Certifications</span>
+                                <input
+                                  type="text"
+                                  id="certifications"
+                                  name="certifications"
+                                  placeholder="Certifications"
+                                  required
+                                  value={certifications}
+                                  onChange={this.handleChange}
+                                />
+                              </label>
+                            </div>
+                          );
+                        }}
+                      </Query>
+                      <div className="right">
                         <h4>Tell us about the course</h4>
                         <label htmlFor="title">
                           <span>Title</span>
@@ -245,104 +358,6 @@ export default class CreateCourse extends Component {
                             onDayChange={day => this.setState({ endDate: day })}
                             value={this.state.endDate}
                             placeholder="To"
-                          />
-                        </label>
-                      </div>
-                      <div className="right">
-                        <h4>Tell us about yourself</h4>
-                        <label htmlFor="name">
-                          <span>Name</span>
-                          <input
-                            type="text"
-                            id="name"
-                            name="name"
-                            placeholder="Name"
-                            required
-                            value={name}
-                            onChange={this.handleChange}
-                          />
-                        </label>
-                        <label htmlFor="age">
-                          <span>Age</span>
-                          <input
-                            type="number"
-                            id="age"
-                            name="age"
-                            placeholder="Age"
-                            required
-                            value={age}
-                            onChange={this.handleChange}
-                          />
-                        </label>
-                        <label htmlFor="file">
-                          <span>Image</span>
-                          <input
-                            type="file"
-                            id="file"
-                            name="file"
-                            placeholder="Upload an image"
-                            required
-                            onChange={this.uploadFile}
-                          />
-                        </label>
-                        <label htmlFor="isNative">
-                          <span>Native Speaker?</span>
-                          <select name="isNative" onChange={this.handleChange}>
-                            <option value="">Please choose an option</option>
-                            <option key="yes" value={isNative}>
-                              Yes
-                            </option>
-                            <option key="no" value={isNative}>
-                              No
-                            </option>
-                          </select>
-                        </label>
-                        <label htmlFor="about">
-                          <span>About you</span>
-                          <textarea
-                            rows="3"
-                            id="about"
-                            name="about"
-                            placeholder="Add additional information about yourself, interests, etc."
-                            required
-                            value={about}
-                            onChange={this.handleChange}
-                          />
-                        </label>
-                        <label htmlFor="experience">
-                          <span>Professional Experience</span>
-                          <textarea
-                            rows="3"
-                            id="experience"
-                            name="experience"
-                            placeholder="Your Experience"
-                            required
-                            value={experience}
-                            onChange={this.handleChange}
-                          />
-                        </label>
-                        <label htmlFor="education">
-                          <span>Education</span>
-                          <input
-                            type="text"
-                            id="education"
-                            name="education"
-                            placeholder="Education"
-                            required
-                            value={education}
-                            onChange={this.handleChange}
-                          />
-                        </label>
-                        <label htmlFor="certifications">
-                          <span>Certifications</span>
-                          <input
-                            type="text"
-                            id="certifications"
-                            name="certifications"
-                            placeholder="Certifications"
-                            required
-                            value={certifications}
-                            onChange={this.handleChange}
                           />
                         </label>
                         <button type="submit">Submit</button>

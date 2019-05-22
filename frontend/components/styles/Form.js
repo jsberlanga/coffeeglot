@@ -16,7 +16,6 @@ export const StyledForm = styled.form`
   }
   .right {
     background: ${props => props.theme.green2};
-
     padding: 3rem;
     span,
     h4 {
@@ -31,7 +30,7 @@ export const StyledForm = styled.form`
   background: ${props => props.theme.green2};
 
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, auto);
 
   @media (max-width: 768px) {
     grid-template-columns: 1fr;

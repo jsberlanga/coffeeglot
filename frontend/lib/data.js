@@ -14,7 +14,7 @@ export const languages = [
   {
     language: "Spanish",
     flag:
-      "https://en.wikipedia.org/wiki/Flag_of_Spain#/media/File:Flag_of_Spain_(Civil).svg"
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Flag_of_Spain_%28Civil%29.svg/1280px-Flag_of_Spain_%28Civil%29.svg.png"
   },
   {
     language: "English",

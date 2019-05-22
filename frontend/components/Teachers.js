@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
+import styled from "styled-components";
 
 import { StyledHeader } from "./styles/Header";
+import Teacher from "./Teacher";
 
 const ALL_TEACHERS_QUERY = gql`
   query ALL_TEACHERS_QUERY {
@@ -27,6 +29,8 @@ const ALL_TEACHERS_QUERY = gql`
   }
 `;
 
+const TeacherList = styled.div``;
+
 export default class Teachers extends Component {
   render() {
     return (
@@ -40,17 +44,11 @@ export default class Teachers extends Component {
             if (!data) return <p>There are no teachers</p>;
             const { teachers } = data;
             return (
-              <div>
+              <TeacherList>
                 {teachers.map(teacher => (
-                  <ul key={teacher.id}>
-                    <li>
-                      <p>Name: {teacher.name}</p>
-                      <p>Is Native Speaker?: {teacher.isNative}</p>
-                      <img src={teacher.image} width="300" />
-                    </li>
-                  </ul>
+                  <Teacher key={teacher.id} teacher={teacher} />
                 ))}
-              </div>
+              </TeacherList>
             );
           }}
         </Query>
