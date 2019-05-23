@@ -1,5 +1,6 @@
 import React from "react";
 import StyledTeacher from "./styles/TeacherStyles";
+import Link from "next/link";
 
 const Teacher = props => {
   const { teacher } = props;
@@ -15,6 +16,16 @@ const Teacher = props => {
         <p>Education: {teacher.education}</p>
         <p>Experience: {teacher.experience}</p>
         <p>Certifications: {teacher.certifications}</p>
+        <div className="courses-info">
+          <h4>Checkout their best courses:</h4>
+          {teacher.createdBy.courses.map(course => (
+            <li>
+              <Link href={`/course?id=${course.id}`}>
+                <a>{course.title}</a>
+              </Link>
+            </li>
+          ))}
+        </div>
       </div>
     </StyledTeacher>
   );

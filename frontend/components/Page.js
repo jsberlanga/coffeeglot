@@ -56,8 +56,13 @@ const GlobalStyle = createGlobalStyle`
 
   p {margin-bottom: 0.8em;}
 
-  h1, h2, h3, h4, h5 {
+  h1, h2, {
     margin: 2.75rem 0 1rem;
+    font-weight: 400;
+    line-height: 1.15;
+  }
+  h3, h4, h5 {
+    margin: 1.5rem 0 0.5rem;
     font-weight: 400;
     line-height: 1.15;
   }
@@ -71,16 +76,17 @@ const GlobalStyle = createGlobalStyle`
     font-size: 3.05em;
   }
 
-  h2 {font-size: 2.44em;}
+  h2 {font-size: 2.45em;}
 
-  h3 {font-size: 1.95em;}
+  h3 {font-size: 1.85em;}
 
-  h4 {font-size: 1.56em;}
+  h4 {font-size: 1.4em;}
 
-  h5 {font-size: 1.25em;}
+  h5 {font-size: 1.15em;}
 
   small, .text_small {font-size: 0.8em;}
   a, li {text-decoration: none; color: inherit}
+  li {list-style: kannada; margin-left: 1rem};
   a, button {letter-spacing: 2px}
 `;
 

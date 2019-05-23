@@ -12,12 +12,12 @@ const StyledTeacher = styled.div`
   background: ${props => props.theme.lightGrey};
 
   .teacher {
-    width: 30rem;
-    height: 30rem;
+    width: 40rem;
+    height: 40rem;
     object-fit: cover;
     filter: grayscale(40%);
     float: right;
-    border-radius: 50%;
+    /* border-radius: 50%; */
   }
 
   p {
@@ -26,6 +26,17 @@ const StyledTeacher = styled.div`
     font-weight: 400;
     flex-grow: 1;
     padding: 0 3rem;
+  }
+
+  .courses-info {
+    margin-top: 3rem;
+  }
+
+  a {
+    :hover {
+      border-bottom: 4px solid ${props => props.theme.offBlack};
+      font-weight: 700;
+    }
   }
 
   @media (max-width: 768px) {

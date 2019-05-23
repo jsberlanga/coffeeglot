@@ -136,6 +136,7 @@ export default class CreateCourse extends Component {
         <StyledHeader>
           <h2>Go ahead and create your own course</h2>
         </StyledHeader>
+
         <Mutation mutation={CREATE_COURSE_MUTATION} variables={this.state}>
           {(createCourse, { loading, error }) => {
             if (error)
