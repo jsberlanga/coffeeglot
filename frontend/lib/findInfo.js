@@ -7,11 +7,18 @@ export const findFlag = courseLanguage => {
   return filtered && filtered.flag;
 };
 
-export const findLocation = courseLocation => {
+export const findLocationPicture = courseLocation => {
   const filtered = locations.find(loc => {
     return loc.name.toLowerCase() === courseLocation.toLowerCase();
   });
   return filtered && filtered.pictures[0];
+};
+
+export const findLocationAddress = courseLocation => {
+  const filtered = locations.find(loc => {
+    return loc.name.toLowerCase() === courseLocation.toLowerCase();
+  });
+  return filtered && filtered.address;
 };
 
 export const findMaxSeats = courseLocation => {

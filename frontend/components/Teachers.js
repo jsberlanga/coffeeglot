@@ -29,8 +29,6 @@ const ALL_TEACHERS_QUERY = gql`
   }
 `;
 
-const TeacherList = styled.div``;
-
 export default class Teachers extends Component {
   render() {
     return (
@@ -44,11 +42,11 @@ export default class Teachers extends Component {
             if (!data) return <p>There are no teachers</p>;
             const { teachers } = data;
             return (
-              <TeacherList>
+              <>
                 {teachers.map(teacher => (
                   <Teacher key={teacher.id} teacher={teacher} />
                 ))}
-              </TeacherList>
+              </>
             );
           }}
         </Query>

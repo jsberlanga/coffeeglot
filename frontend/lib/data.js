@@ -130,7 +130,7 @@ export const locations = [
       "../static/images/cafes/bunkier2.jpg",
       "../static/images/cafes/bunkier3.jpg"
     ],
-    location: "Somewhere somwehere 9, 31-005 Kraków",
+    address: "Somewhere somwehere 9, 31-005 Kraków",
     seats: 5
   },
   {
@@ -140,7 +140,7 @@ export const locations = [
       "../static/images/cafes/camelot2.jpg",
       "../static/images/cafes/camelot3.jpg"
     ],
-    location: "Somewhere somwehere 9, 31-005 Kraków",
+    address: "Somewhere somwehere 9, 31-005 Kraków",
     seats: 8
   },
   {
@@ -150,7 +150,7 @@ export const locations = [
       "../static/images/cafes/charlotte2.jpg",
       "../static/images/cafes/charlotte3.jpg"
     ],
-    location: "Somewhere somwehere 9, 31-005 Kraków",
+    address: "Somewhere somwehere 9, 31-005 Kraków",
     seats: 7
   },
   {
@@ -160,7 +160,7 @@ export const locations = [
       "../static/images/cafes/massolit2.jpg",
       "../static/images/cafes/massolit3.jpg"
     ],
-    location: "Somewhere somwehere 9, 31-005 Kraków",
+    address: "Somewhere somwehere 9, 31-005 Kraków",
     seats: 4
   }
 ];

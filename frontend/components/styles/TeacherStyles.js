@@ -1,15 +1,58 @@
 import styled from "styled-components";
 
 const StyledTeacher = styled.div`
-  margin: 5rem auto;
-  padding: 1rem;
-  max-width: 100rem;
+  padding: 0.5rem 0 1rem;
+  margin: 2rem auto 4rem;
+  max-width: 120rem;
   position: relative;
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 2rem;
-  border-bottom: 10px solid ${props => props.theme.grey2};
-  background: ${props => props.theme.lightGrey};
+  border-bottom: 6px solid ${props => props.theme.grey2};
+  background: ${props => props.theme.lightGrey2};
+  box-shadow: 4px 4px 0px 4px ${props => props.theme.grey};
+
+  .title {
+    font-family: linlibertine-italicbold;
+    font-size: 3rem;
+    max-width: 55rem;
+    text-align: center;
+    z-index: 3;
+    padding: 1rem 2rem;
+    margin-bottom: 3rem;
+    background: ${props => props.theme.yellow};
+    line-height: 1.4;
+    border-right: 8px solid ${props => props.theme.grey};
+    border-left: 8px solid ${props => props.theme.grey};
+  }
+
+  .active {
+    background: ${props => props.theme.green2};
+    color: ${props => props.theme.lightGrey};
+    border: none;
+  }
+
+  .inactive {
+    background: maroon;
+    color: #fff;
+    border: none;
+  }
+
+  .isNative,
+  .price {
+    border-bottom: 4px solid ${props => props.theme.yellow};
+    font-family: linlibertine-bold;
+  }
+  .avatar {
+    width: 45rem;
+    height: 45rem;
+    object-fit: cover;
+    filter: grayscale(40%);
+    float: right;
+  }
+  .avatar__teacher {
+    border-radius: 50%;
+  }
 
   .teacher {
     width: 40rem;
@@ -17,15 +60,14 @@ const StyledTeacher = styled.div`
     object-fit: cover;
     filter: grayscale(40%);
     float: right;
-    /* border-radius: 50%; */
+    border-radius: 50%;
   }
 
   p {
-    font-size: 1.7rem;
-    line-height: 1;
+    font-size: 1.8rem;
+    line-height: 1.2;
     font-weight: 400;
     flex-grow: 1;
-    padding: 0 3rem;
   }
 
   .courses-info {
@@ -34,14 +76,24 @@ const StyledTeacher = styled.div`
 
   a {
     :hover {
-      border-bottom: 4px solid ${props => props.theme.offBlack};
-      font-weight: 700;
+      border-bottom: 4px solid ${props => props.theme.yellow};
+      color: ${props => props.theme.yellow};
     }
   }
 
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
     text-align: center;
+  }
+
+  h2,
+  h3,
+  h4,
+  h5,
+  p,
+  a,
+  li {
+    padding: 0.3rem 1rem;
   }
 `;
 

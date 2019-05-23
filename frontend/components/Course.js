@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Link from "next/link";
 import StyledCourse from "./styles/CourseStyles";
 
-import { findFlag, findLocation } from "../lib/findInfo";
+import { findFlag, findLocationPicture } from "../lib/findInfo";
 
 export default class Course extends Component {
   render() {
@@ -16,7 +16,7 @@ export default class Course extends Component {
           className="flag"
         />
         <img
-          src={findLocation(course.location)}
+          src={findLocationPicture(course.location)}
           alt={course.location}
           className="location"
         />
