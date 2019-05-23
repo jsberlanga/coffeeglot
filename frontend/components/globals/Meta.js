@@ -11,6 +11,8 @@ const Meta = () => {
         href="https://fonts.googleapis.com/css?family=Stylish|Roboto+Slab|Satisfy"
         rel="stylesheet"
       />
+      <link rel="stylesheet" type="text/css" href="/static/_datepicker.css" />
+
       <title>Coffeeglot</title>
     </Head>
   );

@@ -35,7 +35,7 @@ export default class Signup extends Component {
     console.log(res);
     this.setState({ email: "", password: "" });
     Router.push({
-      pathname: "/profile"
+      pathname: "/courses"
     });
   };
   render() {

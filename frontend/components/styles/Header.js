@@ -3,10 +3,10 @@ import styled from "styled-components";
 export const StyledHeader = styled.div`
   font-family: rothena;
   text-align: center;
-  padding: 0.4rem 0 2.6rem;
+  padding: 2rem 0 3rem;
   margin: 2rem auto 4rem;
   max-width: 130rem;
-  letter-spacing: 2px;
+  letter-spacing: 1px;
   background: ${props => props.theme.blue};
   background-image: url("https://www.transparenttextures.com/patterns/arches.png");
   color: ${props => props.theme.offWhite};
@@ -15,6 +15,7 @@ export const StyledHeader = styled.div`
   h3,
   h4 {
     line-height: 1.8;
+    font-weight: 300;
     font-family: rothena;
   }
 
