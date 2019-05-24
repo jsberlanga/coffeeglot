@@ -6,7 +6,7 @@ import styled from "styled-components";
 import { StyledHeader } from "./styles/Header";
 import Course from "./Course";
 
-const ALL_COURSES_QUERY = gql`
+export const ALL_COURSES_QUERY = gql`
   query ALL_COURSES_QUERY {
     courses {
       id

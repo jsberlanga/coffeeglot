@@ -58,13 +58,6 @@ const SignupForm = styled.div`
       width: 70%;
     }
   }
-
-  .error {
-    text-align: center;
-    background: ${props => props.theme.yellow};
-    font-size: 2rem;
-    padding: 0.4rem;
-  }
 `;
 
 export default SignupForm;

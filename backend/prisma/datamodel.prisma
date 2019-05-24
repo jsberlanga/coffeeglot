@@ -31,5 +31,5 @@ type Course {
   seats: Int!
   startDate: String!
   endDate: String!
-  createdBy: User #relationship to User
+  createdBy: User! #relationship to User
 }

@@ -74,10 +74,20 @@ async function createCourse(parent, args, ctx, info) {
   });
 }
 
+async function deleteCourse(parent, args, ctx, info) {
+  const userId = ctx.request.userId;
+  const course = await ctx.prisma.course({ id: args.id });
+
+  return await ctx.prisma.deleteCourse({
+    id: course.id
+  });
+}
+
 module.exports = {
   signup,
   signin,
   signout,
   createCourse,
-  createTeacher
+  createTeacher,
+  deleteCourse
 };

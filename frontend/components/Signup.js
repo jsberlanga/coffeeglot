@@ -5,6 +5,8 @@ import { Mutation } from "react-apollo";
 import Router from "next/router";
 
 import SignupForm from "./styles/SignupForm";
+import Error from "./styles/Error";
+import Spinner from "./styles/Spinner";
 import { CURRENT_USER_QUERY } from "./CurrentUser";
 
 const SIGNUP_MUTATION = gql`
@@ -52,6 +54,8 @@ export default class Signup extends Component {
           refetchQueries={[{ query: CURRENT_USER_QUERY }]}
         >
           {(signup, { error, loading }) => {
+            if (error) return <Error error={error} />;
+            if (loading) return <Spinner />;
             return (
               <form
                 className="form"

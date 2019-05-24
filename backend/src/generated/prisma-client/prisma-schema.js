@@ -30,7 +30,7 @@ type Course {
   seats: Int!
   startDate: String!
   endDate: String!
-  createdBy: User
+  createdBy: User!
 }
 
 type CourseConnection {
@@ -49,7 +49,7 @@ input CourseCreateInput {
   seats: Int!
   startDate: String!
   endDate: String!
-  createdBy: UserCreateOneWithoutCoursesInput
+  createdBy: UserCreateOneWithoutCoursesInput!
 }
 
 input CourseCreateManyWithoutCreatedByInput {
@@ -265,7 +265,7 @@ input CourseUpdateInput {
   seats: Int
   startDate: String
   endDate: String
-  createdBy: UserUpdateOneWithoutCoursesInput
+  createdBy: UserUpdateOneRequiredWithoutCoursesInput
 }
 
 input CourseUpdateManyDataInput {
@@ -1074,12 +1074,10 @@ input UserUpdateManyMutationInput {
   password: String
 }
 
-input UserUpdateOneWithoutCoursesInput {
+input UserUpdateOneRequiredWithoutCoursesInput {
   create: UserCreateWithoutCoursesInput
   update: UserUpdateWithoutCoursesDataInput
   upsert: UserUpsertWithoutCoursesInput
-  delete: Boolean
-  disconnect: Boolean
   connect: UserWhereUniqueInput
 }
 

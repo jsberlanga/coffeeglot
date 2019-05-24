@@ -5,6 +5,8 @@ import { Mutation } from "react-apollo";
 import Router from "next/router";
 
 import SignupForm from "./styles/SignupForm";
+import Error from "./styles/Error";
+import Spinner from "./styles/Spinner";
 import { CURRENT_USER_QUERY } from "./CurrentUser";
 
 const SIGNIN_MUTATION = gql`
@@ -52,17 +54,15 @@ export default class Signin extends Component {
           refetchQueries={[{ query: CURRENT_USER_QUERY }]}
         >
           {(signin, { error, loading }) => {
+            if (error) return <Error error={error} />;
+            if (loading) return <Spinner />;
             return (
               <form
                 className="form"
                 method="post"
                 onSubmit={e => this.handleSubmit(e, signin)}
               >
-                {error && (
-                  <div className="error">
-                    {error.message.replace("GraphQL error: ", "")}
-                  </div>
-                )}
+                {error && <Error error={error} />}
                 <div className="form-item">
                   <input
                     type="text"

@@ -443,7 +443,7 @@ export interface CourseUpdateInput {
   seats?: Int;
   startDate?: String;
   endDate?: String;
-  createdBy?: UserUpdateOneWithoutCoursesInput;
+  createdBy?: UserUpdateOneRequiredWithoutCoursesInput;
 }
 
 export interface UserUpdateManyMutationInput {
@@ -451,12 +451,10 @@ export interface UserUpdateManyMutationInput {
   password?: String;
 }
 
-export interface UserUpdateOneWithoutCoursesInput {
+export interface UserUpdateOneRequiredWithoutCoursesInput {
   create?: UserCreateWithoutCoursesInput;
   update?: UserUpdateWithoutCoursesDataInput;
   upsert?: UserUpsertWithoutCoursesInput;
-  delete?: Boolean;
-  disconnect?: Boolean;
   connect?: UserWhereUniqueInput;
 }
 
@@ -1073,7 +1071,7 @@ export interface CourseCreateInput {
   seats: Int;
   startDate: String;
   endDate: String;
-  createdBy?: UserCreateOneWithoutCoursesInput;
+  createdBy: UserCreateOneWithoutCoursesInput;
 }
 
 export interface TeacherUpdateInput {

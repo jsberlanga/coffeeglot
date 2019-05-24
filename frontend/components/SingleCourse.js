@@ -21,6 +21,9 @@ const SINGLE_COURSE_QUERY = gql`
       seats
       startDate
       endDate
+      createdBy {
+        id
+      }
     }
   }
 `;
