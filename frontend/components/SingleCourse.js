@@ -7,7 +7,7 @@ import { findLocationPicture, findLocationAddress } from "../lib/findInfo";
 import { findDate, compareDates } from "../lib/findDate";
 
 import { StyledHeader } from "./styles/Header";
-import StyledTeacher from "./styles/TeacherStyles";
+import SingleObjectStyle from "./styles/SingleObjectStyles";
 
 const SINGLE_COURSE_QUERY = gql`
   query SINGLE_COURSE_QUERY($id: ID!) {
@@ -36,7 +36,7 @@ const SingleCourse = props => {
             <StyledHeader>
               <h2>{course.title}</h2>
             </StyledHeader>
-            <StyledTeacher>
+            <SingleObjectStyle>
               <div className="image">
                 <img
                   src={findLocationPicture(course.location)}
@@ -51,7 +51,6 @@ const SingleCourse = props => {
                   {compareDates(course.startDate, course.endDate)}. For only{" "}
                   <span className="price">{course.price} zlotys</span>
                 </h5>
-                <p>This course will be carried in {course.language}</p>
                 <p>
                   Where: {course.location} in{" "}
                   {findLocationAddress(course.location)}
@@ -63,7 +62,7 @@ const SingleCourse = props => {
 
                 {findDate(course.startDate)}
               </div>
-            </StyledTeacher>
+            </SingleObjectStyle>
           </>
         );
       }}

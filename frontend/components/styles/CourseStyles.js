@@ -27,7 +27,7 @@ const StyledCourse = styled.div`
     font-family: linlibertine-italicbold;
     font-size: 3rem;
     max-width: 40rem;
-    margin: -4rem 1rem 1rem;
+    margin: -4rem 1rem 3rem;
     z-index: 3;
     padding: 1rem 2rem;
     background: ${props => props.theme.grey};
@@ -41,11 +41,20 @@ const StyledCourse = styled.div`
   }
   p {
     font-size: 1.7rem;
-    line-height: 2;
+    margin: 0.4rem;
     font-weight: 400;
     flex-grow: 1;
     padding: 0 3rem;
   }
+  .language {
+    border-bottom: 4px solid ${props => props.theme.green};
+    text-transform: uppercase;
+    font-family: linlibertine-bold;
+  }
+  .additional {
+    font-family: linlibertine-italic;
+  }
+
   .buttonList {
     display: grid;
     font-weight: 700;

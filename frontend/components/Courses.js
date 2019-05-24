@@ -18,6 +18,9 @@ const ALL_COURSES_QUERY = gql`
       seats
       startDate
       endDate
+      createdBy {
+        id
+      }
     }
   }
 `;
@@ -39,7 +42,7 @@ export default class Courses extends Component {
         <StyledHeader>
           <h2>Find a language course that suits you</h2>
         </StyledHeader>
-        <Query query={ALL_COURSES_QUERY}>
+        <Query query={ALL_COURSES_QUERY} fetchPolicy="cache-and-network">
           {({ data: { courses }, error, loading }) => {
             console.log(courses);
             if (error)

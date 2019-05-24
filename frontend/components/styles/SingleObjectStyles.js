@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
-const StyledTeacher = styled.div`
-  padding: 0.5rem 0 1rem;
+const SingleObjectStyle = styled.div`
+  padding: 0.5rem 4rem 1rem 0;
   margin: 2rem auto 4rem;
   max-width: 120rem;
   position: relative;
@@ -15,7 +15,7 @@ const StyledTeacher = styled.div`
   .title {
     font-family: linlibertine-italicbold;
     font-size: 3rem;
-    max-width: 55rem;
+    max-width: 50rem;
     text-align: center;
     z-index: 3;
     padding: 1rem 2rem;
@@ -97,4 +97,4 @@ const StyledTeacher = styled.div`
   }
 `;
 
-export default StyledTeacher;
+export default SingleObjectStyle;

@@ -1,11 +1,11 @@
 import React from "react";
-import StyledTeacher from "./styles/TeacherStyles";
+import SingleObjectStyle from "./styles/SingleObjectStyles";
 import Link from "next/link";
 
 const Teacher = props => {
   const { teacher } = props;
   return (
-    <StyledTeacher>
+    <SingleObjectStyle>
       <div className="image">
         <img
           src={teacher.image}
@@ -40,7 +40,7 @@ const Teacher = props => {
           ))}
         </div>
       </div>
-    </StyledTeacher>
+    </SingleObjectStyle>
   );
 };
 

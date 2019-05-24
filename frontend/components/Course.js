@@ -30,19 +30,14 @@ export default class Course extends Component {
             <a>{course.title}</a>
           </Link>
         </div>
-        <div>{course.price}</div>
-        <p>Description: {course.details}</p>
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae fugiat
-          recusandae eligendi fugit itaque dicta ipsam necessitatibus aperiam
-          cumque repudiandae!
+          The language taught in this course is{" "}
+          <span className="language">{course.language}</span>
         </p>
-
-        <p>
-          <span style={{ fontWeight: 700, textTransform: "uppercase" }}>
-            {course.language}
-          </span>
-        </p>
+        <p>Price of this course: {course.price} PLN</p>
+        <p>The location of this course: {course.location}</p>
+        <p>Max. number of students: {course.seats}</p>
+        <p className="additional">Additional information: {course.details}</p>
         <div className="buttonList">
           <Link
             href={{

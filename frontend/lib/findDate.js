@@ -6,7 +6,7 @@ export const findDate = (startDate, now) => {
 
   if (startDateMoment.diff(now, "days") === 0) {
     return (
-      <h4 className="title active">{`This course has starts today. You can still REGISTER.`}</h4>
+      <h4 className="title active">{`This course starts today. Don't miss it! You can still REGISTER.`}</h4>
     );
   }
   if (startDateMoment.diff(now) < 0) {
@@ -26,5 +26,5 @@ export const findDate = (startDate, now) => {
 };
 
 export const compareDates = (startDate, endDate) => {
-  return `${moment(startDate).diff(moment(endDate), "days")} days`;
+  return `${moment(endDate).diff(moment(startDate), "days")} days`;
 };
