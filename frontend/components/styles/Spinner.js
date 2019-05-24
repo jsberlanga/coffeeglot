@@ -3,46 +3,30 @@ import styled from "styled-components";
 
 const Spinner = () => (
   <SpinnerContainer>
-    <StyledSpinner viewBox="0 0 50 50">
+    <StyledSpinner viewBox="0 0 60 60">
       <circle
         className="path"
-        cx="25"
-        cy="25"
+        cx="30"
+        cy="30"
         r="25"
         fill="none"
-        strokeWidth="2"
+        strokeWidth="3"
       />
     </StyledSpinner>
-    <p className="title">loading</p>
   </SpinnerContainer>
 );
 
 const SpinnerContainer = styled.div`
   display: flex;
-  color: ${props => props.theme.yellow};
-  font-family: stylish;
-  font-style: italic;
-  font-size: 1.1rem;
-  letter-spacing: 1px;
-  .title {
-    animation: opacity 1.5s ease-out infinite;
-    margin: 7px 0 0 -45px;
-  }
-  @keyframes opacity {
-    0% {
-      opacity: 0;
-    }
-    100% {
-      opacity: 1;
-    }
-  }
+  margin: 0 auto;
+  position: relative;
 `;
 
 const StyledSpinner = styled.svg`
   animation: rotate 2s linear infinite;
-  margin: -8px 0 0 5px;
-  width: 50px;
-  height: 50px;
+  margin: 0 auto;
+  width: 70px;
+  height: 70px;
 
   & .path {
     stroke: ${props => props.theme.yellow};

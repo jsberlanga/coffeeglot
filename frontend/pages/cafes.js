@@ -1,7 +1,8 @@
 import React from "react";
+import Cafes from "../components/Cafes";
 
 const CafesPage = () => {
-  return <div>Welcome to Cafes</div>;
+  return <Cafes />;
 };
 
 export default CafesPage;

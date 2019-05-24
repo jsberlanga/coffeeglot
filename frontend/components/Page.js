@@ -27,7 +27,7 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'linlibertine-bold';
     src: url('/static/LinLibertine_RB.ttf') format('truetype');
     font-weight: normal;
-    font-style: italic;
+    font-style: normal;
   }
   @font-face {
     font-family: 'linlibertine-italicbold';

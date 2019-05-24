@@ -4,6 +4,8 @@ import gql from "graphql-tag";
 import styled from "styled-components";
 
 import { StyledHeader } from "./styles/Header";
+import Error from "./styles/Error";
+import Spinner from "./styles/Spinner";
 import Course from "./Course";
 
 export const ALL_COURSES_QUERY = gql`
@@ -44,10 +46,8 @@ export default class Courses extends Component {
         </StyledHeader>
         <Query query={ALL_COURSES_QUERY} fetchPolicy="cache-and-network">
           {({ data: { courses }, error, loading }) => {
-            console.log(courses);
-            if (error)
-              return <h4>The following message appeared: {error.message}</h4>;
-            if (loading) return <h4>Loading...</h4>;
+            if (error) return <Error error={error} />;
+            if (loading) return <Spinner />;
             return (
               <CourseList>
                 {courses.map(course => (

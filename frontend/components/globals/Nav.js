@@ -54,10 +54,7 @@ const Header = props => {
               <a>Teachers</a>
             </Link>
             <Link activeClassName="active" href="/cafes">
-              <a>Cafes</a>
-            </Link>
-            <Link activeClassName="active" href="/top">
-              <a>Top</a>
+              <a>Our Cafes</a>
             </Link>
             {me && (
               <>
