@@ -4,6 +4,7 @@ type User {
   password: String!
   teachers: [Teacher!]! #relationship to the Teacher
   courses: [Course!]! #relationship to the Course
+  votes: [Vote!]!
 }
 
 type Teacher {
@@ -17,7 +18,8 @@ type Teacher {
   experience: String!
   education: String!
   certifications: String!
-  createdBy: User #relationship to the User
+  createdBy: User! #relationship to the User
+  votes: [Vote!]!
 }
 
 type Course {
@@ -32,4 +34,10 @@ type Course {
   startDate: String!
   endDate: String!
   createdBy: User! #relationship to User
+}
+
+type Vote {
+  id: ID! @id
+  teacher: Teacher!
+  user: User!
 }

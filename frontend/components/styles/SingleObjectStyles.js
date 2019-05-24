@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const SingleObjectStyle = styled.div`
   padding: 0.5rem 4rem 1rem 0;
-  margin: 2rem auto 4rem;
+  margin: 2rem auto 6rem;
   max-width: 120rem;
   position: relative;
   display: grid;

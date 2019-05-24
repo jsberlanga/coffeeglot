@@ -83,11 +83,29 @@ async function deleteCourse(parent, args, ctx, info) {
   });
 }
 
+async function vote(parent, args, ctx, info) {
+  const userId = getUserId(ctx);
+
+  const teacherExists = await ctx.prisma.$exists.vote({
+    user: { id: userId },
+    teacher: { id: args.teacherId }
+  });
+  if (teacherExists) {
+    throw new Error(`Already voted for teacher: ${args.teacherId}`);
+  }
+
+  return ctx.prisma.createVote({
+    user: { connect: { id: userId } },
+    teacher: { connect: { id: args.teacherId } }
+  });
+}
+
 module.exports = {
   signup,
   signin,
   signout,
   createCourse,
   createTeacher,
-  deleteCourse
+  deleteCourse,
+  vote
 };

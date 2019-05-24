@@ -28,11 +28,11 @@ const Teacher = props => {
         <p>Experience: {teacher.experience}</p>
         <p>Certifications: {teacher.certifications}</p>
         <p>Something more: {teacher.about}</p>
-        <h4>Number of votes: to be done</h4>
+        <h4>Number of votes: {teacher.votes.length}</h4>
         <div className="courses-info">
           <h4>Checkout all of {teacher.name}'s courses:</h4>
           {teacher.createdBy.courses.map(course => (
-            <li>
+            <li key={course.id}>
               <Link href={`/course?id=${course.id}`}>
                 <a>{course.title}</a>
               </Link>

@@ -25,6 +25,11 @@ const ALL_TEACHERS_QUERY = gql`
           title
         }
       }
+      votes {
+        user {
+          id
+        }
+      }
     }
   }
 `;

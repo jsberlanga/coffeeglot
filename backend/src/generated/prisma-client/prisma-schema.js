@@ -15,6 +15,10 @@ type AggregateUser {
   count: Int!
 }
 
+type AggregateVote {
+  count: Int!
+}
+
 type BatchPayload {
   count: Long!
 }
@@ -485,6 +489,11 @@ type Mutation {
   upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
   deleteUser(where: UserWhereUniqueInput!): User
   deleteManyUsers(where: UserWhereInput): BatchPayload!
+  createVote(data: VoteCreateInput!): Vote!
+  updateVote(data: VoteUpdateInput!, where: VoteWhereUniqueInput!): Vote
+  upsertVote(where: VoteWhereUniqueInput!, create: VoteCreateInput!, update: VoteUpdateInput!): Vote!
+  deleteVote(where: VoteWhereUniqueInput!): Vote
+  deleteManyVotes(where: VoteWhereInput): BatchPayload!
 }
 
 enum MutationType {
@@ -514,6 +523,9 @@ type Query {
   user(where: UserWhereUniqueInput!): User
   users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
   usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
+  vote(where: VoteWhereUniqueInput!): Vote
+  votes(where: VoteWhereInput, orderBy: VoteOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Vote]!
+  votesConnection(where: VoteWhereInput, orderBy: VoteOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): VoteConnection!
   node(id: ID!): Node
 }
 
@@ -521,6 +533,7 @@ type Subscription {
   course(where: CourseSubscriptionWhereInput): CourseSubscriptionPayload
   teacher(where: TeacherSubscriptionWhereInput): TeacherSubscriptionPayload
   user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
+  vote(where: VoteSubscriptionWhereInput): VoteSubscriptionPayload
 }
 
 type Teacher {
@@ -534,7 +547,8 @@ type Teacher {
   experience: String!
   education: String!
   certifications: String!
-  createdBy: User
+  createdBy: User!
+  votes(where: VoteWhereInput, orderBy: VoteOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Vote!]
 }
 
 type TeacherConnection {
@@ -553,12 +567,18 @@ input TeacherCreateInput {
   experience: String!
   education: String!
   certifications: String!
-  createdBy: UserCreateOneWithoutTeachersInput
+  createdBy: UserCreateOneWithoutTeachersInput!
+  votes: VoteCreateManyWithoutTeacherInput
 }
 
 input TeacherCreateManyWithoutCreatedByInput {
   create: [TeacherCreateWithoutCreatedByInput!]
   connect: [TeacherWhereUniqueInput!]
+}
+
+input TeacherCreateOneWithoutVotesInput {
+  create: TeacherCreateWithoutVotesInput
+  connect: TeacherWhereUniqueInput
 }
 
 input TeacherCreateWithoutCreatedByInput {
@@ -571,6 +591,20 @@ input TeacherCreateWithoutCreatedByInput {
   experience: String!
   education: String!
   certifications: String!
+  votes: VoteCreateManyWithoutTeacherInput
+}
+
+input TeacherCreateWithoutVotesInput {
+  id: ID
+  name: String!
+  age: Int!
+  image: String!
+  isNative: String!
+  about: String!
+  experience: String!
+  education: String!
+  certifications: String!
+  createdBy: UserCreateOneWithoutTeachersInput!
 }
 
 type TeacherEdge {
@@ -775,7 +809,8 @@ input TeacherUpdateInput {
   experience: String
   education: String
   certifications: String
-  createdBy: UserUpdateOneWithoutTeachersInput
+  createdBy: UserUpdateOneRequiredWithoutTeachersInput
+  votes: VoteUpdateManyWithoutTeacherInput
 }
 
 input TeacherUpdateManyDataInput {
@@ -817,6 +852,13 @@ input TeacherUpdateManyWithWhereNestedInput {
   data: TeacherUpdateManyDataInput!
 }
 
+input TeacherUpdateOneRequiredWithoutVotesInput {
+  create: TeacherCreateWithoutVotesInput
+  update: TeacherUpdateWithoutVotesDataInput
+  upsert: TeacherUpsertWithoutVotesInput
+  connect: TeacherWhereUniqueInput
+}
+
 input TeacherUpdateWithoutCreatedByDataInput {
   name: String
   age: Int
@@ -826,11 +868,29 @@ input TeacherUpdateWithoutCreatedByDataInput {
   experience: String
   education: String
   certifications: String
+  votes: VoteUpdateManyWithoutTeacherInput
+}
+
+input TeacherUpdateWithoutVotesDataInput {
+  name: String
+  age: Int
+  image: String
+  isNative: String
+  about: String
+  experience: String
+  education: String
+  certifications: String
+  createdBy: UserUpdateOneRequiredWithoutTeachersInput
 }
 
 input TeacherUpdateWithWhereUniqueWithoutCreatedByInput {
   where: TeacherWhereUniqueInput!
   data: TeacherUpdateWithoutCreatedByDataInput!
+}
+
+input TeacherUpsertWithoutVotesInput {
+  update: TeacherUpdateWithoutVotesDataInput!
+  create: TeacherCreateWithoutVotesInput!
 }
 
 input TeacherUpsertWithWhereUniqueWithoutCreatedByInput {
@@ -969,6 +1029,9 @@ input TeacherWhereInput {
   certifications_ends_with: String
   certifications_not_ends_with: String
   createdBy: UserWhereInput
+  votes_every: VoteWhereInput
+  votes_some: VoteWhereInput
+  votes_none: VoteWhereInput
   AND: [TeacherWhereInput!]
   OR: [TeacherWhereInput!]
   NOT: [TeacherWhereInput!]
@@ -984,6 +1047,7 @@ type User {
   password: String!
   teachers(where: TeacherWhereInput, orderBy: TeacherOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Teacher!]
   courses(where: CourseWhereInput, orderBy: CourseOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Course!]
+  votes(where: VoteWhereInput, orderBy: VoteOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Vote!]
 }
 
 type UserConnection {
@@ -998,6 +1062,7 @@ input UserCreateInput {
   password: String!
   teachers: TeacherCreateManyWithoutCreatedByInput
   courses: CourseCreateManyWithoutCreatedByInput
+  votes: VoteCreateManyWithoutUserInput
 }
 
 input UserCreateOneWithoutCoursesInput {
@@ -1010,17 +1075,32 @@ input UserCreateOneWithoutTeachersInput {
   connect: UserWhereUniqueInput
 }
 
+input UserCreateOneWithoutVotesInput {
+  create: UserCreateWithoutVotesInput
+  connect: UserWhereUniqueInput
+}
+
 input UserCreateWithoutCoursesInput {
   id: ID
   email: String!
   password: String!
   teachers: TeacherCreateManyWithoutCreatedByInput
+  votes: VoteCreateManyWithoutUserInput
 }
 
 input UserCreateWithoutTeachersInput {
   id: ID
   email: String!
   password: String!
+  courses: CourseCreateManyWithoutCreatedByInput
+  votes: VoteCreateManyWithoutUserInput
+}
+
+input UserCreateWithoutVotesInput {
+  id: ID
+  email: String!
+  password: String!
+  teachers: TeacherCreateManyWithoutCreatedByInput
   courses: CourseCreateManyWithoutCreatedByInput
 }
 
@@ -1067,6 +1147,7 @@ input UserUpdateInput {
   password: String
   teachers: TeacherUpdateManyWithoutCreatedByInput
   courses: CourseUpdateManyWithoutCreatedByInput
+  votes: VoteUpdateManyWithoutUserInput
 }
 
 input UserUpdateManyMutationInput {
@@ -1081,12 +1162,17 @@ input UserUpdateOneRequiredWithoutCoursesInput {
   connect: UserWhereUniqueInput
 }
 
-input UserUpdateOneWithoutTeachersInput {
+input UserUpdateOneRequiredWithoutTeachersInput {
   create: UserCreateWithoutTeachersInput
   update: UserUpdateWithoutTeachersDataInput
   upsert: UserUpsertWithoutTeachersInput
-  delete: Boolean
-  disconnect: Boolean
+  connect: UserWhereUniqueInput
+}
+
+input UserUpdateOneRequiredWithoutVotesInput {
+  create: UserCreateWithoutVotesInput
+  update: UserUpdateWithoutVotesDataInput
+  upsert: UserUpsertWithoutVotesInput
   connect: UserWhereUniqueInput
 }
 
@@ -1094,11 +1180,20 @@ input UserUpdateWithoutCoursesDataInput {
   email: String
   password: String
   teachers: TeacherUpdateManyWithoutCreatedByInput
+  votes: VoteUpdateManyWithoutUserInput
 }
 
 input UserUpdateWithoutTeachersDataInput {
   email: String
   password: String
+  courses: CourseUpdateManyWithoutCreatedByInput
+  votes: VoteUpdateManyWithoutUserInput
+}
+
+input UserUpdateWithoutVotesDataInput {
+  email: String
+  password: String
+  teachers: TeacherUpdateManyWithoutCreatedByInput
   courses: CourseUpdateManyWithoutCreatedByInput
 }
 
@@ -1110,6 +1205,11 @@ input UserUpsertWithoutCoursesInput {
 input UserUpsertWithoutTeachersInput {
   update: UserUpdateWithoutTeachersDataInput!
   create: UserCreateWithoutTeachersInput!
+}
+
+input UserUpsertWithoutVotesInput {
+  update: UserUpdateWithoutVotesDataInput!
+  create: UserCreateWithoutVotesInput!
 }
 
 input UserWhereInput {
@@ -1161,6 +1261,9 @@ input UserWhereInput {
   courses_every: CourseWhereInput
   courses_some: CourseWhereInput
   courses_none: CourseWhereInput
+  votes_every: VoteWhereInput
+  votes_some: VoteWhereInput
+  votes_none: VoteWhereInput
   AND: [UserWhereInput!]
   OR: [UserWhereInput!]
   NOT: [UserWhereInput!]
@@ -1169,6 +1272,179 @@ input UserWhereInput {
 input UserWhereUniqueInput {
   id: ID
   email: String
+}
+
+type Vote {
+  id: ID!
+  teacher: Teacher!
+  user: User!
+}
+
+type VoteConnection {
+  pageInfo: PageInfo!
+  edges: [VoteEdge]!
+  aggregate: AggregateVote!
+}
+
+input VoteCreateInput {
+  id: ID
+  teacher: TeacherCreateOneWithoutVotesInput!
+  user: UserCreateOneWithoutVotesInput!
+}
+
+input VoteCreateManyWithoutTeacherInput {
+  create: [VoteCreateWithoutTeacherInput!]
+  connect: [VoteWhereUniqueInput!]
+}
+
+input VoteCreateManyWithoutUserInput {
+  create: [VoteCreateWithoutUserInput!]
+  connect: [VoteWhereUniqueInput!]
+}
+
+input VoteCreateWithoutTeacherInput {
+  id: ID
+  user: UserCreateOneWithoutVotesInput!
+}
+
+input VoteCreateWithoutUserInput {
+  id: ID
+  teacher: TeacherCreateOneWithoutVotesInput!
+}
+
+type VoteEdge {
+  node: Vote!
+  cursor: String!
+}
+
+enum VoteOrderByInput {
+  id_ASC
+  id_DESC
+}
+
+type VotePreviousValues {
+  id: ID!
+}
+
+input VoteScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  AND: [VoteScalarWhereInput!]
+  OR: [VoteScalarWhereInput!]
+  NOT: [VoteScalarWhereInput!]
+}
+
+type VoteSubscriptionPayload {
+  mutation: MutationType!
+  node: Vote
+  updatedFields: [String!]
+  previousValues: VotePreviousValues
+}
+
+input VoteSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: VoteWhereInput
+  AND: [VoteSubscriptionWhereInput!]
+  OR: [VoteSubscriptionWhereInput!]
+  NOT: [VoteSubscriptionWhereInput!]
+}
+
+input VoteUpdateInput {
+  teacher: TeacherUpdateOneRequiredWithoutVotesInput
+  user: UserUpdateOneRequiredWithoutVotesInput
+}
+
+input VoteUpdateManyWithoutTeacherInput {
+  create: [VoteCreateWithoutTeacherInput!]
+  delete: [VoteWhereUniqueInput!]
+  connect: [VoteWhereUniqueInput!]
+  set: [VoteWhereUniqueInput!]
+  disconnect: [VoteWhereUniqueInput!]
+  update: [VoteUpdateWithWhereUniqueWithoutTeacherInput!]
+  upsert: [VoteUpsertWithWhereUniqueWithoutTeacherInput!]
+  deleteMany: [VoteScalarWhereInput!]
+}
+
+input VoteUpdateManyWithoutUserInput {
+  create: [VoteCreateWithoutUserInput!]
+  delete: [VoteWhereUniqueInput!]
+  connect: [VoteWhereUniqueInput!]
+  set: [VoteWhereUniqueInput!]
+  disconnect: [VoteWhereUniqueInput!]
+  update: [VoteUpdateWithWhereUniqueWithoutUserInput!]
+  upsert: [VoteUpsertWithWhereUniqueWithoutUserInput!]
+  deleteMany: [VoteScalarWhereInput!]
+}
+
+input VoteUpdateWithoutTeacherDataInput {
+  user: UserUpdateOneRequiredWithoutVotesInput
+}
+
+input VoteUpdateWithoutUserDataInput {
+  teacher: TeacherUpdateOneRequiredWithoutVotesInput
+}
+
+input VoteUpdateWithWhereUniqueWithoutTeacherInput {
+  where: VoteWhereUniqueInput!
+  data: VoteUpdateWithoutTeacherDataInput!
+}
+
+input VoteUpdateWithWhereUniqueWithoutUserInput {
+  where: VoteWhereUniqueInput!
+  data: VoteUpdateWithoutUserDataInput!
+}
+
+input VoteUpsertWithWhereUniqueWithoutTeacherInput {
+  where: VoteWhereUniqueInput!
+  update: VoteUpdateWithoutTeacherDataInput!
+  create: VoteCreateWithoutTeacherInput!
+}
+
+input VoteUpsertWithWhereUniqueWithoutUserInput {
+  where: VoteWhereUniqueInput!
+  update: VoteUpdateWithoutUserDataInput!
+  create: VoteCreateWithoutUserInput!
+}
+
+input VoteWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  teacher: TeacherWhereInput
+  user: UserWhereInput
+  AND: [VoteWhereInput!]
+  OR: [VoteWhereInput!]
+  NOT: [VoteWhereInput!]
+}
+
+input VoteWhereUniqueInput {
+  id: ID
 }
 `
       }
