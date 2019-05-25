@@ -86,10 +86,6 @@ type SuccessMessage {
   message: String
 }
 
-type Subscription {
-  newVote: Vote
-}
-
 type Vote {
   id: ID!
   teacher: Teacher!

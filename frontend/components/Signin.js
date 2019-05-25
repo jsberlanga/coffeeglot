@@ -54,15 +54,12 @@ export default class Signin extends Component {
           refetchQueries={[{ query: CURRENT_USER_QUERY }]}
         >
           {(signin, { error, loading }) => {
-            if (error) return <Error error={error} />;
-            if (loading) return <Spinner />;
             return (
               <form
                 className="form"
                 method="post"
                 onSubmit={e => this.handleSubmit(e, signin)}
               >
-                {error && <Error error={error} />}
                 <div className="form-item">
                   <input
                     type="text"
@@ -88,6 +85,8 @@ export default class Signin extends Component {
                 <button className="form-button" type="submit">
                   Signin
                 </button>
+                {error && <Error error={error} />}
+                {loading && <Spinner />}
               </form>
             );
           }}

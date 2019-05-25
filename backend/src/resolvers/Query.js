@@ -24,7 +24,6 @@ async function teachers(parent, args, ctx, info) {
 }
 
 function me(parent, args, ctx, info) {
-  // console.log(ctx.request);
   if (!ctx.request.userId) {
     return null;
   }

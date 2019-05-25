@@ -54,8 +54,6 @@ export default class Signup extends Component {
           refetchQueries={[{ query: CURRENT_USER_QUERY }]}
         >
           {(signup, { error, loading }) => {
-            if (error) return <Error error={error} />;
-            if (loading) return <Spinner />;
             return (
               <form
                 className="form"
@@ -87,6 +85,8 @@ export default class Signup extends Component {
                 <button className="form-button" type="submit">
                   Signup
                 </button>
+                {error && <Error error={error} />}
+                {loading && <Spinner />}
               </form>
             );
           }}

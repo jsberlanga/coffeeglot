@@ -1,6 +1,5 @@
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const { getUserId } = require("../utils");
 
 async function signup(parent, args, ctx, info) {
   args.email = args.email.toLowerCase();
@@ -85,6 +84,9 @@ async function deleteCourse(parent, args, ctx, info) {
 
 async function vote(parent, args, ctx, info) {
   const userId = ctx.request.userId;
+  if (!userId) {
+    throw new Error(`Sorry! You first need to sign in.`);
+  }
 
   const teacherExists = await ctx.prisma.$exists.vote({
     user: { id: userId },

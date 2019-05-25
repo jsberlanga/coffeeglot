@@ -8,6 +8,8 @@ import gql from "graphql-tag";
 import Error from "./styles/Error";
 import Spinner from "./styles/Spinner";
 
+import { ALL_TEACHERS_QUERY } from "./Teachers";
+
 const VOTE_MUTATION = gql`
   mutation VOTE_MUTATION($teacherId: ID!) {
     vote(teacherId: $teacherId) {
@@ -36,6 +38,7 @@ const Teacher = props => {
         <Mutation
           mutation={VOTE_MUTATION}
           variables={{ teacherId: teacher.id }}
+          refetchQueries={[{ query: ALL_TEACHERS_QUERY }]}
         >
           {(vote, { error, loading }) => {
             if (error) return <Error error={error} />;

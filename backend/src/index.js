@@ -11,14 +11,12 @@ const Course = require("./resolvers/Course");
 const Teacher = require("./resolvers/Teacher");
 const User = require("./resolvers/User");
 const Vote = require("./resolvers/Vote");
-const Subscription = require("./resolvers/Subscription");
 
 const server = new GraphQLServer({
   typeDefs: "./src/schema.graphql",
   resolvers: {
     Query,
     Mutation,
-    Subscription,
     Course,
     Teacher,
     User,

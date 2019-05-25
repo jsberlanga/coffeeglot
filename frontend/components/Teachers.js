@@ -58,3 +58,5 @@ export default class Teachers extends Component {
     );
   }
 }
+
+export { ALL_TEACHERS_QUERY };
