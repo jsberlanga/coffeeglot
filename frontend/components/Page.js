@@ -56,7 +56,7 @@ const GlobalStyle = createGlobalStyle`
 
   p {margin-bottom: 0.8em;}
 
-  h1, h2, {
+  h1, h2 {
     margin: 2.75rem 0 1rem;
     font-weight: 400;
     line-height: 1.15;
@@ -67,7 +67,7 @@ const GlobalStyle = createGlobalStyle`
     line-height: 1.15;
   }
 
-  h3, h4, h5 {
+  h1,h2, h3, h4, h5 {
     font-family: linlibertine-italicbold;
   }
 
@@ -85,9 +85,9 @@ const GlobalStyle = createGlobalStyle`
   h5 {font-size: 1.15em;}
 
   small, .text_small {font-size: 0.8em;}
-  a, li {text-decoration: none; color: inherit}
-  li {list-style: kannada; margin-left: 1rem};
-  a, button {letter-spacing: 2px}
+  a, li {text-decoration: none; color: inherit};
+  li {list-style: none; margin-left: 1rem};
+  a, button {letter-spacing: 2px};
 `;
 
 const theme = {

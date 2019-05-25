@@ -12,6 +12,7 @@ const Meta = () => {
         rel="stylesheet"
       />
       <link rel="stylesheet" type="text/css" href="/static/_datepicker.css" />
+      <link rel="stylesheet" type="text/css" href="/static/_carousel.css" />
 
       <title>Coffeeglot</title>
     </Head>

@@ -30,6 +30,7 @@ const StyledNav = styled.div`
     position: relative;
     text-transform: capitalize;
     border: 0;
+    text-decoration: none;
   }
 
   .active {

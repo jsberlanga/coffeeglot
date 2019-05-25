@@ -11,7 +11,7 @@ export const findLocationPicture = courseLocation => {
   const filtered = locations.find(loc => {
     return loc.name.toLowerCase() === courseLocation.toLowerCase();
   });
-  return filtered && filtered.pictures[0];
+  return filtered && filtered.pictures;
 };
 
 export const findLocationAddress = courseLocation => {

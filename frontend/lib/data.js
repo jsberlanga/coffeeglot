@@ -121,45 +121,33 @@ export const languagesArray = [
 
 export const locations = [
   {
-    name: "Choose one of our Cafes"
+    name: "Choose one of our Cafes",
+    pictures: "../static/images/cafes/amanda.jpg",
+    address: "",
+    seats: ""
   },
   {
     name: "Bunkier Cafe",
-    pictures: [
-      "../static/images/cafes/bunkier1.jpg",
-      "../static/images/cafes/bunkier2.jpg",
-      "../static/images/cafes/bunkier3.jpg"
-    ],
+    pictures: "../static/images/cafes/amanda.jpg",
     address: "Somewhere somwehere 9, 31-005 Kraków",
-    seats: 5
+    seats: 8
   },
   {
     name: "Cafe Camelot",
-    pictures: [
-      "../static/images/cafes/camelot1.jpg",
-      "../static/images/cafes/camelot2.jpg",
-      "../static/images/cafes/camelot3.jpg"
-    ],
+    pictures: "../static/images/cafes/ilDuce.jpg",
+
     address: "Somewhere somwehere 9, 31-005 Kraków",
     seats: 8
   },
   {
     name: "Cafe Charlotte",
-    pictures: [
-      "../static/images/cafes/charlotte1.jpg",
-      "../static/images/cafes/charlotte2.jpg",
-      "../static/images/cafes/charlotte3.jpg"
-    ],
+    pictures: "../static/images/cafes/amanda.jpg",
     address: "Somewhere somwehere 9, 31-005 Kraków",
     seats: 7
   },
   {
     name: "Massolit Books & Cafe",
-    pictures: [
-      "../static/images/cafes/massolit1.jpg",
-      "../static/images/cafes/massolit2.jpg",
-      "../static/images/cafes/massolit3.jpg"
-    ],
+    pictures: "../static/images/cafes/ilDuce.jpg",
     address: "Somewhere somwehere 9, 31-005 Kraków",
     seats: 4
   }

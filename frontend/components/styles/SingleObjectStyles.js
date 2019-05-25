@@ -1,14 +1,13 @@
 import styled from "styled-components";
 
 const SingleObjectStyle = styled.div`
-  padding: 0.5rem 4rem 1rem 0;
   margin: 2rem auto 4rem;
   max-width: 120rem;
   position: relative;
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-items: center;
-  grid-gap: 5rem;
+  grid-gap: 3rem;
   background: ${props => props.theme.lightGrey2};
   box-shadow: 2px 2px 8px -6px ${props => props.theme.grey2};
 
@@ -61,9 +60,10 @@ const SingleObjectStyle = styled.div`
   }
 
   .title {
+    margin: 1rem auto;
     font-family: linlibertine-italicbold;
     font-size: 3rem;
-    max-width: 50rem;
+    max-width: 55rem;
     text-align: center;
     z-index: 3;
     padding: 1rem 2rem;
@@ -92,23 +92,16 @@ const SingleObjectStyle = styled.div`
     font-family: linlibertine-bold;
   }
   .avatar {
-    width: 55rem;
+    max-width: 55rem;
+    width: 95%;
     height: 40rem;
     object-fit: cover;
     filter: grayscale(30%);
     float: right;
-    margin: 2rem;
+    margin: 1rem auto;
   }
   .avatar__teacher {
-    width: 50rem;
-  }
-
-  .teacher {
     width: 40rem;
-    height: 40rem;
-    object-fit: cover;
-    filter: grayscale(40%);
-    float: right;
     border-radius: 50%;
   }
 
@@ -130,9 +123,15 @@ const SingleObjectStyle = styled.div`
     }
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 1130px) {
     grid-template-columns: 1fr;
     text-align: center;
+    .avatar {
+      max-width: 70rem;
+    }
+    .avatar__teacher {
+      width: 40rem;
+    }
   }
 
   h2,
