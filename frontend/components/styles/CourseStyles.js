@@ -21,7 +21,7 @@ const StyledCourse = styled.div`
     height: 28rem;
     object-fit: cover;
     z-index: 1;
-    filter: grayscale(80%) blur(0.5px);
+    filter: grayscale(40%) blur(0.5px);
   }
   .title {
     font-family: linlibertine-italicbold;

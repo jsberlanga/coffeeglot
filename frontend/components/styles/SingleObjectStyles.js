@@ -2,15 +2,15 @@ import styled from "styled-components";
 
 const SingleObjectStyle = styled.div`
   padding: 0.5rem 4rem 1rem 0;
-  margin: 2rem auto 6rem;
+  margin: 2rem auto 4rem;
   max-width: 120rem;
   position: relative;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-gap: 2rem;
-  border-bottom: 6px solid ${props => props.theme.grey2};
+  align-items: center;
+  grid-gap: 5rem;
   background: ${props => props.theme.lightGrey2};
-  box-shadow: 4px 4px 0px 4px ${props => props.theme.grey};
+  box-shadow: 2px 2px 8px -6px ${props => props.theme.grey2};
 
   .title {
     font-family: linlibertine-italicbold;
@@ -44,14 +44,14 @@ const SingleObjectStyle = styled.div`
     font-family: linlibertine-bold;
   }
   .avatar {
-    width: 45rem;
-    height: 45rem;
+    width: 50rem;
+    height: 40rem;
     object-fit: cover;
-    filter: grayscale(40%);
+    filter: grayscale(30%);
     float: right;
   }
   .avatar__teacher {
-    border-radius: 50%;
+    width: 50rem;
   }
 
   .teacher {

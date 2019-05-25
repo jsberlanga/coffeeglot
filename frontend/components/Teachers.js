@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
-import styled from "styled-components";
 
 import { StyledHeader } from "./styles/Header";
 import Teacher from "./Teacher";
