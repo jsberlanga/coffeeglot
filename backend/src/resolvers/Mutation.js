@@ -84,14 +84,16 @@ async function deleteCourse(parent, args, ctx, info) {
 }
 
 async function vote(parent, args, ctx, info) {
-  const userId = getUserId(ctx);
+  const userId = ctx.request.userId;
 
   const teacherExists = await ctx.prisma.$exists.vote({
     user: { id: userId },
     teacher: { id: args.teacherId }
   });
   if (teacherExists) {
-    throw new Error(`Already voted for teacher: ${args.teacherId}`);
+    throw new Error(
+      `Oops! It looks like you have already voted for this teacher.`
+    );
   }
 
   return ctx.prisma.createVote({

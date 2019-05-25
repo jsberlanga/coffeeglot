@@ -2,6 +2,27 @@ import React from "react";
 import SingleObjectStyle from "./styles/SingleObjectStyles";
 import Link from "next/link";
 
+import { Mutation } from "react-apollo";
+import gql from "graphql-tag";
+
+import Error from "./styles/Error";
+import Spinner from "./styles/Spinner";
+
+const VOTE_MUTATION = gql`
+  mutation VOTE_MUTATION($teacherId: ID!) {
+    vote(teacherId: $teacherId) {
+      teacher {
+        id
+        name
+      }
+      user {
+        id
+        email
+      }
+    }
+  }
+`;
+
 const Teacher = props => {
   const { teacher } = props;
   return (
@@ -12,6 +33,27 @@ const Teacher = props => {
           className="avatar avatar__teacher"
           alt="teacher"
         />
+        <Mutation
+          mutation={VOTE_MUTATION}
+          variables={{ teacherId: teacher.id }}
+        >
+          {(vote, { error, loading }) => {
+            if (error) return <Error error={error} />;
+            if (loading) return <Spinner />;
+            return (
+              <>
+                <div className="vote" onClick={vote}>
+                  <span>vote!</span>
+                  <img
+                    src="../static/icons/heart.png"
+                    width="70"
+                    className="icon"
+                  />
+                </div>
+              </>
+            );
+          }}
+        </Mutation>
       </div>
       <div className="info">
         <h3 className="title">Name: {teacher.name}</h3>
@@ -28,6 +70,7 @@ const Teacher = props => {
         <p>Experience: {teacher.experience}</p>
         <p>Certifications: {teacher.certifications}</p>
         <p>Something more: {teacher.about}</p>
+
         <h4>Number of votes: {teacher.votes.length}</h4>
         <div className="courses-info">
           <h4>Checkout all of {teacher.name}'s courses:</h4>

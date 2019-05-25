@@ -7,6 +7,7 @@ const ErrorStyles = styled.div`
   font-size: 2rem;
   padding: 0.4rem;
   max-width: 50rem;
+  margin: 2rem;
 `;
 
 const DisplayErrorMessage = ({ error }) => {
