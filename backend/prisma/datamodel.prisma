@@ -3,7 +3,7 @@ type User {
   email: String! @unique
   password: String!
   teachers: [Teacher!]! #relationship to the Teacher
-  courses: [Course!]! #relationship to the Course
+  courses: [Course!]!
   votes: [Vote!]!
 }
 
@@ -33,7 +33,7 @@ type Course {
   seats: Int!
   startDate: String!
   endDate: String!
-  createdBy: User! #relationship to User
+  createdBy: User!
 }
 
 type Vote {

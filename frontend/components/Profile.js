@@ -14,14 +14,13 @@ const DELETE_COURSE_MUTATION = gql`
   }
 `;
 
-// import { ALL_COURSES_QUERY } from "./Courses";
-
 class Profile extends Component {
   render() {
     return (
       <>
         <Query query={CURRENT_USER_QUERY} fetchPolicy="cache-and-network">
           {({ data }) => {
+            console.log(data);
             const courses = data.me ? data.me.courses : null;
             return (
               <>

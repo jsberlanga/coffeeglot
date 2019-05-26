@@ -65,6 +65,7 @@ type User {
   password: String!
   teachers: [Teacher!]!
   courses: [Course!]!
+  votes: [Vote]
 }
 
 type Teacher {
@@ -95,6 +96,7 @@ type Course {
   startDate: String!
   endDate: String!
   createdBy: User!
+  usersEnrolled: [User!]!
 }
 
 type SuccessMessage {

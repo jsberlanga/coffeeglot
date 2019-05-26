@@ -14,6 +14,13 @@ const CURRENT_USER_QUERY = gql`
         id
         title
       }
+      votes {
+        id
+        teacher {
+          id
+          name
+        }
+      }
     }
   }
 `;

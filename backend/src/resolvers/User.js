@@ -6,7 +6,12 @@ function courses(parent, args, ctx) {
   return ctx.prisma.user({ id: parent.id }).courses();
 }
 
+function votes(parent, args, ctx) {
+  return ctx.prisma.user({ id: parent.id }).votes();
+}
+
 module.exports = {
   teachers,
-  courses
+  courses,
+  votes
 };
