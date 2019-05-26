@@ -52,6 +52,7 @@ type Mutation {
   ): Course!
   deleteCourse(id: ID!): Course
   vote(teacherId: ID!): Vote
+  enroll(courseId: ID!): Enrollment
 }
 
 type AuthPayload {
@@ -66,6 +67,7 @@ type User {
   teachers: [Teacher!]!
   courses: [Course!]!
   votes: [Vote]
+  coursesEnrolled: [Enrollment!]!
 }
 
 type Teacher {
@@ -96,7 +98,7 @@ type Course {
   startDate: String!
   endDate: String!
   createdBy: User!
-  usersEnrolled: [User!]!
+  usersEnrolled: [Enrollment!]!
 }
 
 type SuccessMessage {
@@ -106,5 +108,11 @@ type SuccessMessage {
 type Vote {
   id: ID!
   teacher: Teacher!
+  user: User!
+}
+
+type Enrollment {
+  id: ID!
+  course: Course!
   user: User!
 }

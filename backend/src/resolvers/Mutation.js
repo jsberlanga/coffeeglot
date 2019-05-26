@@ -104,6 +104,28 @@ async function vote(parent, args, ctx, info) {
   });
 }
 
+async function enroll(parent, args, ctx, info) {
+  const userId = ctx.request.userId;
+  if (!userId) {
+    throw new Error(`Sorry! You first need to sign in.`);
+  }
+
+  const courseExists = await ctx.prisma.$exists.enrollment({
+    user: { id: userId },
+    course: { id: args.courseId }
+  });
+  if (courseExists) {
+    throw new Error(
+      `Oops! It looks like you have already enrolled to this course.`
+    );
+  }
+
+  return ctx.prisma.createEnrollment({
+    user: { connect: { id: userId } },
+    course: { connect: { id: args.courseId } }
+  });
+}
+
 module.exports = {
   signup,
   signin,
@@ -111,5 +133,6 @@ module.exports = {
   createCourse,
   createTeacher,
   deleteCourse,
-  vote
+  vote,
+  enroll
 };

@@ -105,6 +105,13 @@ const SingleObjectStyle = styled.div`
     border-radius: 50%;
   }
 
+  .country_flag {
+    width: 50%;
+    position: absolute;
+    opacity: 0.5;
+    margin: 1rem;
+  }
+
   p {
     font-size: 1.8rem;
     line-height: 1.2;
@@ -131,6 +138,10 @@ const SingleObjectStyle = styled.div`
     }
     .avatar__teacher {
       width: 40rem;
+    }
+    .country_flag {
+      width: 80%;
+      left: 10%;
     }
   }
 

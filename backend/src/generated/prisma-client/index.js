@@ -13,11 +13,15 @@ var models = [
     embedded: false
   },
   {
+    name: "Vote",
+    embedded: false
+  },
+  {
     name: "Course",
     embedded: false
   },
   {
-    name: "Vote",
+    name: "Enrollment",
     embedded: false
   }
 ];

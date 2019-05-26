@@ -7,6 +7,10 @@ module.exports = {
   count: Int!
 }
 
+type AggregateEnrollment {
+  count: Int!
+}
+
 type AggregateTeacher {
   count: Int!
 }
@@ -35,6 +39,7 @@ type Course {
   startDate: String!
   endDate: String!
   createdBy: User!
+  usersEnrolled(where: EnrollmentWhereInput, orderBy: EnrollmentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Enrollment!]
 }
 
 type CourseConnection {
@@ -54,11 +59,17 @@ input CourseCreateInput {
   startDate: String!
   endDate: String!
   createdBy: UserCreateOneWithoutCoursesInput!
+  usersEnrolled: EnrollmentCreateManyWithoutCourseInput
 }
 
 input CourseCreateManyWithoutCreatedByInput {
   create: [CourseCreateWithoutCreatedByInput!]
   connect: [CourseWhereUniqueInput!]
+}
+
+input CourseCreateOneWithoutUsersEnrolledInput {
+  create: CourseCreateWithoutUsersEnrolledInput
+  connect: CourseWhereUniqueInput
 }
 
 input CourseCreateWithoutCreatedByInput {
@@ -71,6 +82,20 @@ input CourseCreateWithoutCreatedByInput {
   seats: Int!
   startDate: String!
   endDate: String!
+  usersEnrolled: EnrollmentCreateManyWithoutCourseInput
+}
+
+input CourseCreateWithoutUsersEnrolledInput {
+  id: ID
+  title: String!
+  details: String!
+  price: Int!
+  language: String!
+  location: String!
+  seats: Int!
+  startDate: String!
+  endDate: String!
+  createdBy: UserCreateOneWithoutCoursesInput!
 }
 
 type CourseEdge {
@@ -270,6 +295,7 @@ input CourseUpdateInput {
   startDate: String
   endDate: String
   createdBy: UserUpdateOneRequiredWithoutCoursesInput
+  usersEnrolled: EnrollmentUpdateManyWithoutCourseInput
 }
 
 input CourseUpdateManyDataInput {
@@ -311,6 +337,13 @@ input CourseUpdateManyWithWhereNestedInput {
   data: CourseUpdateManyDataInput!
 }
 
+input CourseUpdateOneRequiredWithoutUsersEnrolledInput {
+  create: CourseCreateWithoutUsersEnrolledInput
+  update: CourseUpdateWithoutUsersEnrolledDataInput
+  upsert: CourseUpsertWithoutUsersEnrolledInput
+  connect: CourseWhereUniqueInput
+}
+
 input CourseUpdateWithoutCreatedByDataInput {
   title: String
   details: String
@@ -320,11 +353,29 @@ input CourseUpdateWithoutCreatedByDataInput {
   seats: Int
   startDate: String
   endDate: String
+  usersEnrolled: EnrollmentUpdateManyWithoutCourseInput
+}
+
+input CourseUpdateWithoutUsersEnrolledDataInput {
+  title: String
+  details: String
+  price: Int
+  language: String
+  location: String
+  seats: Int
+  startDate: String
+  endDate: String
+  createdBy: UserUpdateOneRequiredWithoutCoursesInput
 }
 
 input CourseUpdateWithWhereUniqueWithoutCreatedByInput {
   where: CourseWhereUniqueInput!
   data: CourseUpdateWithoutCreatedByDataInput!
+}
+
+input CourseUpsertWithoutUsersEnrolledInput {
+  update: CourseUpdateWithoutUsersEnrolledDataInput!
+  create: CourseCreateWithoutUsersEnrolledInput!
 }
 
 input CourseUpsertWithWhereUniqueWithoutCreatedByInput {
@@ -457,6 +508,9 @@ input CourseWhereInput {
   endDate_ends_with: String
   endDate_not_ends_with: String
   createdBy: UserWhereInput
+  usersEnrolled_every: EnrollmentWhereInput
+  usersEnrolled_some: EnrollmentWhereInput
+  usersEnrolled_none: EnrollmentWhereInput
   AND: [CourseWhereInput!]
   OR: [CourseWhereInput!]
   NOT: [CourseWhereInput!]
@@ -468,6 +522,179 @@ input CourseWhereUniqueInput {
 
 scalar DateTime
 
+type Enrollment {
+  id: ID!
+  course: Course!
+  user: User!
+}
+
+type EnrollmentConnection {
+  pageInfo: PageInfo!
+  edges: [EnrollmentEdge]!
+  aggregate: AggregateEnrollment!
+}
+
+input EnrollmentCreateInput {
+  id: ID
+  course: CourseCreateOneWithoutUsersEnrolledInput!
+  user: UserCreateOneWithoutCoursesEnrolledInput!
+}
+
+input EnrollmentCreateManyWithoutCourseInput {
+  create: [EnrollmentCreateWithoutCourseInput!]
+  connect: [EnrollmentWhereUniqueInput!]
+}
+
+input EnrollmentCreateManyWithoutUserInput {
+  create: [EnrollmentCreateWithoutUserInput!]
+  connect: [EnrollmentWhereUniqueInput!]
+}
+
+input EnrollmentCreateWithoutCourseInput {
+  id: ID
+  user: UserCreateOneWithoutCoursesEnrolledInput!
+}
+
+input EnrollmentCreateWithoutUserInput {
+  id: ID
+  course: CourseCreateOneWithoutUsersEnrolledInput!
+}
+
+type EnrollmentEdge {
+  node: Enrollment!
+  cursor: String!
+}
+
+enum EnrollmentOrderByInput {
+  id_ASC
+  id_DESC
+}
+
+type EnrollmentPreviousValues {
+  id: ID!
+}
+
+input EnrollmentScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  AND: [EnrollmentScalarWhereInput!]
+  OR: [EnrollmentScalarWhereInput!]
+  NOT: [EnrollmentScalarWhereInput!]
+}
+
+type EnrollmentSubscriptionPayload {
+  mutation: MutationType!
+  node: Enrollment
+  updatedFields: [String!]
+  previousValues: EnrollmentPreviousValues
+}
+
+input EnrollmentSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: EnrollmentWhereInput
+  AND: [EnrollmentSubscriptionWhereInput!]
+  OR: [EnrollmentSubscriptionWhereInput!]
+  NOT: [EnrollmentSubscriptionWhereInput!]
+}
+
+input EnrollmentUpdateInput {
+  course: CourseUpdateOneRequiredWithoutUsersEnrolledInput
+  user: UserUpdateOneRequiredWithoutCoursesEnrolledInput
+}
+
+input EnrollmentUpdateManyWithoutCourseInput {
+  create: [EnrollmentCreateWithoutCourseInput!]
+  delete: [EnrollmentWhereUniqueInput!]
+  connect: [EnrollmentWhereUniqueInput!]
+  set: [EnrollmentWhereUniqueInput!]
+  disconnect: [EnrollmentWhereUniqueInput!]
+  update: [EnrollmentUpdateWithWhereUniqueWithoutCourseInput!]
+  upsert: [EnrollmentUpsertWithWhereUniqueWithoutCourseInput!]
+  deleteMany: [EnrollmentScalarWhereInput!]
+}
+
+input EnrollmentUpdateManyWithoutUserInput {
+  create: [EnrollmentCreateWithoutUserInput!]
+  delete: [EnrollmentWhereUniqueInput!]
+  connect: [EnrollmentWhereUniqueInput!]
+  set: [EnrollmentWhereUniqueInput!]
+  disconnect: [EnrollmentWhereUniqueInput!]
+  update: [EnrollmentUpdateWithWhereUniqueWithoutUserInput!]
+  upsert: [EnrollmentUpsertWithWhereUniqueWithoutUserInput!]
+  deleteMany: [EnrollmentScalarWhereInput!]
+}
+
+input EnrollmentUpdateWithoutCourseDataInput {
+  user: UserUpdateOneRequiredWithoutCoursesEnrolledInput
+}
+
+input EnrollmentUpdateWithoutUserDataInput {
+  course: CourseUpdateOneRequiredWithoutUsersEnrolledInput
+}
+
+input EnrollmentUpdateWithWhereUniqueWithoutCourseInput {
+  where: EnrollmentWhereUniqueInput!
+  data: EnrollmentUpdateWithoutCourseDataInput!
+}
+
+input EnrollmentUpdateWithWhereUniqueWithoutUserInput {
+  where: EnrollmentWhereUniqueInput!
+  data: EnrollmentUpdateWithoutUserDataInput!
+}
+
+input EnrollmentUpsertWithWhereUniqueWithoutCourseInput {
+  where: EnrollmentWhereUniqueInput!
+  update: EnrollmentUpdateWithoutCourseDataInput!
+  create: EnrollmentCreateWithoutCourseInput!
+}
+
+input EnrollmentUpsertWithWhereUniqueWithoutUserInput {
+  where: EnrollmentWhereUniqueInput!
+  update: EnrollmentUpdateWithoutUserDataInput!
+  create: EnrollmentCreateWithoutUserInput!
+}
+
+input EnrollmentWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  course: CourseWhereInput
+  user: UserWhereInput
+  AND: [EnrollmentWhereInput!]
+  OR: [EnrollmentWhereInput!]
+  NOT: [EnrollmentWhereInput!]
+}
+
+input EnrollmentWhereUniqueInput {
+  id: ID
+}
+
 scalar Long
 
 type Mutation {
@@ -477,6 +704,11 @@ type Mutation {
   upsertCourse(where: CourseWhereUniqueInput!, create: CourseCreateInput!, update: CourseUpdateInput!): Course!
   deleteCourse(where: CourseWhereUniqueInput!): Course
   deleteManyCourses(where: CourseWhereInput): BatchPayload!
+  createEnrollment(data: EnrollmentCreateInput!): Enrollment!
+  updateEnrollment(data: EnrollmentUpdateInput!, where: EnrollmentWhereUniqueInput!): Enrollment
+  upsertEnrollment(where: EnrollmentWhereUniqueInput!, create: EnrollmentCreateInput!, update: EnrollmentUpdateInput!): Enrollment!
+  deleteEnrollment(where: EnrollmentWhereUniqueInput!): Enrollment
+  deleteManyEnrollments(where: EnrollmentWhereInput): BatchPayload!
   createTeacher(data: TeacherCreateInput!): Teacher!
   updateTeacher(data: TeacherUpdateInput!, where: TeacherWhereUniqueInput!): Teacher
   updateManyTeachers(data: TeacherUpdateManyMutationInput!, where: TeacherWhereInput): BatchPayload!
@@ -517,6 +749,9 @@ type Query {
   course(where: CourseWhereUniqueInput!): Course
   courses(where: CourseWhereInput, orderBy: CourseOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Course]!
   coursesConnection(where: CourseWhereInput, orderBy: CourseOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): CourseConnection!
+  enrollment(where: EnrollmentWhereUniqueInput!): Enrollment
+  enrollments(where: EnrollmentWhereInput, orderBy: EnrollmentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Enrollment]!
+  enrollmentsConnection(where: EnrollmentWhereInput, orderBy: EnrollmentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): EnrollmentConnection!
   teacher(where: TeacherWhereUniqueInput!): Teacher
   teachers(where: TeacherWhereInput, orderBy: TeacherOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Teacher]!
   teachersConnection(where: TeacherWhereInput, orderBy: TeacherOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): TeacherConnection!
@@ -531,6 +766,7 @@ type Query {
 
 type Subscription {
   course(where: CourseSubscriptionWhereInput): CourseSubscriptionPayload
+  enrollment(where: EnrollmentSubscriptionWhereInput): EnrollmentSubscriptionPayload
   teacher(where: TeacherSubscriptionWhereInput): TeacherSubscriptionPayload
   user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
   vote(where: VoteSubscriptionWhereInput): VoteSubscriptionPayload
@@ -1046,8 +1282,9 @@ type User {
   email: String!
   password: String!
   teachers(where: TeacherWhereInput, orderBy: TeacherOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Teacher!]
-  courses(where: CourseWhereInput, orderBy: CourseOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Course!]
   votes(where: VoteWhereInput, orderBy: VoteOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Vote!]
+  courses(where: CourseWhereInput, orderBy: CourseOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Course!]
+  coursesEnrolled(where: EnrollmentWhereInput, orderBy: EnrollmentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Enrollment!]
 }
 
 type UserConnection {
@@ -1061,8 +1298,14 @@ input UserCreateInput {
   email: String!
   password: String!
   teachers: TeacherCreateManyWithoutCreatedByInput
-  courses: CourseCreateManyWithoutCreatedByInput
   votes: VoteCreateManyWithoutUserInput
+  courses: CourseCreateManyWithoutCreatedByInput
+  coursesEnrolled: EnrollmentCreateManyWithoutUserInput
+}
+
+input UserCreateOneWithoutCoursesEnrolledInput {
+  create: UserCreateWithoutCoursesEnrolledInput
+  connect: UserWhereUniqueInput
 }
 
 input UserCreateOneWithoutCoursesInput {
@@ -1080,20 +1323,31 @@ input UserCreateOneWithoutVotesInput {
   connect: UserWhereUniqueInput
 }
 
+input UserCreateWithoutCoursesEnrolledInput {
+  id: ID
+  email: String!
+  password: String!
+  teachers: TeacherCreateManyWithoutCreatedByInput
+  votes: VoteCreateManyWithoutUserInput
+  courses: CourseCreateManyWithoutCreatedByInput
+}
+
 input UserCreateWithoutCoursesInput {
   id: ID
   email: String!
   password: String!
   teachers: TeacherCreateManyWithoutCreatedByInput
   votes: VoteCreateManyWithoutUserInput
+  coursesEnrolled: EnrollmentCreateManyWithoutUserInput
 }
 
 input UserCreateWithoutTeachersInput {
   id: ID
   email: String!
   password: String!
-  courses: CourseCreateManyWithoutCreatedByInput
   votes: VoteCreateManyWithoutUserInput
+  courses: CourseCreateManyWithoutCreatedByInput
+  coursesEnrolled: EnrollmentCreateManyWithoutUserInput
 }
 
 input UserCreateWithoutVotesInput {
@@ -1102,6 +1356,7 @@ input UserCreateWithoutVotesInput {
   password: String!
   teachers: TeacherCreateManyWithoutCreatedByInput
   courses: CourseCreateManyWithoutCreatedByInput
+  coursesEnrolled: EnrollmentCreateManyWithoutUserInput
 }
 
 type UserEdge {
@@ -1146,13 +1401,21 @@ input UserUpdateInput {
   email: String
   password: String
   teachers: TeacherUpdateManyWithoutCreatedByInput
-  courses: CourseUpdateManyWithoutCreatedByInput
   votes: VoteUpdateManyWithoutUserInput
+  courses: CourseUpdateManyWithoutCreatedByInput
+  coursesEnrolled: EnrollmentUpdateManyWithoutUserInput
 }
 
 input UserUpdateManyMutationInput {
   email: String
   password: String
+}
+
+input UserUpdateOneRequiredWithoutCoursesEnrolledInput {
+  create: UserCreateWithoutCoursesEnrolledInput
+  update: UserUpdateWithoutCoursesEnrolledDataInput
+  upsert: UserUpsertWithoutCoursesEnrolledInput
+  connect: UserWhereUniqueInput
 }
 
 input UserUpdateOneRequiredWithoutCoursesInput {
@@ -1181,13 +1444,23 @@ input UserUpdateWithoutCoursesDataInput {
   password: String
   teachers: TeacherUpdateManyWithoutCreatedByInput
   votes: VoteUpdateManyWithoutUserInput
+  coursesEnrolled: EnrollmentUpdateManyWithoutUserInput
+}
+
+input UserUpdateWithoutCoursesEnrolledDataInput {
+  email: String
+  password: String
+  teachers: TeacherUpdateManyWithoutCreatedByInput
+  votes: VoteUpdateManyWithoutUserInput
+  courses: CourseUpdateManyWithoutCreatedByInput
 }
 
 input UserUpdateWithoutTeachersDataInput {
   email: String
   password: String
-  courses: CourseUpdateManyWithoutCreatedByInput
   votes: VoteUpdateManyWithoutUserInput
+  courses: CourseUpdateManyWithoutCreatedByInput
+  coursesEnrolled: EnrollmentUpdateManyWithoutUserInput
 }
 
 input UserUpdateWithoutVotesDataInput {
@@ -1195,6 +1468,12 @@ input UserUpdateWithoutVotesDataInput {
   password: String
   teachers: TeacherUpdateManyWithoutCreatedByInput
   courses: CourseUpdateManyWithoutCreatedByInput
+  coursesEnrolled: EnrollmentUpdateManyWithoutUserInput
+}
+
+input UserUpsertWithoutCoursesEnrolledInput {
+  update: UserUpdateWithoutCoursesEnrolledDataInput!
+  create: UserCreateWithoutCoursesEnrolledInput!
 }
 
 input UserUpsertWithoutCoursesInput {
@@ -1258,12 +1537,15 @@ input UserWhereInput {
   teachers_every: TeacherWhereInput
   teachers_some: TeacherWhereInput
   teachers_none: TeacherWhereInput
-  courses_every: CourseWhereInput
-  courses_some: CourseWhereInput
-  courses_none: CourseWhereInput
   votes_every: VoteWhereInput
   votes_some: VoteWhereInput
   votes_none: VoteWhereInput
+  courses_every: CourseWhereInput
+  courses_some: CourseWhereInput
+  courses_none: CourseWhereInput
+  coursesEnrolled_every: EnrollmentWhereInput
+  coursesEnrolled_some: EnrollmentWhereInput
+  coursesEnrolled_none: EnrollmentWhereInput
   AND: [UserWhereInput!]
   OR: [UserWhereInput!]
   NOT: [UserWhereInput!]

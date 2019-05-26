@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Mutation, Query } from "react-apollo";
 import { CURRENT_USER_QUERY } from "./CurrentUser";
+import Router from "next/router";
 import { StyledHeader } from "./styles/Header";
 import gql from "graphql-tag";
 import Error from "./styles/Error";
@@ -22,6 +23,7 @@ class Profile extends Component {
           {({ data }) => {
             console.log(data);
             const courses = data.me ? data.me.courses : null;
+            const coursesEnrolled = data.me ? data.me.coursesEnrolled : null;
             return (
               <>
                 <StyledHeader>
@@ -67,6 +69,28 @@ class Profile extends Component {
                           );
                         }}
                       </Mutation>
+                    </div>
+                  ))}
+                  <h3>
+                    {" "}
+                    At this moment you are enrolled in {
+                      coursesEnrolled.length
+                    }{" "}
+                    course
+                    {coursesEnrolled.length > 1 && "s"}:
+                  </h3>
+                  {coursesEnrolled.map(courseEnrolled => (
+                    <div key={courseEnrolled.course.id}>
+                      <button
+                        onClick={() =>
+                          Router.push({
+                            pathname: "/course",
+                            query: { id: courseEnrolled.course.id }
+                          })
+                        }
+                      >
+                        Title:{courseEnrolled.course.title}
+                      </button>
                     </div>
                   ))}
                 </>

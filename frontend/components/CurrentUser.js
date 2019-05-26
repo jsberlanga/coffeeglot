@@ -21,6 +21,13 @@ const CURRENT_USER_QUERY = gql`
           name
         }
       }
+      coursesEnrolled {
+        id
+        course {
+          id
+          title
+        }
+      }
     }
   }
 `;

@@ -3,6 +3,19 @@ import Link from "next/link";
 import StyledCourse from "./styles/CourseStyles";
 
 import { findFlag, findLocationPicture } from "../lib/findInfo";
+import Error from "./styles/Error";
+import Spinner from "./styles/Spinner";
+
+import { Mutation } from "react-apollo";
+import gql from "graphql-tag";
+
+const ENROLL_COURSE_MUTATION = gql`
+  mutation ENROLL_COURSE_MUTATION($courseId: ID!) {
+    enroll(courseId: $courseId) {
+      id
+    }
+  }
+`;
 
 export default class Course extends Component {
   render() {
@@ -39,20 +52,30 @@ export default class Course extends Component {
         <p>Max. number of students: {course.seats}</p>
         <p className="additional">Additional information: {course.details}</p>
         <div className="buttonList">
-          <Link
-            href={{
-              pathname: "/signup"
-            }}
+          <Mutation
+            mutation={ENROLL_COURSE_MUTATION}
+            variables={{ courseId: course.id }}
           >
-            <a className="register">Enroll</a>
-          </Link>
+            {(enroll, { error, loading }) => {
+              if (error)
+                return (
+                  <Error styles={{ position: "absolute" }} error={error} />
+                );
+              if (loading) return <Spinner />;
+              return (
+                <a className="register" onClick={() => enroll()}>
+                  Enroll to this course
+                </a>
+              );
+            }}
+          </Mutation>
           <Link
             href={{
               pathname: "/course",
               query: { id: course.id }
             }}
           >
-            <a className="details">Details</a>
+            <a className="details">Read all the details about this course</a>
           </Link>
         </div>
       </StyledCourse>

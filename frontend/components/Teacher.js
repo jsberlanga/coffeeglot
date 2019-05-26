@@ -31,6 +31,10 @@ const Teacher = props => {
     <SingleObjectStyle>
       <div className="image">
         <img
+          className="country_flag"
+          src="https://upload.wikimedia.org/wikipedia/en/thumb/a/a4/Flag_of_the_United_States.svg/1280px-Flag_of_the_United_States.svg.png"
+        />
+        <img
           src={teacher.image}
           className="avatar avatar__teacher"
           alt="teacher"

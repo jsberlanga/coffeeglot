@@ -26,14 +26,15 @@ const StyledCourse = styled.div`
   .title {
     font-family: linlibertine-italicbold;
     font-size: 3rem;
-    max-width: 40rem;
-    margin: -4rem 1rem 3rem;
+    width: 40rem;
+    width: 40rem;
+    margin: -4rem auto 3rem;
     z-index: 3;
     padding: 1rem 2rem;
-    background: ${props => props.theme.grey};
+    background: ${props => props.theme.green};
     line-height: 1.4;
     transform: rotate(-1deg) skew(-1deg);
-    border-bottom: 4px solid ${props => props.theme.green};
+    border-bottom: 8px solid ${props => props.theme.green2};
     a {
       color: #fff;
       letter-spacing: -1px;
@@ -56,23 +57,37 @@ const StyledCourse = styled.div`
   }
 
   .buttonList {
-    display: grid;
-    font-weight: 700;
+    margin-top: 5rem;
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
     grid-gap: 2px;
+    border: 0;
 
-    & > * {
-      letter-spacing: 1px;
-      background: ${props => props.theme.grey};
+    .register,
+    .details {
+      display: grid;
       color: #fff;
-      border: 0;
-      padding: 1rem;
+      letter-spacing: 1px;
+      cursor: pointer;
+      transition: all 0.2s;
     }
 
-    a {
-      cursor: pointer;
+    .register {
+      background: ${props => props.theme.grey};
       font-family: linlibertine-italicbold;
-      border-bottom: 4px solid ${props => props.theme.green};
+      padding: 1rem;
+      font-size: 2.5rem;
+      :hover {
+        background: ${props => props.theme.green2};
+      }
+    }
+    .details {
+      background: ${props => props.theme.grey2};
+      font-family: linlibertine-italic;
+      font-size: 1.7rem;
+      padding: 0.7rem;
+      :hover {
+        background: ${props => props.theme.green2};
+      }
     }
   }
 `;

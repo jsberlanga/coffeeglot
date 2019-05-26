@@ -18,12 +18,6 @@ export default class Example extends Component {
             return (
               <div key={location.id}>
                 <h2>{location.name}</h2>
-                <img
-                  src={location.pictures}
-                  width="1024px"
-                  height="576px"
-                  style={{ objectFit: "cover" }}
-                />
                 {location.seats && (
                   <h5 style={{ fontFamily: "linlibertine-italic" }}>
                     Please keep in mind that you can only book for a maximum of{" "}
@@ -58,6 +52,12 @@ export default class Example extends Component {
                     </a>
                   </div>
                 )}
+                <img
+                  src={location.pictures}
+                  width="1024px"
+                  height="576px"
+                  style={{ objectFit: "cover" }}
+                />
               </div>
             );
           })}

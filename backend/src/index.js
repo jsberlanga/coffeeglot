@@ -11,6 +11,7 @@ const Course = require("./resolvers/Course");
 const Teacher = require("./resolvers/Teacher");
 const User = require("./resolvers/User");
 const Vote = require("./resolvers/Vote");
+const Enrollment = require("./resolvers/Enrollment");
 
 const server = new GraphQLServer({
   typeDefs: "./src/schema.graphql",
@@ -20,7 +21,8 @@ const server = new GraphQLServer({
     Course,
     Teacher,
     User,
-    Vote
+    Vote,
+    Enrollment
   },
   resolverValidationOptions: {
     requireResolversForResolveType: false
