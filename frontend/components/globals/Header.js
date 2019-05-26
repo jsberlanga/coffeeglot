@@ -32,6 +32,19 @@ const StyledHeader = styled.div`
     display: flex;
     align-items: center;
   }
+  @media (max-width: 1200px) {
+    flex-direction: column;
+
+    margin: 0 1rem;
+    .left {
+      margin-bottom: 2rem;
+    }
+    a,
+    button {
+      padding: 0 1rem;
+      font-size: 1.4rem;
+    }
+  }
 `;
 
 const Header = () => (

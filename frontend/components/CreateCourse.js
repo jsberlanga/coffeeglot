@@ -248,20 +248,22 @@ export default class CreateCourse extends Component {
                               onChange={this.handleChange}
                             />
                           </label>
-
-                          <DateRangePicker
-                            startDate={this.state.startDate}
-                            startDateId="your_unique_start_date_id"
-                            endDate={this.state.endDate}
-                            endDateId="your_unique_end_date_id"
-                            onDatesChange={({ startDate, endDate }) => {
-                              this.setState({ startDate, endDate });
-                            }}
-                            focusedInput={this.state.focusedInput}
-                            onFocusChange={focusedInput =>
-                              this.setState({ focusedInput })
-                            }
-                          />
+                          <label htmlFor="duration">
+                            <span>Duration of the course</span>
+                            <DateRangePicker
+                              startDate={this.state.startDate}
+                              startDateId="your_unique_start_date_id"
+                              endDate={this.state.endDate}
+                              endDateId="your_unique_end_date_id"
+                              onDatesChange={({ startDate, endDate }) => {
+                                this.setState({ startDate, endDate });
+                              }}
+                              focusedInput={this.state.focusedInput}
+                              onFocusChange={focusedInput =>
+                                this.setState({ focusedInput })
+                              }
+                            />
+                          </label>
                           <button type="submit">Submit</button>
                         </div>
                       </StyledForm>
@@ -344,20 +346,19 @@ export default class CreateCourse extends Component {
                                   />
                                 </label>
                                 <label htmlFor="isNative">
-                                  <span>Native Speaker?</span>
+                                  <span>What is your first language</span>
                                   <select
                                     name="isNative"
                                     onChange={this.handleChange}
                                   >
-                                    <option value="">
-                                      Please choose an option
-                                    </option>
-                                    <option key="yes" value={isNative}>
-                                      Yes
-                                    </option>
-                                    <option key="no" value={isNative}>
-                                      No
-                                    </option>
+                                    {languages.map(language => (
+                                      <option
+                                        key={language.language}
+                                        value={language.language}
+                                      >
+                                        {language.language}
+                                      </option>
+                                    ))}
                                   </select>
                                 </label>
                                 <label htmlFor="about">
@@ -442,7 +443,7 @@ export default class CreateCourse extends Component {
                                     type="number"
                                     id="price"
                                     name="price"
-                                    placeholder="Price in cents"
+                                    placeholder="Price"
                                     required
                                     value={price}
                                     onChange={this.handleChange}
@@ -494,19 +495,22 @@ export default class CreateCourse extends Component {
                                     onChange={this.handleChange}
                                   />
                                 </label>
-                                <DateRangePicker
-                                  startDate={this.state.startDate}
-                                  startDateId="your_unique_start_date_id"
-                                  endDate={this.state.endDate}
-                                  endDateId="your_unique_end_date_id"
-                                  onDatesChange={({ startDate, endDate }) => {
-                                    this.setState({ startDate, endDate });
-                                  }}
-                                  focusedInput={this.state.focusedInput}
-                                  onFocusChange={focusedInput =>
-                                    this.setState({ focusedInput })
-                                  }
-                                />
+                                <label htmlFor="duration">
+                                  <span>Duration of the course</span>
+                                  <DateRangePicker
+                                    startDate={this.state.startDate}
+                                    startDateId="your_unique_start_date_id"
+                                    endDate={this.state.endDate}
+                                    endDateId="your_unique_end_date_id"
+                                    onDatesChange={({ startDate, endDate }) => {
+                                      this.setState({ startDate, endDate });
+                                    }}
+                                    focusedInput={this.state.focusedInput}
+                                    onFocusChange={focusedInput =>
+                                      this.setState({ focusedInput })
+                                    }
+                                  />
+                                </label>
                                 <button type="submit">Submit</button>
                               </div>
                             </StyledForm>

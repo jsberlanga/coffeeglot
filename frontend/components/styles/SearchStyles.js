@@ -17,6 +17,11 @@ const StyledSearch = styled.input`
   :focus {
     background: #e8e8e8;
   }
+
+  @media (max-width: 1200px) {
+    width: 30rem;
+    font-size: 2rem;
+  }
 `;
 
 const StyledResults = styled.li`

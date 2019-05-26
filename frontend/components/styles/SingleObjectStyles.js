@@ -6,7 +6,6 @@ const SingleObjectStyle = styled.div`
   position: relative;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  /* align-items: center; */
   grid-column-gap: 5rem;
   background: ${props => props.theme.lightGrey2};
   box-shadow: 2px 2px 8px -6px ${props => props.theme.grey2};
@@ -101,19 +100,24 @@ const SingleObjectStyle = styled.div`
     margin: 1rem auto;
   }
   .avatar__teacher {
-    width: 38rem;
+    width: 95%;
     height: 38rem;
-    border-radius: 50%;
-    margin: 2rem auto;
+    margin: 1rem;
+  }
+
+  .teacher {
+    position: relative;
+    margin: 1rem auto;
   }
 
   .country_flag {
-    width: 50%;
+    width: 20%;
     position: absolute;
-    opacity: 0.5;
-    margin: 1rem;
-    height: 40rem;
+    top: 1rem;
+    right: 1rem;
     object-fit: cover;
+    z-index: 1;
+    filter: blur(0.3px) contrast(80%);
   }
 
   p {
@@ -141,11 +145,8 @@ const SingleObjectStyle = styled.div`
       max-width: 70rem;
     }
     .avatar__teacher {
-      width: 40rem;
-    }
-    .country_flag {
-      width: 80%;
-      left: 10%;
+      width: 100%;
+      left: -20%;
     }
   }
 

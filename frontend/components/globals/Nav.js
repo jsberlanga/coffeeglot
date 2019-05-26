@@ -32,6 +32,9 @@ const StyledNav = styled.div`
     border: 0;
     text-decoration: none;
   }
+  @media (max-width: 1200px) {
+    /* flex-direction: column; */
+  }
 
   .active {
     border-bottom: 4px solid ${props => props.theme.green};

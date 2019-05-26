@@ -25,20 +25,21 @@ const VOTE_MUTATION = gql`
   }
 `;
 
+import { findFlag } from "../lib/findInfo";
+
 const Teacher = props => {
   const { teacher } = props;
   return (
     <SingleObjectStyle>
       <div className="image">
-        <img
-          className="country_flag"
-          src="https://upload.wikimedia.org/wikipedia/en/thumb/a/a4/Flag_of_the_United_States.svg/1280px-Flag_of_the_United_States.svg.png"
-        />
-        <img
-          src={teacher.image}
-          className="avatar avatar__teacher"
-          alt="teacher"
-        />
+        <div className="teacher">
+          <img className="country_flag" src={findFlag(teacher.isNative)} />
+          <img
+            src={teacher.image}
+            className="avatar avatar__teacher"
+            alt="teacher"
+          />
+        </div>
         <Mutation
           mutation={VOTE_MUTATION}
           variables={{ teacherId: teacher.id }}

@@ -32,7 +32,10 @@ const CourseList = styled.div`
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 7rem;
   margin: 0 auto;
-  @media (max-width: 768px) {
+  @media (max-width: 1420px) {
+    grid-template-columns: 1fr 1fr;
+  }
+  @media (max-width: 940px) {
     grid-template-columns: 1fr;
   }
 `;
