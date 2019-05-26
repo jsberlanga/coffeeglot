@@ -17,7 +17,7 @@ export default class Example extends Component {
           {filteredLocations.map((location, index) => {
             return (
               <div key={location.id}>
-                <h2>{location.name}</h2>
+                <h2 style={{ margin: "0rem" }}>{location.name}</h2>
                 {location.seats && (
                   <h5 style={{ fontFamily: "linlibertine-italic" }}>
                     Please keep in mind that you can only book for a maximum of{" "}

@@ -6,8 +6,8 @@ const SingleObjectStyle = styled.div`
   position: relative;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  align-items: center;
-  grid-gap: 3rem;
+  /* align-items: center; */
+  grid-column-gap: 5rem;
   background: ${props => props.theme.lightGrey2};
   box-shadow: 2px 2px 8px -6px ${props => props.theme.grey2};
 
@@ -19,7 +19,7 @@ const SingleObjectStyle = styled.div`
     position: relative;
     padding: 0 0 2rem 2rem;
     max-width: 30rem;
-    margin: 0 auto;
+    margin: 2rem auto;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -92,7 +92,7 @@ const SingleObjectStyle = styled.div`
     font-family: linlibertine-bold;
   }
   .avatar {
-    max-width: 55rem;
+    max-width: 70rem;
     width: 95%;
     height: 40rem;
     object-fit: cover;
@@ -101,8 +101,10 @@ const SingleObjectStyle = styled.div`
     margin: 1rem auto;
   }
   .avatar__teacher {
-    width: 40rem;
+    width: 38rem;
+    height: 38rem;
     border-radius: 50%;
+    margin: 2rem auto;
   }
 
   .country_flag {
@@ -110,6 +112,8 @@ const SingleObjectStyle = styled.div`
     position: absolute;
     opacity: 0.5;
     margin: 1rem;
+    height: 40rem;
+    object-fit: cover;
   }
 
   p {
