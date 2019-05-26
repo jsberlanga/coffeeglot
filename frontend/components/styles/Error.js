@@ -21,9 +21,11 @@ const DisplayErrorMessage = ({ error }) => {
         This email is already in use. Please sign in or use a different one.
       </ErrorStyles>
     );
-  return (
-    <ErrorStyles>{error.message.replace("GraphQL error: ", "")}</ErrorStyles>
-  );
+  if (error.message.includes("GraphQL error"))
+    return (
+      <ErrorStyles>{error.message.replace("GraphQL error: ", "")}</ErrorStyles>
+    );
+  return <ErrorStyles>{error}</ErrorStyles>;
 };
 
 export default DisplayErrorMessage;

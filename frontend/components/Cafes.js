@@ -4,6 +4,8 @@ import { StyledHeader } from "./styles/Header";
 
 import { locations } from "../lib/data";
 
+const filteredLocations = locations.splice(1);
+
 export default class Example extends Component {
   render() {
     return (
@@ -12,22 +14,49 @@ export default class Example extends Component {
           <h2>Find a place of your liking</h2>
         </StyledHeader>
         <Carousel arrows>
-          {locations.map(location => {
+          {filteredLocations.map((location, index) => {
             return (
               <div key={location.id}>
                 <h2>{location.name}</h2>
                 <img
                   src={location.pictures}
-                  width="1098px"
-                  height="500px"
+                  width="1024px"
+                  height="576px"
                   style={{ objectFit: "cover" }}
                 />
-                {location.address && <h5>Find it on: {location.address}</h5>}
                 {location.seats && (
-                  <h5>
+                  <h5 style={{ fontFamily: "linlibertine-italic" }}>
                     Please keep in mind that you can only book for a maximum of{" "}
-                    <span>{location.seats} people </span>
+                    <span
+                      style={{
+                        color: "#e4c666",
+                        borderBottom: "4px solid #e4c666",
+                        fontSize: "120%"
+                      }}
+                    >
+                      {location.seats} people{" "}
+                    </span>
                   </h5>
+                )}
+                {location.address && (
+                  <div
+                    style={{
+                      fontFamily: "linlibertine-italic",
+                      fontSize: "112%"
+                    }}
+                  >
+                    Find our place on:{" "}
+                    <a
+                      style={{
+                        color: "#a9c6de",
+                        letterSpacing: "-1px",
+                        fontStyle: "italic"
+                      }}
+                      href={`http://maps.google.com/?q=${location.address}`}
+                    >
+                      {location.address}
+                    </a>
+                  </div>
                 )}
               </div>
             );

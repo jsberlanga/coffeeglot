@@ -44,7 +44,7 @@ export default class Course extends Component {
               pathname: "/signup"
             }}
           >
-            <a className="register">Register</a>
+            <a className="register">Enroll</a>
           </Link>
           <Link
             href={{

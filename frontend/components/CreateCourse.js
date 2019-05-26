@@ -199,7 +199,7 @@ export default class CreateCourse extends Component {
                               type="number"
                               id="price"
                               name="price"
-                              placeholder="Price in cents"
+                              placeholder="Price"
                               required
                               value={price}
                               onChange={this.handleChange}
@@ -228,10 +228,7 @@ export default class CreateCourse extends Component {
                               onChange={this.handleChange}
                             >
                               {locations.map(location => (
-                                <option
-                                  key={location.name}
-                                  value={location.name}
-                                >
+                                <option key={location.id} value={location.name}>
                                   {location.name}
                                 </option>
                               ))}

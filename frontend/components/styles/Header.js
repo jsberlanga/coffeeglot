@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const StyledHeader = styled.div`
   font-family: rothena;
   text-align: center;
-  padding: 2rem 0 3rem;
+  padding: 0.2rem 0 2.4rem;
   margin: 2rem auto 4rem;
   max-width: 130rem;
   letter-spacing: 1px;
