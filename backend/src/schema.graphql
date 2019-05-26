@@ -3,11 +3,26 @@ scalar DateTime
 type Query {
   users: [User]!
   getUser(id: ID!): User!
-  courses: [Course]!
+  courses(filter: String, orderBy: CourseOrderByInput): [Course]!
   getCourse(id: ID!): Course
   teachers: [Teacher]!
   getTeacher(id: ID!): Teacher!
   me: User
+}
+
+enum CourseOrderByInput {
+  createdAt_ASC
+  createdAt_DESC
+  title_ASC
+  title_DESC
+  price_ASC
+  price_DESC
+  language_ASC
+  language_DESC
+  location_ASC
+  location_DESC
+  startDate_ASC
+  startDate_DESC
 }
 
 type Mutation {

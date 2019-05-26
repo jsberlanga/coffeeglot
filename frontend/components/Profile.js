@@ -52,7 +52,14 @@ class Profile extends Component {
                             <div key={course.id}>
                               <button
                                 onClick={() => {
-                                  deleteCourse();
+                                  if (
+                                    confirm(
+                                      "Are you sure you want to delete this course?"
+                                    )
+                                  ) {
+                                    deleteCourse();
+                                  }
+                                  return null;
                                 }}
                               >
                                 DELETE COURSE

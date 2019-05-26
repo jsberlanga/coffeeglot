@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import { Query } from "react-apollo";
+import gql from "graphql-tag";
 
 const StyledSearch = styled.input`
   font-family: "Stylish", sans-serif;
@@ -10,8 +12,7 @@ const StyledSearch = styled.input`
   border: none;
   font-size: 2.4rem;
   outline: none;
-  /* background: #f2f2f2;
-  border-radius: 10rem; */
+
   ::placeholder {
     font-style: italic;
     color: ${props => props.theme.green2};

@@ -9,8 +9,8 @@ import Spinner from "./styles/Spinner";
 import Course from "./Course";
 
 export const ALL_COURSES_QUERY = gql`
-  query ALL_COURSES_QUERY {
-    courses {
+  query ALL_COURSES_QUERY($orderBy: CourseOrderByInput) {
+    courses(orderBy: $orderBy) {
       id
       title
       details
@@ -44,16 +44,22 @@ export default class Courses extends Component {
         <StyledHeader>
           <h2>Find a language course that suits you</h2>
         </StyledHeader>
-        <Query query={ALL_COURSES_QUERY} fetchPolicy="cache-and-network">
+        <Query
+          query={ALL_COURSES_QUERY}
+          fetchPolicy="cache-and-network"
+          variables={{ orderBy: "createdAt_DESC" }}
+        >
           {({ data: { courses }, error, loading }) => {
             if (error) return <Error error={error} />;
             if (loading) return <Spinner />;
             return (
-              <CourseList>
-                {courses.map(course => (
-                  <Course key={course.id} course={course} />
-                ))}
-              </CourseList>
+              <>
+                <CourseList>
+                  {courses.map(course => (
+                    <Course key={course.id} course={course} />
+                  ))}
+                </CourseList>
+              </>
             );
           }}
         </Query>

@@ -25,8 +25,8 @@ export default class Example extends Component {
                 {location.address && <h5>Find it on: {location.address}</h5>}
                 {location.seats && (
                   <h5>
-                    Remember you can only book for a maximum of {location.seats}{" "}
-                    people
+                    Please keep in mind that you can only book for a maximum of{" "}
+                    <span>{location.seats} people </span>
                   </h5>
                 )}
               </div>

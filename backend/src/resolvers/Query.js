@@ -9,7 +9,12 @@ async function getUser(parent, args, ctx, info) {
 }
 
 async function courses(parent, args, ctx, info) {
-  const courses = await ctx.prisma.courses();
+  const courses = await ctx.prisma.courses({
+    where: {
+      OR: [{ language_contains: args.filter }, { title_contains: args.filter }]
+    },
+    orderBy: args.orderBy
+  });
   return courses;
 }
 
