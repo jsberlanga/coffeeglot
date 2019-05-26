@@ -1,7 +1,24 @@
 import React from "react";
 import styled from "styled-components";
-import { Query } from "react-apollo";
+import { ApolloConsumer, Query } from "react-apollo";
 import gql from "graphql-tag";
+
+const SEARCH_COURSES_QUERY = gql`
+  query SEARCH_COURSES_QUERY($filter: String!) {
+    courses(filter: $filter) {
+      id
+      title
+      price
+      language
+      location
+      startDate
+      createdBy {
+        id
+        image
+      }
+    }
+  }
+`;
 
 const StyledSearch = styled.input`
   font-family: "Stylish", sans-serif;
