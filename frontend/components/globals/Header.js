@@ -42,6 +42,12 @@ const StyledHeader = styled.div`
     a,
     button {
       padding: 0 1rem;
+    }
+  }
+  @media (max-width: 670px) {
+    a,
+    button {
+      padding: 0 1rem;
       font-size: 1.4rem;
     }
   }

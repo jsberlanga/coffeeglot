@@ -62,7 +62,7 @@ export default class Signup extends Component {
               >
                 <div className="form-item">
                   <input
-                    type="text"
+                    type="email"
                     className="form-input"
                     placeholder="Email"
                     aria-label="email"

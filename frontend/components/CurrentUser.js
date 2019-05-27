@@ -13,6 +13,12 @@ const CURRENT_USER_QUERY = gql`
       courses {
         id
         title
+        usersEnrolled {
+          user {
+            id
+            email
+          }
+        }
       }
       votes {
         id

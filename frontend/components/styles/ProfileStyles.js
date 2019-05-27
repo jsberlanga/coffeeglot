@@ -12,7 +12,7 @@ const ProfileStyles = styled.div`
   .course_card {
     margin: 2rem 0;
     padding 2rem;
-    height: 20rem;
+    min-height: 20rem;
     display: grid;
     align-content: space-between;
     border: 2px solid ${props => props.theme.grey2};
@@ -25,7 +25,7 @@ const ProfileStyles = styled.div`
       transition: all 0.2s;
       border: none;
       width: 20rem;
-      margin: 0 auto;
+      margin: 2rem auto 0;
       padding: 2rem;
       cursor: pointer;
       color: #fff;
@@ -51,6 +51,29 @@ const ProfileStyles = styled.div`
 
   @media (max-width: 1200px) {
     grid-template-columns: 1fr;
+  }
+
+  .howto_email {
+    margin: 0 2rem;
+    font-family: linlibertine-italic
+  }
+  .howto_click_email {
+    color: ${props => props.theme.yellow};
+    border-bottom: 2px solid ${props => props.theme.yellow};
+  }
+  .send_email {
+    img {
+      transition: all 0.3s;
+      :hover {
+        transform: scale(1.3);
+        filter: invert(40%) drop-shadow(6px 6px 2px darkgrey)
+      }
+    }
+  }
+  ul, li {
+    margin: 0;
+    font-family: linlibertine-italicbold;
+    color: ${props => props.theme.grey}
   }
 `;
 

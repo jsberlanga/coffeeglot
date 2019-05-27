@@ -30,6 +30,16 @@ class Profile extends Component {
                 <StyledHeader>
                   <h2>Check out your profile</h2>
                 </StyledHeader>
+
+                {!courses.length && (
+                  <div style={{ textAlign: "center" }}>
+                    <h2>Your Profile is currently empty.</h2>
+                    <h4>
+                      You first need to either create a course or enroll into a
+                      course.
+                    </h4>
+                  </div>
+                )}
                 <ProfileStyles>
                   <div className="teaching">
                     {courses && courses.length !== 0 && (
@@ -42,6 +52,35 @@ class Profile extends Component {
                     {courses.map(course => (
                       <div className="course_card" key={course.id}>
                         <h4>Course: {course.title}</h4>
+                        {course.usersEnrolled.length !== 0 && (
+                          <>
+                            <p>
+                              There{" "}
+                              {course.usersEnrolled.length === 1 ? "is" : "are"}{" "}
+                              {course.usersEnrolled.length} people registered
+                            </p>
+                            <div className="howto_email">
+                              Feel free to contact them with all the information
+                              they need to know before engaging into your
+                              course.{" "}
+                              <span className="howto_click_email">
+                                Simply click below!
+                              </span>{" "}
+                              <div className="send_email">
+                                <a
+                                  href={`mailto:${course.usersEnrolled.map(
+                                    user => user.user.email
+                                  )}`}
+                                >
+                                  <img
+                                    src="https://cdn0.iconfinder.com/data/icons/education-340/100/Tilda_Icons_1ed_mail-512.png"
+                                    width="100"
+                                  />
+                                </a>
+                              </div>
+                            </div>
+                          </>
+                        )}
                         <div className="buttonList">
                           <button
                             className="view_course"
@@ -90,10 +129,12 @@ class Profile extends Component {
                   </div>
 
                   <div className="enrolled">
-                    <h3>
-                      You are enrolled in {coursesEnrolled.length} course
-                      {coursesEnrolled.length > 1 && "s"}:
-                    </h3>
+                    {coursesEnrolled && coursesEnrolled.length !== 0 && (
+                      <h3>
+                        You are enrolled in {coursesEnrolled.length} course
+                        {coursesEnrolled.length > 1 && "s"}:
+                      </h3>
+                    )}
                     {coursesEnrolled.map(courseEnrolled => (
                       <div
                         className="course_card"
