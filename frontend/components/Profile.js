@@ -6,6 +6,7 @@ import { StyledHeader } from "./styles/Header";
 import gql from "graphql-tag";
 import Error from "./styles/Error";
 import Spinner from "./styles/Spinner";
+import ProfileStyles from "./styles/ProfileStyles";
 
 const DELETE_COURSE_MUTATION = gql`
   mutation DELETE_COURSE_MUTATION($id: ID!) {
@@ -29,71 +30,93 @@ class Profile extends Component {
                 <StyledHeader>
                   <h2>Check out your profile</h2>
                 </StyledHeader>
-                <>
-                  {courses && courses.length !== 0 && (
-                    <h3>
-                      {" "}
-                      At this moment you are teaching {courses.length} course
-                      {courses.length > 1 && "s"}:
-                    </h3>
-                  )}
+                <ProfileStyles>
+                  <div className="teaching">
+                    {courses && courses.length !== 0 && (
+                      <h3>
+                        You are teaching {courses.length} course
+                        {courses.length > 1 && "s"}:
+                      </h3>
+                    )}
 
-                  {courses.map(course => (
-                    <div key={course.id}>
-                      <h4>{course.title}</h4>
-                      <Mutation
-                        mutation={DELETE_COURSE_MUTATION}
-                        variables={{ id: course.id }}
-                        refetchQueries={[{ query: CURRENT_USER_QUERY }]}
+                    {courses.map(course => (
+                      <div className="course_card" key={course.id}>
+                        <h4>Course: {course.title}</h4>
+                        <div className="buttonList">
+                          <button
+                            className="view_course"
+                            onClick={() =>
+                              Router.push({
+                                pathname: "/course",
+                                query: { id: course.id }
+                              })
+                            }
+                          >
+                            VIEW COURSE
+                          </button>
+
+                          <Mutation
+                            mutation={DELETE_COURSE_MUTATION}
+                            variables={{ id: course.id }}
+                            refetchQueries={[{ query: CURRENT_USER_QUERY }]}
+                          >
+                            {(deleteCourse, { error, loading }) => {
+                              if (error) return <Error error={error} />;
+                              if (loading) return <Spinner />;
+                              return (
+                                <div key={course.id}>
+                                  <button
+                                    className="delete_course"
+                                    onClick={() => {
+                                      if (
+                                        confirm(
+                                          "Are you sure you want to delete this course?"
+                                        )
+                                      ) {
+                                        deleteCourse();
+                                      }
+                                      return null;
+                                    }}
+                                  >
+                                    DELETE COURSE
+                                  </button>
+                                </div>
+                              );
+                            }}
+                          </Mutation>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="enrolled">
+                    <h3>
+                      You are enrolled in {coursesEnrolled.length} course
+                      {coursesEnrolled.length > 1 && "s"}:
+                    </h3>
+                    {coursesEnrolled.map(courseEnrolled => (
+                      <div
+                        className="course_card"
+                        key={courseEnrolled.course.id}
                       >
-                        {(deleteCourse, { error, loading }) => {
-                          if (error) return <Error error={error} />;
-                          if (loading) return <Spinner />;
-                          return (
-                            <div key={course.id}>
-                              <button
-                                onClick={() => {
-                                  if (
-                                    confirm(
-                                      "Are you sure you want to delete this course?"
-                                    )
-                                  ) {
-                                    deleteCourse();
-                                  }
-                                  return null;
-                                }}
-                              >
-                                DELETE COURSE
-                              </button>
-                            </div>
-                          );
-                        }}
-                      </Mutation>
-                    </div>
-                  ))}
-                  <h3>
-                    {" "}
-                    At this moment you are enrolled in {
-                      coursesEnrolled.length
-                    }{" "}
-                    course
-                    {coursesEnrolled.length > 1 && "s"}:
-                  </h3>
-                  {coursesEnrolled.map(courseEnrolled => (
-                    <div key={courseEnrolled.course.id}>
-                      <button
-                        onClick={() =>
-                          Router.push({
-                            pathname: "/course",
-                            query: { id: courseEnrolled.course.id }
-                          })
-                        }
-                      >
-                        Title:{courseEnrolled.course.title}
-                      </button>
-                    </div>
-                  ))}
-                </>
+                        <h4>Course: {courseEnrolled.course.title}</h4>
+                        <div className="buttonList">
+                          <button
+                            className="view_course"
+                            onClick={() =>
+                              Router.push({
+                                pathname: "/course",
+                                query: { id: courseEnrolled.course.id }
+                              })
+                            }
+                          >
+                            VIEW COURSE
+                          </button>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </ProfileStyles>
               </>
             );
           }}
