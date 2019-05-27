@@ -40,11 +40,11 @@ type Course {
   startDate: DateTime!
   endDate: DateTime!
   createdBy: User!
-  usersEnrolled: [Enrollment!]!
+  usersEnrolled: [Enrollment]!
 }
 
 type Enrollment {
   id: ID! @id
-  course: Course!
-  user: User!
+  course: Course
+  user: User
 }

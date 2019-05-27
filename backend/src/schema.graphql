@@ -103,7 +103,7 @@ type Course {
   startDate: String!
   endDate: String!
   createdBy: User!
-  usersEnrolled: [Enrollment!]!
+  usersEnrolled: [Enrollment]
 }
 
 type SuccessMessage {
@@ -118,6 +118,6 @@ type Vote {
 
 type Enrollment {
   id: ID!
-  course: Course!
-  user: User!
+  course: Course
+  user: User
 }

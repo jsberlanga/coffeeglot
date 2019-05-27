@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import Particles from "react-particles-js";
 
+import Link from "next/link";
+
 const StyledHomeHero = styled.div`
   background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) 50%),
     url("../../static/images/cafes/main.jpg");
@@ -54,6 +56,21 @@ const Grid = styled.div`
 
     @media (max-width: 768px) {
       grid-template-columns: 1fr;
+    }
+  }
+  p {
+    margin: 2rem 0 0;
+  }
+  a {
+    border-bottom: 3px solid ${props => props.theme.yellow};
+    letter-spacing: -0.5px;
+    font-size: 2.3rem;
+    margin-bottom: 5rem;
+    font-family: linlibertine-italic;
+    transition: all 0.2s;
+    :hover {
+      color: ${props => props.theme.blue};
+      border-bottom: 3px solid ${props => props.theme.blue};
     }
   }
 `;
@@ -127,49 +144,59 @@ const Home = props => {
             <h3>1. Choose one of our Cafes</h3>
             <h5>and get ready to drink our best fresh coffee</h5>
             <p>
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s, when an unknown printer took a galley of
-              type and scrambled it to make a type specimen book. It has
-              survived not only five centuries, but also the leap into
-              electronic typesetting, remaining essentially unchanged. It was
-              popularised in the 1960s with the release of Letraset sheets
-              containing Lorem Ipsum passages, and more recently with desktop
-              publishing software like Aldus PageMaker including versions of
-              Lorem Ipsum
+              We give you the opportunity to use one of our Cafes to teach your
+              own course if you are a language instructor or to learn a language
+              if you come here as a student.
             </p>
+            <p>
+              We guarantee a quiet spot for teachers and students and the best
+              coffee money can buy.
+            </p>
+            <p>
+              Go ahead and check out where we are based and join any course you
+              like.
+            </p>
+            <Link href="/cafes">
+              <a>Visit our cafes</a>
+            </Link>
           </div>
           <div>
-            <h3>2. Create your teacher profile</h3>
-            <h5>or view all the other teachers profiles</h5>
+            <h3>2. Create your own course</h3>
+            <h5> or enroll into another amazing course </h5>
             <p>
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s, when an unknown printer took a galley of
-              type and scrambled it to make a type specimen book. It has
-              survived not only five centuries, but also the leap into
-              electronic typesetting, remaining essentially unchanged. It was
-              popularised in the 1960s with the release of Letraset sheets
-              containing Lorem Ipsum passages, and more recently with desktop
-              publishing software like Aldus PageMaker including versions of
-              Lorem Ipsum
+              If you come here as a teacher, go ahead and start creating your
+              own amazing courses by simply filling out a form. Hundreds of
+              students will join you and your amazing accent.
             </p>
+            <Link href="/add">
+              <a>Create a course</a>
+            </Link>
+            <p>
+              If you come here as a student, that's fantastic! Check the courses
+              created and join us in our Cafes. We promise a great coffee and an
+              amazing learning experience.
+            </p>
+            <Link href="/courses">
+              <a>Enroll into a course</a>
+            </Link>
           </div>
           <div>
-            <h3>3. Create your own course</h3>
-            <h5>Or enroll into another amazing course</h5>
+            <h3>3. Check your profile</h3>
+            <h5>and view and rate all the other teachers profiles</h5>
             <p>
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s, when an unknown printer took a galley of
-              type and scrambled it to make a type specimen book. It has
-              survived not only five centuries, but also the leap into
-              electronic typesetting, remaining essentially unchanged. It was
-              popularised in the 1960s with the release of Letraset sheets
-              containing Lorem Ipsum passages, and more recently with desktop
-              publishing software like Aldus PageMaker including versions of
-              Lorem Ipsum
+              If you think something is not clear enough, you can contact your
+              students from your profile to send them further instructions.
             </p>
+            <Link href="/profile">
+              <a>Visit your profile</a>
+            </Link>
+            <p>
+              ...and don't forget to rate our teachers. They would love to have
+              your feedback!
+            </p>
+            <Link href="/teachers">
+              <a>Rate a teacher</a>
+            </Link>
           </div>
         </div>
       </Grid>
