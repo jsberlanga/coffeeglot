@@ -9,6 +9,8 @@ import { findDate, compareDates } from "../lib/findDate";
 import { StyledHeader } from "./styles/Header";
 import SingleObjectStyle from "./styles/SingleObjectStyles";
 
+import Head from "next/head";
+
 const SINGLE_COURSE_QUERY = gql`
   query SINGLE_COURSE_QUERY($id: ID!) {
     getCourse(id: $id) {
@@ -36,6 +38,9 @@ const SingleCourse = props => {
         console.log(course);
         return (
           <>
+            <Head>
+              <title>CoffeeGlot | Course: {course.title}</title>
+            </Head>
             <StyledHeader>
               <h2>{course.title}</h2>
             </StyledHeader>

@@ -4,6 +4,8 @@ import Signin from "../components/Signin";
 
 import styled from "styled-components";
 
+import Head from "next/head";
+
 const Grid = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -16,10 +18,15 @@ const Grid = styled.div`
 
 const SignUpPage = () => {
   return (
-    <Grid>
-      <Signup />
-      <Signin />
-    </Grid>
+    <>
+      <Head>
+        <title>CoffeeGlot | Signup</title>
+      </Head>
+      <Grid>
+        <Signup />
+        <Signin />
+      </Grid>
+    </>
   );
 };
 

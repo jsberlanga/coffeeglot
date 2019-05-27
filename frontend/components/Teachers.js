@@ -40,6 +40,7 @@ export default class Teachers extends Component {
         <StyledHeader>
           <h2>Find all about our teachers</h2>
         </StyledHeader>
+
         <Query query={ALL_TEACHERS_QUERY}>
           {({ data }) => {
             console.log(data);
