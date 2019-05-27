@@ -34,7 +34,6 @@ export default class Signup extends Component {
   handleSubmit = async (e, signup) => {
     e.preventDefault();
     const res = await signup();
-    console.log(res);
     this.setState({ email: "", password: "" });
     Router.push({
       pathname: "/courses"

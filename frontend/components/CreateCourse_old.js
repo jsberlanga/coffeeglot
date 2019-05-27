@@ -162,7 +162,6 @@ export default class CreateCourse extends Component {
                     >
                       <Query query={CURRENT_USER_QUERY}>
                         {({ data }) => {
-                          console.log(data);
                           if (data.me.teachers.length > 0) return null;
                           return (
                             <div className="left">

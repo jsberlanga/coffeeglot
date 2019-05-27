@@ -22,7 +22,6 @@ class Profile extends Component {
       <>
         <Query query={CURRENT_USER_QUERY} fetchPolicy="cache-and-network">
           {({ data }) => {
-            console.log(data);
             const courses = data.me ? data.me.courses : null;
             const coursesEnrolled = data.me ? data.me.coursesEnrolled : null;
             return (

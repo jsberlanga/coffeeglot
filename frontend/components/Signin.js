@@ -34,7 +34,6 @@ export default class Signin extends Component {
   handleSubmit = async (e, signin) => {
     e.preventDefault();
     const res = await signin();
-    console.log(res);
     this.setState({ email: "", password: "" });
     Router.push({
       pathname: "/courses"

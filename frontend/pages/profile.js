@@ -1,5 +1,6 @@
 import React from "react";
 import Profile from "../components/Profile";
+import SignInFirst from "../components/SignInFirst";
 
 import Head from "next/head";
 
@@ -9,7 +10,9 @@ const ProfilePage = () => {
       <Head>
         <title>CoffeeGlot | Profile</title>
       </Head>
-      <Profile />
+      <SignInFirst>
+        <Profile />
+      </SignInFirst>
     </>
   );
 };

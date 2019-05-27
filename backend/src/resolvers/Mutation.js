@@ -110,10 +110,10 @@ async function enroll(parent, args, ctx, info) {
     throw new Error(`Sorry! You first need to sign in.`);
   }
 
-  const now = new Date();
-  console.log(now);
-  const courses = await ctx.prisma.courses();
-  console.log(courses);
+  // const now = new Date();
+  // console.log(now);
+  // const courses = await ctx.prisma.courses();
+  // console.log(courses);
   const courseExists = await ctx.prisma.$exists.enrollment({
     user: { id: userId },
     course: { id: args.courseId }

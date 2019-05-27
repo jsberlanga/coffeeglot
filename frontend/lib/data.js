@@ -130,77 +130,77 @@ export const locations = [
   {
     id: 1,
     name: "Warhol Cafe",
-    pictures: "../../static/images/cafes/warhol.png",
+    pictures: "../../static/images/cafes/warhol.jpg",
     address: "ul. Lorem Ipsum 33, 32-033 Kraków",
     seats: 10
   },
   {
     id: 2,
     name: "Amanda's Cafe Bistro",
-    pictures: "../../static/images/cafes/amandas.png",
+    pictures: "../../static/images/cafes/amandas.jpg",
     address: "ul. Lorem Ipsum 44, 32-044 Kraków",
     seats: 6
   },
   {
     id: 3,
     name: "Charlotte Chleb & Wino",
-    pictures: "../../static/images/cafes/charlotte.png",
+    pictures: "../../static/images/cafes/charlotte.jpg",
     address: "ul. Lorem Ipsum 12, 32-012 Kraków",
     seats: 12
   },
   {
     id: 4,
     name: "La Caffeina",
-    pictures: "../../static/images/cafes/caffeina.png",
+    pictures: "../../static/images/cafes/caffeina.jpg",
     address: "ul. Lorem Ipsum 55, 32-055 Kraków",
     seats: 8
   },
   {
     id: 5,
     name: "Greenies",
-    pictures: "../../static/images/cafes/greenies.png",
+    pictures: "../../static/images/cafes/greenies.jpg",
     address: "ul. Lorem Ipsum 55, 32-055 Kraków",
     seats: 12
   },
   {
     id: 6,
     name: "Fast Forward Coffeshop",
-    pictures: "../../static/images/cafes/forward.png",
+    pictures: "../../static/images/cafes/forward.jpg",
     address: "ul. Lorem Ipsum 22, 32-022 Kraków",
     seats: 10
   },
   {
     id: 7,
     name: "Ilidulce",
-    pictures: "../../static/images/cafes/ilidulce.png",
+    pictures: "../../static/images/cafes/ilidulce.jpg",
     address: "ul. Lorem Ipsum 1, 32-001 Kraków",
     seats: 10
   },
   {
     id: 8,
     name: "Cafe La Squina ",
-    pictures: "../../static/images/cafes/laSquina.png",
+    pictures: "../../static/images/cafes/laSquina.jpg",
     address: "ul. Lorem Ipsum 9, 32-009 Kraków",
     seats: 12
   },
   {
     id: 9,
     name: "Odds Becca Cafe",
-    pictures: "../../static/images/cafes/oddsbecca.png",
+    pictures: "../../static/images/cafes/oddsbecca.jpg",
     address: "ul. Lorem Ipsum 88, 32-088 Kraków",
     seats: 8
   },
   {
     id: 10,
     name: "Cafe Restaurant Pear Tree",
-    pictures: "../../static/images/cafes/peartree.png",
+    pictures: "../../static/images/cafes/peartree.jpg",
     address: "ul. Lorem Ipsum 133, 32-133 Kraków",
     seats: 14
   },
   {
     id: 11,
     name: "Tranquil Ambient Cafe",
-    pictures: "../../static/images/cafes/tranquil.png",
+    pictures: "../../static/images/cafes/tranquil.jpg",
     address: "ul. Lorem Ipsum 40, 32-040 Kraków",
     seats: 8
   }

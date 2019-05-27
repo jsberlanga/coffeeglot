@@ -56,7 +56,6 @@ export default class Courses extends Component {
           variables={{ orderBy: "createdAt_DESC" }}
         >
           {({ data: { courses }, error, loading }) => {
-            console.log(courses);
             if (error) return <Error error={error} />;
             if (loading) return <Spinner />;
             return (

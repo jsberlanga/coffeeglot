@@ -46,7 +46,6 @@ export default class Teachers extends Component {
           variables={{ orderBy: "createdAt_DESC" }}
         >
           {({ data }) => {
-            console.log(data);
             if (!data) return <p>There are no teachers</p>;
             const { teachers } = data;
             return (

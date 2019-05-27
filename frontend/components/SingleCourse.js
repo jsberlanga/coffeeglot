@@ -42,11 +42,9 @@ const SINGLE_COURSE_QUERY = gql`
 `;
 
 const SingleCourse = props => {
-  console.log(props);
   return (
     <Query query={SINGLE_COURSE_QUERY} variables={{ id: props.id }}>
       {({ data: { getCourse: course } }, loading, error) => {
-        console.log(course);
         return (
           <>
             <Head>
