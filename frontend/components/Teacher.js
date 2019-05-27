@@ -67,11 +67,12 @@ const Teacher = props => {
         <h3 className="title">Name: {teacher.name}</h3>
         <p>
           {teacher.name} is {teacher.age} years old{" "}
-          {teacher.isNative === "Yes" && (
-            <span>
-              and is a <span className="isNative">NATIVE SPEAKER!</span>
+          <span>
+            and is a{" "}
+            <span className="isNative">
+              {teacher.isNative.toUpperCase()} NATIVE SPEAKER!
             </span>
-          )}
+          </span>
         </p>
 
         <p>Education: {teacher.education}</p>

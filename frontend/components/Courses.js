@@ -23,6 +23,9 @@ export const ALL_COURSES_QUERY = gql`
       createdBy {
         id
       }
+      usersEnrolled {
+        id
+      }
     }
   }
 `;
@@ -53,6 +56,7 @@ export default class Courses extends Component {
           variables={{ orderBy: "createdAt_DESC" }}
         >
           {({ data: { courses }, error, loading }) => {
+            console.log(courses);
             if (error) return <Error error={error} />;
             if (loading) return <Spinner />;
             return (

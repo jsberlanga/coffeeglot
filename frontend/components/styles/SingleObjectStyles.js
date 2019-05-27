@@ -74,15 +74,23 @@ const SingleObjectStyle = styled.div`
   }
 
   .active {
-    background: ${props => props.theme.green2};
-    color: ${props => props.theme.lightGrey};
-    border: none;
+    /* background: ${props => props.theme.blue};
+    color: ${props => props.theme.grey};
+    border: none; */
+    p {
+      font-size: 2.2rem;
+      margin: 0;
+    }
   }
 
   .inactive {
     background: maroon;
     color: #fff;
     border: none;
+    p {
+      font-size: 2rem;
+      margin: 0;
+    }
   }
 
   .isNative,
@@ -137,6 +145,30 @@ const SingleObjectStyle = styled.div`
       color: ${props => props.theme.yellow};
     }
   }
+  .register {
+    margin: 1rem auto;
+    width: 80%;
+    left: 10%;
+    border: none;
+    padding: 3rem;
+    margin-top: -1rem;
+    margin-bottom: 1rem;
+    position: relative;
+    color: #fff;
+    letter-spacing: -2px;
+    cursor: pointer;
+    transition: all 0.2s;
+    background: ${props => props.theme.grey};
+    font-family: linlibertine-italicbold;
+    font-size: 3.5rem;
+    :hover {
+      background: ${props => props.theme.green2};
+    }
+    :disabled {
+      background: maroon;
+      cursor: not-allowed;
+    }
+  }
 
   @media (max-width: 1130px) {
     grid-template-columns: 1fr;
@@ -147,6 +179,9 @@ const SingleObjectStyle = styled.div`
     .avatar__teacher {
       width: 100%;
       left: -20%;
+    }
+    .register {
+      left: 0
     }
   }
 
@@ -159,6 +194,8 @@ const SingleObjectStyle = styled.div`
   li {
     padding: 0.3rem 1rem;
   }
+
+  
 `;
 
 export default SingleObjectStyle;

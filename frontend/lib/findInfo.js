@@ -28,3 +28,14 @@ export const findMaxSeats = courseLocation => {
   });
   return filtered.seats;
 };
+
+export const findEnrollMessage = course => {
+  const now = new Date().toISOString();
+
+  if (course.endDate < now) return "This course has already finished";
+  if (course.startDate < now) return "This course has already started";
+  if (course.usersEnrolled.length >= course.seats) return "This course is full";
+  else {
+    return "Enroll to this course";
+  }
+};

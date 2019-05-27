@@ -6,8 +6,8 @@ import { StyledHeader } from "./styles/Header";
 import Teacher from "./Teacher";
 
 const ALL_TEACHERS_QUERY = gql`
-  query ALL_TEACHERS_QUERY {
-    teachers {
+  query ALL_TEACHERS_QUERY($orderBy: TeacherOrderByInput) {
+    teachers(orderBy: $orderBy) {
       id
       name
       age
@@ -41,7 +41,10 @@ export default class Teachers extends Component {
           <h2>Find all about our teachers</h2>
         </StyledHeader>
 
-        <Query query={ALL_TEACHERS_QUERY}>
+        <Query
+          query={ALL_TEACHERS_QUERY}
+          variables={{ orderBy: "createdAt_DESC" }}
+        >
           {({ data }) => {
             console.log(data);
             if (!data) return <p>There are no teachers</p>;

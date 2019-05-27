@@ -32,8 +32,8 @@ const StyledNav = styled.div`
     border: 0;
     text-decoration: none;
   }
-  @media (max-width: 1200px) {
-    /* flex-direction: column; */
+  @media (max-width: 500px) {
+    flex-direction: column;
   }
 
   .active {

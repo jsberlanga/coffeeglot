@@ -507,34 +507,22 @@ export interface CourseWhereInput {
   seats_lte?: Int;
   seats_gt?: Int;
   seats_gte?: Int;
-  startDate?: String;
-  startDate_not?: String;
-  startDate_in?: String[] | String;
-  startDate_not_in?: String[] | String;
-  startDate_lt?: String;
-  startDate_lte?: String;
-  startDate_gt?: String;
-  startDate_gte?: String;
-  startDate_contains?: String;
-  startDate_not_contains?: String;
-  startDate_starts_with?: String;
-  startDate_not_starts_with?: String;
-  startDate_ends_with?: String;
-  startDate_not_ends_with?: String;
-  endDate?: String;
-  endDate_not?: String;
-  endDate_in?: String[] | String;
-  endDate_not_in?: String[] | String;
-  endDate_lt?: String;
-  endDate_lte?: String;
-  endDate_gt?: String;
-  endDate_gte?: String;
-  endDate_contains?: String;
-  endDate_not_contains?: String;
-  endDate_starts_with?: String;
-  endDate_not_starts_with?: String;
-  endDate_ends_with?: String;
-  endDate_not_ends_with?: String;
+  startDate?: DateTimeInput;
+  startDate_not?: DateTimeInput;
+  startDate_in?: DateTimeInput[] | DateTimeInput;
+  startDate_not_in?: DateTimeInput[] | DateTimeInput;
+  startDate_lt?: DateTimeInput;
+  startDate_lte?: DateTimeInput;
+  startDate_gt?: DateTimeInput;
+  startDate_gte?: DateTimeInput;
+  endDate?: DateTimeInput;
+  endDate_not?: DateTimeInput;
+  endDate_in?: DateTimeInput[] | DateTimeInput;
+  endDate_not_in?: DateTimeInput[] | DateTimeInput;
+  endDate_lt?: DateTimeInput;
+  endDate_lte?: DateTimeInput;
+  endDate_gt?: DateTimeInput;
+  endDate_gte?: DateTimeInput;
   createdBy?: UserWhereInput;
   usersEnrolled_every?: EnrollmentWhereInput;
   usersEnrolled_some?: EnrollmentWhereInput;
@@ -715,8 +703,8 @@ export interface CourseUpdateWithoutCreatedByDataInput {
   language?: String;
   location?: String;
   seats?: Int;
-  startDate?: String;
-  endDate?: String;
+  startDate?: DateTimeInput;
+  endDate?: DateTimeInput;
   usersEnrolled?: EnrollmentUpdateManyWithoutCourseInput;
 }
 
@@ -760,8 +748,8 @@ export interface CourseCreateWithoutUsersEnrolledInput {
   language: String;
   location: String;
   seats: Int;
-  startDate: String;
-  endDate: String;
+  startDate: DateTimeInput;
+  endDate: DateTimeInput;
   createdBy: UserCreateOneWithoutCoursesInput;
 }
 
@@ -777,8 +765,8 @@ export interface CourseUpdateInput {
   language?: String;
   location?: String;
   seats?: Int;
-  startDate?: String;
-  endDate?: String;
+  startDate?: DateTimeInput;
+  endDate?: DateTimeInput;
   createdBy?: UserUpdateOneRequiredWithoutCoursesInput;
   usersEnrolled?: EnrollmentUpdateManyWithoutCourseInput;
 }
@@ -1127,8 +1115,8 @@ export interface CourseUpdateManyDataInput {
   language?: String;
   location?: String;
   seats?: Int;
-  startDate?: String;
-  endDate?: String;
+  startDate?: DateTimeInput;
+  endDate?: DateTimeInput;
 }
 
 export interface CourseCreateManyWithoutCreatedByInput {
@@ -1297,8 +1285,8 @@ export interface CourseUpdateManyMutationInput {
   language?: String;
   location?: String;
   seats?: Int;
-  startDate?: String;
-  endDate?: String;
+  startDate?: DateTimeInput;
+  endDate?: DateTimeInput;
 }
 
 export interface UserUpdateOneRequiredWithoutTeachersInput {
@@ -1329,8 +1317,8 @@ export interface CourseCreateInput {
   language: String;
   location: String;
   seats: Int;
-  startDate: String;
-  endDate: String;
+  startDate: DateTimeInput;
+  endDate: DateTimeInput;
   createdBy: UserCreateOneWithoutCoursesInput;
   usersEnrolled?: EnrollmentCreateManyWithoutCourseInput;
 }
@@ -1407,8 +1395,8 @@ export interface CourseUpdateWithoutUsersEnrolledDataInput {
   language?: String;
   location?: String;
   seats?: Int;
-  startDate?: String;
-  endDate?: String;
+  startDate?: DateTimeInput;
+  endDate?: DateTimeInput;
   createdBy?: UserUpdateOneRequiredWithoutCoursesInput;
 }
 
@@ -1636,34 +1624,22 @@ export interface CourseScalarWhereInput {
   seats_lte?: Int;
   seats_gt?: Int;
   seats_gte?: Int;
-  startDate?: String;
-  startDate_not?: String;
-  startDate_in?: String[] | String;
-  startDate_not_in?: String[] | String;
-  startDate_lt?: String;
-  startDate_lte?: String;
-  startDate_gt?: String;
-  startDate_gte?: String;
-  startDate_contains?: String;
-  startDate_not_contains?: String;
-  startDate_starts_with?: String;
-  startDate_not_starts_with?: String;
-  startDate_ends_with?: String;
-  startDate_not_ends_with?: String;
-  endDate?: String;
-  endDate_not?: String;
-  endDate_in?: String[] | String;
-  endDate_not_in?: String[] | String;
-  endDate_lt?: String;
-  endDate_lte?: String;
-  endDate_gt?: String;
-  endDate_gte?: String;
-  endDate_contains?: String;
-  endDate_not_contains?: String;
-  endDate_starts_with?: String;
-  endDate_not_starts_with?: String;
-  endDate_ends_with?: String;
-  endDate_not_ends_with?: String;
+  startDate?: DateTimeInput;
+  startDate_not?: DateTimeInput;
+  startDate_in?: DateTimeInput[] | DateTimeInput;
+  startDate_not_in?: DateTimeInput[] | DateTimeInput;
+  startDate_lt?: DateTimeInput;
+  startDate_lte?: DateTimeInput;
+  startDate_gt?: DateTimeInput;
+  startDate_gte?: DateTimeInput;
+  endDate?: DateTimeInput;
+  endDate_not?: DateTimeInput;
+  endDate_in?: DateTimeInput[] | DateTimeInput;
+  endDate_not_in?: DateTimeInput[] | DateTimeInput;
+  endDate_lt?: DateTimeInput;
+  endDate_lte?: DateTimeInput;
+  endDate_gt?: DateTimeInput;
+  endDate_gte?: DateTimeInput;
   AND?: CourseScalarWhereInput[] | CourseScalarWhereInput;
   OR?: CourseScalarWhereInput[] | CourseScalarWhereInput;
   NOT?: CourseScalarWhereInput[] | CourseScalarWhereInput;
@@ -1720,8 +1696,8 @@ export interface CourseCreateWithoutCreatedByInput {
   language: String;
   location: String;
   seats: Int;
-  startDate: String;
-  endDate: String;
+  startDate: DateTimeInput;
+  endDate: DateTimeInput;
   usersEnrolled?: EnrollmentCreateManyWithoutCourseInput;
 }
 
@@ -2093,8 +2069,8 @@ export interface Course {
   language: String;
   location: String;
   seats: Int;
-  startDate: String;
-  endDate: String;
+  startDate: DateTimeOutput;
+  endDate: DateTimeOutput;
 }
 
 export interface CoursePromise extends Promise<Course>, Fragmentable {
@@ -2106,8 +2082,8 @@ export interface CoursePromise extends Promise<Course>, Fragmentable {
   language: () => Promise<String>;
   location: () => Promise<String>;
   seats: () => Promise<Int>;
-  startDate: () => Promise<String>;
-  endDate: () => Promise<String>;
+  startDate: () => Promise<DateTimeOutput>;
+  endDate: () => Promise<DateTimeOutput>;
   createdBy: <T = UserPromise>() => T;
   usersEnrolled: <T = FragmentableArray<Enrollment>>(args?: {
     where?: EnrollmentWhereInput;
@@ -2131,8 +2107,8 @@ export interface CourseSubscription
   language: () => Promise<AsyncIterator<String>>;
   location: () => Promise<AsyncIterator<String>>;
   seats: () => Promise<AsyncIterator<Int>>;
-  startDate: () => Promise<AsyncIterator<String>>;
-  endDate: () => Promise<AsyncIterator<String>>;
+  startDate: () => Promise<AsyncIterator<DateTimeOutput>>;
+  endDate: () => Promise<AsyncIterator<DateTimeOutput>>;
   createdBy: <T = UserSubscription>() => T;
   usersEnrolled: <T = Promise<AsyncIterator<EnrollmentSubscription>>>(args?: {
     where?: EnrollmentWhereInput;
@@ -2218,8 +2194,8 @@ export interface CoursePreviousValues {
   language: String;
   location: String;
   seats: Int;
-  startDate: String;
-  endDate: String;
+  startDate: DateTimeOutput;
+  endDate: DateTimeOutput;
 }
 
 export interface CoursePreviousValuesPromise
@@ -2233,8 +2209,8 @@ export interface CoursePreviousValuesPromise
   language: () => Promise<String>;
   location: () => Promise<String>;
   seats: () => Promise<Int>;
-  startDate: () => Promise<String>;
-  endDate: () => Promise<String>;
+  startDate: () => Promise<DateTimeOutput>;
+  endDate: () => Promise<DateTimeOutput>;
 }
 
 export interface CoursePreviousValuesSubscription
@@ -2248,8 +2224,8 @@ export interface CoursePreviousValuesSubscription
   language: () => Promise<AsyncIterator<String>>;
   location: () => Promise<AsyncIterator<String>>;
   seats: () => Promise<AsyncIterator<Int>>;
-  startDate: () => Promise<AsyncIterator<String>>;
-  endDate: () => Promise<AsyncIterator<String>>;
+  startDate: () => Promise<AsyncIterator<DateTimeOutput>>;
+  endDate: () => Promise<AsyncIterator<DateTimeOutput>>;
 }
 
 export interface AggregateEnrollment {

@@ -1,8 +1,13 @@
 import React, { Component } from "react";
 import Link from "next/link";
 import StyledCourse from "./styles/CourseStyles";
+import Router from "next/router";
 
-import { findFlag, findLocationPicture } from "../lib/findInfo";
+import {
+  findFlag,
+  findLocationPicture,
+  findEnrollMessage
+} from "../lib/findInfo";
 import Error from "./styles/Error";
 import Spinner from "./styles/Spinner";
 
@@ -63,9 +68,19 @@ export default class Course extends Component {
                 );
               if (loading) return <Spinner />;
               return (
-                <a className="register" onClick={() => enroll()}>
-                  Enroll to this course
-                </a>
+                <button
+                  disabled={
+                    course.usersEnrolled.length >= course.seats ||
+                    course.startDate < new Date().toISOString() ||
+                    course.endDate < new Date().toISOString()
+                  }
+                  className="register"
+                  onClick={() => {
+                    enroll();
+                  }}
+                >
+                  {findEnrollMessage(course)}
+                </button>
               );
             }}
           </Mutation>
@@ -82,3 +97,5 @@ export default class Course extends Component {
     );
   }
 }
+
+export { ENROLL_COURSE_MUTATION };

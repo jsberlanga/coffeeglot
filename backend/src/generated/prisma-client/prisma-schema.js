@@ -36,8 +36,8 @@ type Course {
   language: String!
   location: String!
   seats: Int!
-  startDate: String!
-  endDate: String!
+  startDate: DateTime!
+  endDate: DateTime!
   createdBy: User!
   usersEnrolled(where: EnrollmentWhereInput, orderBy: EnrollmentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Enrollment!]
 }
@@ -56,8 +56,8 @@ input CourseCreateInput {
   language: String!
   location: String!
   seats: Int!
-  startDate: String!
-  endDate: String!
+  startDate: DateTime!
+  endDate: DateTime!
   createdBy: UserCreateOneWithoutCoursesInput!
   usersEnrolled: EnrollmentCreateManyWithoutCourseInput
 }
@@ -80,8 +80,8 @@ input CourseCreateWithoutCreatedByInput {
   language: String!
   location: String!
   seats: Int!
-  startDate: String!
-  endDate: String!
+  startDate: DateTime!
+  endDate: DateTime!
   usersEnrolled: EnrollmentCreateManyWithoutCourseInput
 }
 
@@ -93,8 +93,8 @@ input CourseCreateWithoutUsersEnrolledInput {
   language: String!
   location: String!
   seats: Int!
-  startDate: String!
-  endDate: String!
+  startDate: DateTime!
+  endDate: DateTime!
   createdBy: UserCreateOneWithoutCoursesInput!
 }
 
@@ -135,8 +135,8 @@ type CoursePreviousValues {
   language: String!
   location: String!
   seats: Int!
-  startDate: String!
-  endDate: String!
+  startDate: DateTime!
+  endDate: DateTime!
 }
 
 input CourseScalarWhereInput {
@@ -234,34 +234,22 @@ input CourseScalarWhereInput {
   seats_lte: Int
   seats_gt: Int
   seats_gte: Int
-  startDate: String
-  startDate_not: String
-  startDate_in: [String!]
-  startDate_not_in: [String!]
-  startDate_lt: String
-  startDate_lte: String
-  startDate_gt: String
-  startDate_gte: String
-  startDate_contains: String
-  startDate_not_contains: String
-  startDate_starts_with: String
-  startDate_not_starts_with: String
-  startDate_ends_with: String
-  startDate_not_ends_with: String
-  endDate: String
-  endDate_not: String
-  endDate_in: [String!]
-  endDate_not_in: [String!]
-  endDate_lt: String
-  endDate_lte: String
-  endDate_gt: String
-  endDate_gte: String
-  endDate_contains: String
-  endDate_not_contains: String
-  endDate_starts_with: String
-  endDate_not_starts_with: String
-  endDate_ends_with: String
-  endDate_not_ends_with: String
+  startDate: DateTime
+  startDate_not: DateTime
+  startDate_in: [DateTime!]
+  startDate_not_in: [DateTime!]
+  startDate_lt: DateTime
+  startDate_lte: DateTime
+  startDate_gt: DateTime
+  startDate_gte: DateTime
+  endDate: DateTime
+  endDate_not: DateTime
+  endDate_in: [DateTime!]
+  endDate_not_in: [DateTime!]
+  endDate_lt: DateTime
+  endDate_lte: DateTime
+  endDate_gt: DateTime
+  endDate_gte: DateTime
   AND: [CourseScalarWhereInput!]
   OR: [CourseScalarWhereInput!]
   NOT: [CourseScalarWhereInput!]
@@ -292,8 +280,8 @@ input CourseUpdateInput {
   language: String
   location: String
   seats: Int
-  startDate: String
-  endDate: String
+  startDate: DateTime
+  endDate: DateTime
   createdBy: UserUpdateOneRequiredWithoutCoursesInput
   usersEnrolled: EnrollmentUpdateManyWithoutCourseInput
 }
@@ -305,8 +293,8 @@ input CourseUpdateManyDataInput {
   language: String
   location: String
   seats: Int
-  startDate: String
-  endDate: String
+  startDate: DateTime
+  endDate: DateTime
 }
 
 input CourseUpdateManyMutationInput {
@@ -316,8 +304,8 @@ input CourseUpdateManyMutationInput {
   language: String
   location: String
   seats: Int
-  startDate: String
-  endDate: String
+  startDate: DateTime
+  endDate: DateTime
 }
 
 input CourseUpdateManyWithoutCreatedByInput {
@@ -351,8 +339,8 @@ input CourseUpdateWithoutCreatedByDataInput {
   language: String
   location: String
   seats: Int
-  startDate: String
-  endDate: String
+  startDate: DateTime
+  endDate: DateTime
   usersEnrolled: EnrollmentUpdateManyWithoutCourseInput
 }
 
@@ -363,8 +351,8 @@ input CourseUpdateWithoutUsersEnrolledDataInput {
   language: String
   location: String
   seats: Int
-  startDate: String
-  endDate: String
+  startDate: DateTime
+  endDate: DateTime
   createdBy: UserUpdateOneRequiredWithoutCoursesInput
 }
 
@@ -479,34 +467,22 @@ input CourseWhereInput {
   seats_lte: Int
   seats_gt: Int
   seats_gte: Int
-  startDate: String
-  startDate_not: String
-  startDate_in: [String!]
-  startDate_not_in: [String!]
-  startDate_lt: String
-  startDate_lte: String
-  startDate_gt: String
-  startDate_gte: String
-  startDate_contains: String
-  startDate_not_contains: String
-  startDate_starts_with: String
-  startDate_not_starts_with: String
-  startDate_ends_with: String
-  startDate_not_ends_with: String
-  endDate: String
-  endDate_not: String
-  endDate_in: [String!]
-  endDate_not_in: [String!]
-  endDate_lt: String
-  endDate_lte: String
-  endDate_gt: String
-  endDate_gte: String
-  endDate_contains: String
-  endDate_not_contains: String
-  endDate_starts_with: String
-  endDate_not_starts_with: String
-  endDate_ends_with: String
-  endDate_not_ends_with: String
+  startDate: DateTime
+  startDate_not: DateTime
+  startDate_in: [DateTime!]
+  startDate_not_in: [DateTime!]
+  startDate_lt: DateTime
+  startDate_lte: DateTime
+  startDate_gt: DateTime
+  startDate_gte: DateTime
+  endDate: DateTime
+  endDate_not: DateTime
+  endDate_in: [DateTime!]
+  endDate_not_in: [DateTime!]
+  endDate_lt: DateTime
+  endDate_lte: DateTime
+  endDate_gt: DateTime
+  endDate_gte: DateTime
   createdBy: UserWhereInput
   usersEnrolled_every: EnrollmentWhereInput
   usersEnrolled_some: EnrollmentWhereInput

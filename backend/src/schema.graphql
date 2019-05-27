@@ -5,7 +5,7 @@ type Query {
   getUser(id: ID!): User!
   courses(filter: String, orderBy: CourseOrderByInput): [Course]!
   getCourse(id: ID!): Course
-  teachers: [Teacher]!
+  teachers(orderBy: TeacherOrderByInput): [Teacher]!
   getTeacher(id: ID!): Teacher!
   me: User
 }
@@ -23,6 +23,11 @@ enum CourseOrderByInput {
   location_DESC
   startDate_ASC
   startDate_DESC
+}
+
+enum TeacherOrderByInput {
+  createdAt_ASC
+  createdAt_DESC
 }
 
 type Mutation {
@@ -47,8 +52,8 @@ type Mutation {
     language: String!
     location: String!
     seats: Int!
-    startDate: String!
-    endDate: String!
+    startDate: DateTime!
+    endDate: DateTime!
   ): Course!
   deleteCourse(id: ID!): Course
   vote(teacherId: ID!): Vote

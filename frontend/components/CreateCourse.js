@@ -24,8 +24,8 @@ const CREATE_COURSE_MUTATION = gql`
     $language: String!
     $location: String!
     $seats: Int!
-    $startDate: String!
-    $endDate: String!
+    $startDate: DateTime!
+    $endDate: DateTime!
   ) {
     createCourse(
       title: $title

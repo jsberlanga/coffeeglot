@@ -1,13 +1,21 @@
 import React, { Component } from "react";
 import Link from "next/link";
-import { Query } from "react-apollo";
+import { Mutation, Query } from "react-apollo";
 import gql from "graphql-tag";
 
-import { findLocationPicture, findLocationAddress } from "../lib/findInfo";
+import {
+  findLocationPicture,
+  findLocationAddress,
+  findEnrollMessage
+} from "../lib/findInfo";
 import { findDate, compareDates } from "../lib/findDate";
 
 import { StyledHeader } from "./styles/Header";
 import SingleObjectStyle from "./styles/SingleObjectStyles";
+
+import { ENROLL_COURSE_MUTATION } from "./Course";
+import Error from "./styles/Error";
+import Spinner from "./styles/Spinner";
 
 import Head from "next/head";
 
@@ -24,6 +32,9 @@ const SINGLE_COURSE_QUERY = gql`
       startDate
       endDate
       createdBy {
+        id
+      }
+      usersEnrolled {
         id
       }
     }
@@ -65,10 +76,45 @@ const SingleCourse = props => {
                 </p>
                 <p>Some more: {course.details}</p>
                 <p>Total number of seats: {course.seats}</p>
-                <h4>Remaining seats: to be done</h4>
-                <h4>To register: to be done</h4>
+                {course.seats - course.usersEnrolled.length !== 0 && (
+                  <h4>
+                    Remaining seats:{" "}
+                    {course.seats - course.usersEnrolled.length}
+                  </h4>
+                )}
 
                 {findDate(course.startDate)}
+
+                <Mutation
+                  mutation={ENROLL_COURSE_MUTATION}
+                  variables={{ courseId: course.id }}
+                >
+                  {(enroll, { error, loading }) => {
+                    if (error)
+                      return (
+                        <Error
+                          styles={{ position: "absolute" }}
+                          error={error}
+                        />
+                      );
+                    if (loading) return <Spinner />;
+                    return (
+                      <button
+                        disabled={
+                          course.usersEnrolled.length >= course.seats ||
+                          course.startDate < new Date().toISOString() ||
+                          course.endDate < new Date().toISOString()
+                        }
+                        className="register"
+                        onClick={() => {
+                          enroll();
+                        }}
+                      >
+                        {findEnrollMessage(course)}
+                      </button>
+                    );
+                  }}
+                </Mutation>
               </div>
             </SingleObjectStyle>
           </>

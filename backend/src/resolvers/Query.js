@@ -24,7 +24,9 @@ async function getCourse(parent, args, ctx, info) {
 }
 
 async function teachers(parent, args, ctx, info) {
-  const teachers = await ctx.prisma.teachers();
+  const teachers = await ctx.prisma.teachers({
+    orderBy: args.orderBy
+  });
   return teachers;
 }
 

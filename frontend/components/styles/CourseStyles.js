@@ -40,6 +40,11 @@ const StyledCourse = styled.div`
       letter-spacing: -1px;
     }
   }
+  button {
+    width: 100%;
+    border: none;
+  }
+
   p {
     font-size: 1.7rem;
     margin: 0.4rem;
@@ -78,6 +83,10 @@ const StyledCourse = styled.div`
       font-size: 2.5rem;
       :hover {
         background: ${props => props.theme.green2};
+      }
+      :disabled {
+        background: maroon;
+        cursor: not-allowed;
       }
     }
     .details {

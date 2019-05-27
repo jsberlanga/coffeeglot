@@ -37,8 +37,8 @@ type Course {
   language: String!
   location: String!
   seats: Int!
-  startDate: String!
-  endDate: String!
+  startDate: DateTime!
+  endDate: DateTime!
   createdBy: User!
   usersEnrolled: [Enrollment!]!
 }

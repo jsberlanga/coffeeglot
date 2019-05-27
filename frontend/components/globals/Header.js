@@ -45,6 +45,14 @@ const StyledHeader = styled.div`
       font-size: 1.4rem;
     }
   }
+
+  @media (max-width: 500px) {
+    a,
+    button {
+      margin: 0 auto;
+      padding: 1rem;
+    }
+  }
 `;
 
 const Header = () => (
