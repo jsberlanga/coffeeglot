@@ -30,7 +30,7 @@ class Profile extends Component {
                   <h2>Check out your profile</h2>
                 </StyledHeader>
 
-                {!courses.length && (
+                {!courses.length && !coursesEnrolled.length && (
                   <div style={{ textAlign: "center" }}>
                     <h2>Your Profile is currently empty.</h2>
                     <h4>

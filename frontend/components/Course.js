@@ -76,6 +76,9 @@ export default class Course extends Component {
                   }
                   className="register"
                   onClick={() => {
+                    Router.push({
+                      pathname: "/profile"
+                    });
                     enroll();
                   }}
                 >

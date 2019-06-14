@@ -12,14 +12,14 @@ export const findDate = (startDate, now) => {
       </div>
     );
   }
-  if (startDateMoment.diff(now) < 0) {
-    return (
-      <div className="title inactive">
-        <p>{`You are a bit too late`}</p>
-        <p>{`This course has already started.`}</p>
-      </div>
-    );
-  }
+  // if (startDateMoment.diff(now) < 0) {
+  //   return (
+  //     <div className="title inactive">
+  //       <p>{`You are a bit too late`}</p>
+  //       <p>{`This course has already started.`}</p>
+  //     </div>
+  //   );
+  // }
   if (startDateMoment.diff(now) > 0) {
     return (
       <div className="title active">
