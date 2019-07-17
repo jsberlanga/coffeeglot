@@ -9,15 +9,19 @@ const StyledNav = styled.div`
   display: flex;
   justify-content: center;
   font-family: "Stylish", sans-serif;
-  font-size: 1.9rem;
+  font-style: italic;
+  font-size: 2.5rem;
+  transform: skew(10deg);
   a,
   button,
   input {
     padding: 0rem 2rem;
     transition: all 0.14s ease;
+    letter-spacing: -1px;
+    color: ${props => props.theme.green2} !important;
     :hover {
       border-bottom: 4px solid ${props => props.theme.grey2};
-      color: ${props => props.theme.grey2};
+      color: ${props => props.theme.grey2} !important;
       transform: translateY(-6px);
       font-weight: bold;
     }

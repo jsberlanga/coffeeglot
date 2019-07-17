@@ -17,8 +17,8 @@ Router.onRouteChangeError = () => {
 };
 
 const StyledHeader = styled.div`
-  padding: 1rem;
-  margin: 0 4.5rem;
+  padding: 1rem 1rem 0;
+  margin: 0 8.5rem;
   a,
   button,
   img {

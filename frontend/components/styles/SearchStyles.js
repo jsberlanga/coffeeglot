@@ -7,7 +7,10 @@ const StyledSearch = styled.input`
   padding: 2rem;
   background: transparent;
   border: none;
-  font-size: 2.4rem;
+  font-size: 2.8rem;
+  transform: skew(10deg);
+  font-style: italic;
+  letter-spacing: -1px;
   outline: none;
 
   ::placeholder {

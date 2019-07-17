@@ -5,25 +5,26 @@ import Link from "next/link";
 
 const StyledHomeHero = styled.div`
   background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) 50%),
-    url("../../static/images/cafes/main.jpg");
+    url("../../static/images/cafes/main3.png");
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: bottom;
-  height: 95vh;
+  background-position: center;
+  max-width: 130rem;
+  margin: 0 auto;
+  height: 60vh;
   opacity: 0.7;
   position: relative;
   color: ${props => props.theme.grey};
-  filter: blur(0.4px) grayscale(50%);
+  filter: blur(0.4px) grayscale(10%);
   margin-top: 2rem;
-  border-top-right-radius: 20rem;
-  border-bottom-left-radius: 20rem;
+  border-top-right-radius: 1rem;
+  border-bottom-left-radius: 1rem;
   box-shadow: 0 0 2px 0px ${props => props.theme.grey2};
   h1 {
     text-align: right;
     font-size: 6rem;
     padding: 44rem 5rem 0;
     font-family: rothena;
-    font-style: italic;
     letter-spacing: 7px;
     color: ${props => props.theme.lightGrey};
     filter: blur(1.4px);
@@ -38,28 +39,43 @@ const StyledHomeHero = styled.div`
 `;
 
 const Grid = styled.div`
-  display: grid;
-  grid-template-areas:
-    "title"
-    "steps";
-  margin: 2rem 1rem 0;
-  grid-gap: 3rem;
-  .title {
-    grid-area: title;
-    text-align: center;
+  h3 {
+    font-family: linlibertine;
+    margin: 0;
   }
+  h5 {
+    font-family: linlibertine-bold;
+    margin: 0.5rem;
+    font-size: 1.8rem;
+  }
+  display: grid;
+
+  margin: 1rem 5rem 0;
+  grid-gap: 1rem;
+  text-align: center;
+
   .steps {
     grid-area: steps;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-gap: 4rem;
-
+    grid-gap: 2rem;
+    .steps--1,
+    .steps--2,
+    .steps--3 {
+      margin: 0 3rem;
+    }
+    .steps--image {
+      img {
+        width: 90px;
+        filter: blur(0.6px) grayscale(30%);
+      }
+    }
     @media (max-width: 768px) {
       grid-template-columns: 1fr;
     }
   }
   p {
-    margin: 2rem 0 0;
+    margin: 1rem 0 0;
   }
   a {
     border-bottom: 3px solid ${props => props.theme.yellow};
@@ -133,15 +149,14 @@ const Home = props => {
             }
           }}
         />
-        <h1>feeding mind, body and spirit</h1>
       </StyledHomeHero>
       <Grid>
-        <div className="title">
-          <h2>Start to learn or teach a language in three easy steps:</h2>
-        </div>
         <div className="steps">
-          <div>
-            <h3>1. Choose one of our Cafes</h3>
+          <div className="steps--1">
+            <div className="steps--image">
+              <img src="../static/images/ico1.png" />
+            </div>
+            <h3>Choose one of our Cafes</h3>
             <h5>and get ready to drink our best fresh coffee</h5>
             <p>
               We give you the opportunity to use one of our Cafes to teach your
@@ -160,8 +175,11 @@ const Home = props => {
               <a>Visit our cafes</a>
             </Link>
           </div>
-          <div>
-            <h3>2. Create your own course</h3>
+          <div className="steps--2">
+            <div className="steps--image">
+              <img src="../static/images/ico2.png" />
+            </div>
+            <h3>Create your own course</h3>
             <h5> or enroll into another amazing course </h5>
             <p>
               If you come here as a teacher, go ahead and start creating your
@@ -180,8 +198,11 @@ const Home = props => {
               <a>Enroll into a course</a>
             </Link>
           </div>
-          <div>
-            <h3>3. Check your profile</h3>
+          <div className="steps--3">
+            <div className="steps--image">
+              <img src="../static/images/ico3.png" />
+            </div>
+            <h3>Check your profile</h3>
             <h5>and view and rate all the other teachers profiles</h5>
             <p>
               If you think something is not clear enough, you can contact your
