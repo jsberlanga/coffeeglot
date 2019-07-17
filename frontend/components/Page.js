@@ -31,7 +31,7 @@ const GlobalStyle = createGlobalStyle`
   }
   @font-face {
     font-family: 'linlibertine-italicbold';
-    src: url('/static/LinLibertine_RBi.ttf') format('truetype');
+    src: url('/static/LinLibertine_RBI.ttf') format('truetype');
     font-weight: normal;
     font-style: italic;
   }

@@ -20,7 +20,7 @@ const StyledNav = styled.div`
     letter-spacing: -1px;
     color: ${props => props.theme.green2} !important;
     :hover {
-      border-bottom: 4px solid ${props => props.theme.grey2};
+      border-bottom: 3px solid ${props => props.theme.grey2};
       color: ${props => props.theme.grey2} !important;
       transform: translateY(-6px);
       font-weight: bold;
@@ -41,10 +41,10 @@ const StyledNav = styled.div`
   }
 
   .active {
-    border-bottom: 4px solid ${props => props.theme.green};
-    color: ${props => props.theme.green};
+    border-bottom: 3px solid ${props => props.theme.green};
+    color: ${props => props.theme.green} !important;
     transform: translateY(-6px);
-    font-weight: bold;
+    /* font-weight: bold; */
   }
 `;
 
