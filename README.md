@@ -8,3 +8,5 @@ Install the dependencies from backend and frontend folders.
 cd into frontend and "npm run dev"
 cd into backend and "npm run start"
 ```
+
+test
